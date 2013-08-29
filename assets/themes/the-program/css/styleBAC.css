@@ -728,6 +728,7 @@ pre {
 .unit-article img {
   display: block;
   margin-left: auto;
+  margin-left: auto;
 }
 .unit-article img.left {
   margin-right: 16px;
@@ -1061,6 +1062,7 @@ pre {
     top: auto;
   }
   .body {
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
     -webkit-box-shadow: #ffffff 0px 0px 2px;
     -moz-box-shadow: #ffffff 0px 0px 2px;
     -o-box-shadow: #ffffff 0px 0px 2px;
