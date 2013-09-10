@@ -28,7 +28,7 @@
 
 			for (var i = 0; i < albums.length; i++){
 				//var markup = $("<div class='album'><div class='front'><img src='" + albums[i].art + "'><div class='alpha'></div></div><div class='back'><h2>" + albums[i].artist + "</h2><h1>" + albums[i].name + "</h1><h3>" + albums[i].played + " tracks played</h3></div></div>");
-				var markup = $("<img src='" + albums[i].art + "'>");
+				var markup = $("<img height='200px' width='200px' src='" + albums[i].art + "'>");
 				albumElement.append(markup);
 			}
 /*
