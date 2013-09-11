@@ -60,12 +60,14 @@
 			var $this = $(this);
 			$.getJSON( url, function(data){
 				$(data.topalbums.album).each(function(){
-					albums.push ({
-						//name:	this.name,
-						//artist: this.artist.name,
-						//played: this.playcount,
-						art:	this.image[this.image.length-1]["#text"]
-					});
+					if(this.image[this.image.length-1]["#text"] !== 'http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png'){
+                        albums.push ({
+                            //name:	this.name,
+                            //artist: this.artist.name,
+                            //played: this.playcount,
+                            art:	this.image[this.image.length-1]["#text"]
+                        });
+                    }
 				});
 				isLoaded($this);
 			});
