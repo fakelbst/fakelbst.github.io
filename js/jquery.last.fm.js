@@ -27,7 +27,7 @@
 		function isLoaded (albumElement) {
 
 			for (var i = 0; i < albums.length; i++){
-				//var markup = $("<div class='album'><div class='front'><img src='" + albums[i].art + "'><div class='alpha'></div></div><div class='back'><h2>" + albums[i].artist + "</h2><h1>" + albums[i].name + "</h1><h3>" + albums[i].played + " tracks played</h3></div></div>");
+				//var markup = $("<div class='album'><div class='front'><img height='200px' width='200px' src='" + albums[i].art + "'></div><div class='back'><h5>" + albums[i].artist + "</h5><h6>" + albums[i].name + "</h6></div></div>");
 				var markup = $("<img height='200px' width='200px' src='" + albums[i].art + "'>");
 				albumElement.append(markup);
 			}
@@ -62,8 +62,8 @@
 				$(data.topalbums.album).each(function(){
 					if(this.image[this.image.length-1]["#text"] !== 'http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png'){
                         albums.push ({
-                            //name:	this.name,
-                            //artist: this.artist.name,
+                            name:	this.name,
+                            artist: this.artist.name,
                             //played: this.playcount,
                             art:	this.image[this.image.length-1]["#text"]
                         });
