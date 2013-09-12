@@ -65,7 +65,8 @@
                             name:	this.name,
                             artist: this.artist.name,
                             //played: this.playcount,
-                            art:	this.image[this.image.length-1]["#text"]
+                            //art:	this.image[this.image.length-1]["#text"]
+                            art:	this.image[3]["#text"]
                         });
                     }
 				});
