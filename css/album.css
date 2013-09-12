@@ -1,0 +1,12 @@
+.album {
+    display: inline;
+}
+.album *:hover {
+    opacity: 0.98;
+}
+.front {
+    display: inline;
+}
+.back {
+    display: none;
+}
