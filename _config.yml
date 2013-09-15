@@ -1,3 +1,4 @@
 name: fakelbst
 markdown: redcarpet
 pygments: true
+permalink: pretty
