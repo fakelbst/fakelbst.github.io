@@ -1,10 +1,15 @@
 .socials *{
-float: left;
-width: 30px;
-height: 100vh;
+    float: left;
+    width: 30px;
+    height: 100vh;
 }
 .socials *:hover{
   opacity: 0.9;
+}
+[class^="icon-"] {
+    position: absolute;
+    bottom: 0px;
+    height: 30px
 }
 .douban {
   background-color: #108258 !important
