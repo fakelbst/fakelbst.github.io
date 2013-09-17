@@ -4,11 +4,14 @@ title: fakelbst's socials
 extra_css:
     - /css/font-awesome.css
     - /css/social.css
+extra_js:
+    - /js/social.js
+
 ---
 
 <div class="socials">
-    <div class="douban">
-        <i class="icon-twitter icon-2x"></i>
+    <div class="douban" >
+        <i class="icon-twitter icon-2x" onclick="douban()"></i>
     </div> 
     <div class="facebook">
          <i class="icon-facebook icon-2x"></i>
@@ -31,5 +34,14 @@ extra_css:
     <div class="f">
         <i class="icon-stackexchange icon-2x"></i>
     </div> 
+    <div class="space">
+    </div>
 </div>
-</div>
+<script>
+    var doubanUrl = 'http://api.douban.com/shuo/v2/statuses/user_timeline/wber';
+
+    $.getJSON(doubanUrl, function(data){
+        console.log(data);
+    });
+
+</script>
