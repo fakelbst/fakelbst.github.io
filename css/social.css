@@ -9,7 +9,8 @@
 [class^="icon-"] {
     position: absolute;
     bottom: 0px;
-    height: 30px
+    height: 30px;
+    margin: 0px -14px;
 }
 .douban {
   background-color: #108258 !important
