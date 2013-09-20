@@ -16,3 +16,37 @@ var tumblr = function(){
         console.log(data);
     });
 }
+
+var twitter = function(){
+    var cb = new Codebird;
+    var key = 'XafFt0iCQpMmBgpY82mWPg';
+    var sec = 'RvJXDhFk7XYLdigAGyNDn49iLVL3K72o5VYOv9REA';
+    var ato = '416526409-mTNHoColey7XWOBBxbZiXkM6p48ZDj66R3sWOyOr';
+    var ats = '8j8PE3eXjDPb579ZVD5sAAMVSK6foXQOEjW1DWkmQ';
+    cb.setConsumerKey(key, sec);
+    cb.setToken(ato, ats);
+    cb.__call(
+        "statuses_userTimeline",
+        {
+        screen_name: "fakelbst"
+        },
+        function (reply) {
+            console.log(reply);
+        }
+    );
+}
+
+var facebook = function(){
+
+}
+
+var github = function(){
+
+    var githubUrl = 'https://api.github.com/users/fakelbst/events';
+    
+
+}
+var instagram = function(){
+
+    //id: 287140978
+}

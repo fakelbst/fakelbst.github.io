@@ -1,0 +1,5 @@
+$ = jQuery
+
+douban = ->
+    alert 's'
+
