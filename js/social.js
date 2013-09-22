@@ -48,6 +48,5 @@ var github = function(){
 }
 var instagram = function(){
 
-    var instagramUrl = 'https://api.instagram.com/v1/users/287140978/media/recent/?access_token=287140978.f316052.2c964e349edc4fc7b2497e60ca88f2c3';
     //id: 287140978
 }
