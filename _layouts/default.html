@@ -14,18 +14,27 @@
     </head>
 
     <body>
+        <div class="nav">
+            <div>
+                <a href="/">home</a>
+            </div>
+            <div>
+                <a href="/">socials</a>
+            </div>
+            <div>
+                <a href="/inspired">inspired</a>
+            </div>
+            <div>
+                <a href="/">about</a>
+            </div>
+        </div>
+
         <script src="/js/lib/jquery-1.10.2.min.js"></script>
 
         {{ content }}
         {% for js_name in page.extra_js %}
         <script src="{{ js_name }}"></script>
         {% endfor %}
-
-        <div class="navbar navbar-fixed-top pbhead">
-            <p>This is <a href="http://fakelbst.github.io/">http://fakelbst.github.io/</a> still under construction. Now the albums is load from last.fm according to the albums I most listened :)</p>
-            <ul>
-            </ul>
-        </div>
 
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

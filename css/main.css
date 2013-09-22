@@ -34,20 +34,6 @@ a:visited { color: #a0a; }
 /* Home
 /*
 /*****************************************************************************/
-ul.posts {
-  list-style-type: none;
-  margin-bottom: 2em;
-}
-
-ul.posts li {
-  line-height: 1.75em;
-}
-
-ul.posts span {
-  color: #aaa;
-  font-family: Monaco, "Courier New", monospace;
-  font-size: 80%;
-}
 
 .navbar-fixed-top {
   position: fixed;
@@ -108,3 +94,31 @@ ul.posts span {
   color: #666;
 }
 
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0; z-index: 1030;
+  margin-bottom: 0;
+}
+.nav {
+    background: #15151F;
+    text-align: center;
+    opacity: 0.9;
+}
+.nav div{
+    float: left;
+    width: 25%;
+    display: block;
+    text-align: center;
+    padding: 2.1em 0;
+}
+.nav div a {
+    color: #aaa;
+    font: inherit;
+    text-decoration: none;
+    font-size: 17px;
+}
+.nav div a:hover{
+    color: #fff;
+}
