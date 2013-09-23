@@ -13,10 +13,9 @@
 	$.fn.lfm = function(options){
 		var settings = $.extend({
 
-			APIkey:		null,			// [string] required in order to retrieve content from last.fm
-			User:		null,			// [string] required username to retrieve data for
-			Behavior:	"hover",	// [string] controls detail content behavior. can be changed to 'click'
-			limit:		1000,				// [integer] the number of albums you'd like to show. max of 50
+			APIkey:		null,
+			User:		null,
+			limit:		250,
 			period:		"12month"	// [string] overall | 7day | 1month | 3month | 6month | 12month the period of time for which to retrieve top albums
 		}, options);
 
@@ -55,6 +54,5 @@
 
 $('.albums').lfm({
 	APIkey: "4dff88a0423651b3570253b10b745b2c",
-	User: "fakelbst",
-	Behavior: "hover"
+	User: "fakelbst"
 });
