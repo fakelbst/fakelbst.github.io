@@ -100,7 +100,7 @@ p { margin: 1em 0; }
 .nav {
     background: #15151F;
     text-align: center;
-    opacity: 0.9;
+    opacity: 0.85;
 }
 .nav div{
     float: left;
