@@ -2,6 +2,7 @@
     float: left;
     width: 30px;
     height: 100vh;
+    cursor: pointer;
 }
 .socials *:hover{
   opacity: 0.9;
