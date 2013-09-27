@@ -15,7 +15,7 @@
 
 			APIkey:		null,
 			User:		null,
-			limit:		250,
+			limit:		100,
 			period:		"12month"	// [string] overall | 7day | 1month | 3month | 6month | 12month the period of time for which to retrieve top albums
 		}, options);
 
