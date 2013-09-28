@@ -1,0 +1,30 @@
+body {
+    text-align: right;
+}
+.about {
+    position: absolute;
+    right: 120px;
+    top: 180px;
+    width: 300px;
+}
+.about a:hover {
+    color: #FFF;
+}
+h1 {
+    color: #FFF;
+}
+p {
+    color: #FFF;
+}
+strong {
+    color: #FFF;
+    font-weight: normal;
+}
+.contant {
+}
+.contact a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    border-bottom: none;
+    text-align: right;
+}
