@@ -30,7 +30,9 @@
         </div>
 
         <script src="/js/lib/jquery-1.10.2.min.js"></script>
-
+        {% for js_name in page.extra_before_js %}
+        <script src="{{ js_name }}"></script>
+        {% endfor %}
         {{ content }}
         {% for js_name in page.extra_js %}
         <script src="{{ js_name }}"></script>

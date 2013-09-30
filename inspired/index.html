@@ -3,49 +3,21 @@ layout: default
 title: get inspired
 extra_css:
     - /css/inspired.css
-extra_js:
+extra_before_js:
     - /js/blockquote.json
 ---
-<div class="inspired">
-    <h2>
-        <strong>Living</strong>
-    </h2>
+<div class="inspired"></div>
 
-    <blockquote>
-        <p>
-        "Life moves pretty fast. If you don’t stop and look around once in a while, you could miss it ."
-        </p>
-        <p>
-        -《Ferris Bueller’s Day Off》
-        </p>
-    </blockquote>
-
-    <blockquote>
-        <p>
-        "Because the only people for me are the mad ones, the ones who are mad to live, mad to talk, mad to be saved, desirous of everything at the same time, the ones who never yawn or say a commonplace thing, but burn, burn, burn like fabulous yellow roman candles exploding like spiders across the stars and in the middle you see the blue centerlight pop and everybody goes “Awww!”"
-        </p>
-        <p>
-        -《On the Road》
-        </p>
-    </blockquote>
-
-    <h2>
-        <strong>Programming</strong>
-    </h2>
-    <blockquote>
-        <p>
-        "Programming as an intellectual activity is the only art form that allows you to create interactive art. You can create projects that other people can play with, and you can talk to them indirectly. No other art form is quite this interactive. Movies flow to the audience in one direction. Paintings do not move. Code goes both ways."
-        </p>
-        <p>
-        -《Advice From An Old Programmer》 from 《Learn Python The Hard Way， 2nd Edition》
-        </p>
-    </blockquote>
-    <blockquote>
-        <p>
-        "The peculiar thing about programmers is that they're the one profession that can easily work remotely and travel, and yet they're the one profession that doesn't. Of course there are exceptions, but on my travels I didn't meet another programmer doing anything similar; a sad state of affairs. My message to fellow programmers is stop making excuses, man up and do it. You only live once, and I guarantee that you will have the time of your life."
-        </p>
-        <p>
-        - Alex MacCaw 《Traveling, Writing and Programming》
-        </p>
-    </blockquote>
-</div>
+<script>
+var c = 0;
+for(var i in s){
+    $('.inspired').append("<h2>" + i + "</h2>");
+    for(var j=0;j<s[i].length;j++){
+        console.log(33333);
+        console.log($('.inspired'));
+        $('h2:eq(' + c +')').append("<blockquote><p>" + s[i][j].quote + "</p><p>- " + s[i][j].author + "</p></blockquote>");
+    
+    }
+    c++;
+}
+</script>
