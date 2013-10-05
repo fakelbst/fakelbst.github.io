@@ -13,10 +13,7 @@ var c = 0;
 for(var i in s){
     $('.inspired').append("<h2>" + i + "</h2>");
     for(var j=0;j<s[i].length;j++){
-        console.log(33333);
-        console.log($('.inspired'));
         $('h2:eq(' + c +')').append("<blockquote><p>" + s[i][j].quote + "</p><p><i>- " + s[i][j].author + "</i></p></blockquote>");
-    
     }
     c++;
 }
