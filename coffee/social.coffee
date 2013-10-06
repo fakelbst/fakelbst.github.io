@@ -28,6 +28,7 @@ twitter = ->
     console.log reply
 
 facebook = ->
+# feed: http://fbrss.com/f/d1d598d2e12811e7f42e1c0826798a43.xml
 
 github = ->
   githubUrl = "https://api.github.com/users/fakelbst/events"
