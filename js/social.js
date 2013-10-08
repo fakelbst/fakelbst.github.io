@@ -37,7 +37,6 @@ var twitter = function(){
 }
 
 var facebook = function(){
-
 }
 
 var github = function(){
