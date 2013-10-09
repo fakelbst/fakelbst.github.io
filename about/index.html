@@ -50,3 +50,33 @@ extra_js:
         </p>
     </div>
 </div>
+
+
+<div class="recent track">
+    <h1>Recently Scrobbled</h1>
+    <style type="text/css">
+      #lastfmList li{ text-align: left; }
+    </style>
+    <ul id="lastfmList">
+      <li class="loading">Updating tracks...</li>
+    </ul>
+    <script lang="Javascript">
+        function showLastfmFeed(json){
+            if(json.recenttracks == 'undefined'){
+                return
+            }
+
+            var tracklist = document.getElementById('lastfmList'),
+                content = '';
+
+            $.each(json.recenttracks.track, function(i, track){
+                content += '<li id="lastfmItem_'+i+'"><a href="'+ track.url + '">' + track.name +'</a> - '+ track.artist['#text'] + '</li>';
+            });
+
+            tracklist.innerHTML = content;
+        }
+    </script>
+    <script lang="Javascript" src="http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user={{site.lastfm_user}}&limit={{ site.lastfm_count }}&api_key={{ site.lastfm_apikey }}&format=json&callback=showLastfmFeed"></script>
+    </section>
+</div>
+
