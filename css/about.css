@@ -1,6 +1,5 @@
 .about {
     position: relative;
-
 }
 h1 {
     color: #FFF;
@@ -15,7 +14,7 @@ strong {
 .contact {
     text-align: right;
     position: relative;
-    right: -70%;
+    left: 70%;
     top: 130px;
     width: 250px;
 }
