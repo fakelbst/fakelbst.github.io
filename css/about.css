@@ -4,12 +4,6 @@
     top: 180px;
     width: 300px;
 }
-.about a:hover {
-    color: #FFF;
-}
-.recent a:hover {
-    color: #FFF;
-}
 h1 {
     color: #FFF;
 }
@@ -23,21 +17,30 @@ strong {
 .contact {
     text-align: right;
 }
-.contact a {
-    color: rgba(255, 255, 255, 0.4);
-    text-decoration: none;
-    border-bottom: none;
-    text-align: right;
-}
 .recent {
     position: absolute;
     left: 50px;
     top: 130px;
     width: 250px;
 }
-.recent a,li{
+.recent li{
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     border-bottom: none;
     text-align: right;
+}
+.bitcoin {
+    position: absolute;
+    left: 250px;
+    top: 230px;
+    width: 220px;
+}
+a {
+    color: rgba(255, 255, 255, 0.4);
+    text-decoration: none;
+    border-bottom: none;
+    text-align: right;
+}
+a:hover {
+    color: #FFF;
 }
