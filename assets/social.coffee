@@ -1,5 +1,4 @@
 $ = jQuery
-
 douban = ->
     doubanUrl = "http://api.douban.com/shuo/v2/statuses/user_timeline/wber?alt=xd&callback=?"
     $.getJSON doubanUrl, (data) ->
@@ -36,5 +35,6 @@ github = ->
 instagram = ->
 #id: 287140978
 
-$.each $('.post_content') (index ele) = ->
-    console.log ele
+$.each $('.post_content'), (index, ele) ->
+    for i in $(ele).children()
+        console.log i

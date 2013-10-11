@@ -1,7 +1,7 @@
 desc "compile and run the site"
 task :default do
   pids = [
-    spawn("jekyll build"), # put `auto: true` in your _config.yml
+    spawn("jekyll server --watch"),
     spawn("scss --watch assets:stylesheets"),
     spawn("coffee -b -w -o javascripts -c assets/*.coffee")
   ]

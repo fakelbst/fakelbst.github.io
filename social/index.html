@@ -5,11 +5,11 @@ extra_css:
     - /css/font-awesome.css
     - /css/social.css
 extra_js:
-    - /js/lib/coffee-script.js
     - /js/sha1.js
     - /js/codebird.js
+    - /javascripts/social.js
 ---
-<script type="text/coffeescript" src="/coffee/social.coffee"></script>
+<!-- <script type="text/coffeescript" src="/coffee/social.coffee"></script> -->
 
 <div class="socials">
     <div class="douban" >
@@ -46,6 +46,7 @@ extra_js:
     top: 100px;
     left: 50px;
     margin: 0 15px 0 0;
+    overflow: hidden;
     border-style: solid;
     border-width: 0 1px 1px 1px;
     border-color: #3d3c3d;
@@ -55,6 +56,7 @@ extra_js:
     color: #fff;
     text-align: left;
     text-decoration: none;
+    word-wrap: break-word;
 }
 .post_header1 {
     height: 10px;
@@ -74,7 +76,7 @@ extra_js:
 .post_content {
     position: relative;
     top: 5px;
-    width: 140px;
+    width: 135px;
     margin: 0 auto;
     text-warp: normal;
 }
