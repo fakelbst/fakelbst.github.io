@@ -38,3 +38,7 @@ instagram = ->
 $.each $('.post_content'), (index, ele) ->
     for i in $(ele).children()
         console.log i
+
+$('#test').on 'click', () ->
+    console.log 'aaaaaa'
+    console.log 88888888
