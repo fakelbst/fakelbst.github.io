@@ -11,6 +11,9 @@ var s = {
     }, {
         "quote": "If you end up with a boring, miserable life because you listened to your mom, your dad, your teacher, your priest, or some guy on television telling you how to do your shit, then you deserve it.",
         "author": "Frank Zappa"
+    }, {
+        "quote": "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.",
+        "author": "Maya Angelou"
     }],
     "Programming":[{
         "quote": "Programming as an intellectual activity is the only art form that allows you to create interactive art. You can create projects that other people can play with, and you can talk to them indirectly. No other art form is quite this interactive. Movies flow to the audience in one direction. Paintings do not move. Code goes both ways.",
@@ -21,5 +24,15 @@ var s = {
     }, {
         "quote": "Beauty is more important in computing than anywhere else in technology because software is so complicated. Beauty is the ultimate defense against complexity",
         "author": "David Gelernter Machine Beauty: Elegance and the Heart of Technology"
+    }],
+    "Success":[{
+        "quote": "The fool didn't know it was impossible, so he did it.",
+        "author": ""
+    }, {
+        "quote": "Somewhere in the world someone is training when you are not. When you race him, he will win.",
+        "author": "Tom Fleming"
+    }, {
+        "quote": "I always wonder why birds stay in thr same place when they can fly anywhere on earth. Then I ask myself the same question",
+        "author": ""
     }]
 }
