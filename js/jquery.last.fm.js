@@ -26,7 +26,7 @@
 		function isLoaded (albumElement) {
 
 			for (var i = 0; i < albums.length; i++){
-				var markup = $("<div class='album'><div class='front'><img height='200px' width='200px' src='" + albums[i].art + "'></div><div class='back'><h5>" + albums[i].artist + "</h5><h6>" + albums[i].name + "</h6></div></div>");
+				var markup = $("<div class='album'><div class='front'><img height='200px' width='200px' src='" + albums[i].art + "'></img></div><div class='back'><h5>" + albums[i].artist + "</h5><h6>" + albums[i].name + "</h6></div></div>");
 				//var markup = $("<img height='200px' width='200px' src='" + albums[i].art + "'>");
 				albumElement.append(markup);
 			}
