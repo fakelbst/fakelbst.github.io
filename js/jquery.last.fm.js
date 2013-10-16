@@ -45,7 +45,12 @@
                     }
 				});
 				isLoaded($this);
-                $("img.lazy").lazy();
+                $("img.lazy").lazy({
+                    afterLoad: function(element) {
+                        console.log(element);
+                        console.log(434444444444);
+                    }
+                });
 			});
 		});
 	};

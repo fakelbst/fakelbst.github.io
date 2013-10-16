@@ -1,8 +1,8 @@
 $ = jQuery
 douban = ->
-    doubanUrl = "http://api.douban.com/shuo/v2/statuses/user_timeline/wber?alt=xd&callback=?"
-    $.getJSON doubanUrl, (data) ->
-        console.log data
+  doubanUrl = "http://api.douban.com/shuo/v2/statuses/user_timeline/wber?alt=xd&callback=?"
+  $.getJSON doubanUrl, (data) ->
+    console.log data
 
 tumblr = ->
   tumblrUrl = "http://api.tumblr.com/v2/blog/fakelbst.tumblr.com/posts?callback=?"
