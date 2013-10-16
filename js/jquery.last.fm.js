@@ -15,18 +15,16 @@
 
 			APIkey:		null,
 			User:		null,
-			limit:		100,
+			limit:		1000,
 			period:		"12month"	// [string] overall | 7day | 1month | 3month | 6month | 12month the period of time for which to retrieve top albums
 		}, options);
 
 		var url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + settings.User + "&period=" + settings.period + "&api_key=" + settings.APIkey + "&format=json&limit=" + settings.limit +"&callback=?";
-		//var url = "serverFixture.json"; //turn this on to try wihtout an api key or user
 		var albums = [];
-
 		function isLoaded (albumElement) {
 
 			for (var i = 0; i < albums.length; i++){
-				var markup = $("<div class='album'><div class='front'><img height='200px' width='200px' src='" + albums[i].art + "'></img></div><div class='back'><h5>" + albums[i].artist + "</h5><h6>" + albums[i].name + "</h6></div></div>");
+				var markup = $("<div class='album'><div class='front'><img class='lazy' height='200px' width='200px' src='/images/transparent.gif' data-src='" + albums[i].art + "'></img></div><div class='back'><h5>" + albums[i].artist + "</h5><h6>" + albums[i].name + "</h6></div></div>");
 				//var markup = $("<img height='200px' width='200px' src='" + albums[i].art + "'>");
 				albumElement.append(markup);
 			}
@@ -47,6 +45,7 @@
                     }
 				});
 				isLoaded($this);
+                $("img.lazy").lazy();
 			});
 		});
 	};
