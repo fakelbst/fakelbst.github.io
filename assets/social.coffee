@@ -39,6 +39,10 @@ $.each $('.post_content'), (index, ele) ->
     for i in $(ele).children()
         console.log i
 
-$('#test').on 'click', () ->
-    console.log 'aaaaaa'
-    console.log 88888888
+doubanDatas = douban()
+
+# for i in doubanDatas
+#     $('.posts').append '<li class="post"><div class="post_header1"></div><div class="post_title"></div><div class="post_content">' + '<p>' + 'sss' + '</p>' + '</div></li>'
+# $('#test').on 'click', () ->
+#     $('.posts').append '<li class="post"><div class="post_header1"></div><div class="post_title"></div><div class="post_content">' + '<p>' + 'sss' + '</p>' + '</div></li>'
+
