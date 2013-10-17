@@ -58,8 +58,8 @@
 
         // on first page load get initial images
         if( configuration.bind == "load" ){ 
-            console.log(333333333333);
-            _init();}
+            _init();
+        }
 
         // if event driven don't wait for page loading
         else if( configuration.bind == "event" ) _init();
