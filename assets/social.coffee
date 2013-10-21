@@ -2,7 +2,10 @@ $ = jQuery
 douban = ->
   doubanUrl = "http://api.douban.com/shuo/v2/statuses/user_timeline/wber?alt=xd&callback=?"
   $.getJSON doubanUrl, (data) ->
-    console.log data
+    # for i in data
+    #   console.log i
+    #   img = i.attachments[0].media[0].src 
+    #   $('.posts').append '<li class="post"><div class="post_header1"></div><div class="post_title">' + i.title  + '</div><div class="post_content">' + img + '</div></li>'
 
 tumblr = ->
   tumblrUrl = "http://api.tumblr.com/v2/blog/fakelbst.tumblr.com/posts?callback=?"
@@ -35,14 +38,9 @@ github = ->
 instagram = ->
 #id: 287140978
 
-$.each $('.post_content'), (index, ele) ->
-    for i in $(ele).children()
-        console.log i
+# $.each $('.post_content'), (index, ele) ->
+#   for i in $(ele).children()
+#     console.log i
 
-doubanDatas = douban()
-
-# for i in doubanDatas
-#     $('.posts').append '<li class="post"><div class="post_header1"></div><div class="post_title"></div><div class="post_content">' + '<p>' + 'sss' + '</p>' + '</div></li>'
-# $('#test').on 'click', () ->
-#     $('.posts').append '<li class="post"><div class="post_header1"></div><div class="post_title"></div><div class="post_content">' + '<p>' + 'sss' + '</p>' + '</div></li>'
+# doubanDatas = douban()
 
