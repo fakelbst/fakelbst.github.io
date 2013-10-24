@@ -9,6 +9,9 @@ extra_js:
     - /js/codebird.js
     - /javascripts/social.js
 ---
+<html xmlns:wb=“http://open.weibo.com/wb”>
+<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
+
 
 <div class="socials">
     <div class="douban" >
@@ -43,19 +46,10 @@ button {
     top: 100px;
     left: 30px;
 }
-.post {
+.follow {
     position: relative;
     float: left;
-    height: 170px;
-    width: 170px;
-    top: 100px;
-    left: 50px;
-    margin: 15px 15px 0 0;
-    overflow: hidden;
-    border-style: solid;
-    border-width: 0 1px 1px 1px;
-    border-color: #3d3c3d;
-    border-radius: 5px;
+    padding: 100px;
 }
 .post p {
     color: #fff;
@@ -84,31 +78,17 @@ button {
     margin: 0 auto;
     text-warp: normal;
 }
+.follow iframe {
+    margin: 20px 0 0 0;
+}
 </style>
-<button type="button" id="test" >don't click</button>
-<div class="posts">
-    <li class="post">
-        <div class="post_header1"></div>
-        <div class="post_title">test</div>
-        <div class="post_content" >
-            <img width="150px" src="/images/42895339.jpg" />
-        </div>
-    </li>
-    <li class="post">
-        <div class="post_header2"></div>
-        <div class="post_title">hello</div>
-        <div class="post_content">
-            <p>localhost.localdomain - - [11/Oct/2013:06:03 hello this is test test,test tttt
-            </p>
-        </div>
-    </li>
-    <li class="post">
-        <div class="post_header3"></div>
-        <div class="post_title">yep111</div>
-        <div class="post_content">
-            <img width="110px" height="110px" src="/images/42895339.jpg" />
-            <p>localhost.localdomain - - [11/Oct/2013:06:03 hello this is test test,test tttt
-            </p>
-        </div>
-    </li>
+<div class="follow">
+
+    <a href="https://twitter.com/fakelbst" class="twitter-follow-button" data-show-count="false">Follow @fakelbst</a>
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <wb:follow-button uid="2004707735" type="red_3" width="100%" height="24" ></wb:follow-button>
+    <iframe src="https://embed.spotify.com/follow/1/?uri=spotify:user:fakelbst&size=detail&theme=dark" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+
 </div>
+
