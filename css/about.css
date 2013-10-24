@@ -13,16 +13,16 @@ strong {
 }
 .contact {
     text-align: right;
+    width: 50%;
+    float: left;
+}
+.about {
     position: relative;
-    left: 70%;
-    top: 130px;
-    width: 250px;
+    padding: 100px;
 }
 .recent {
-    position: relative;
-    left: 15%;
-    top: 10px;
-    width: 250px;
+    width: 50%;
+    float: left;
 }
 .recent li{
     color: rgba(255, 255, 255, 0.4);
@@ -33,7 +33,7 @@ strong {
 .bitcoin {
     position: relative;
     left: 50%;
-    top: -30px;
+    /* top: -30px; */
     width: 220px;
 }
 .bitcoin img {
