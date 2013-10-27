@@ -25,7 +25,7 @@ extra_js:
                         content = '';
 
                     $.each(json.recenttracks.track, function(i, track){
-                        content += '<li id="lastfmItem_'+i+'"><a href="'+ track.url + '">' + track.name +'</a> - '+ track.artist['#text'] + '</li>';
+                        content += '<li id="lastfmItem_'+i+'"><a href="'+ track.url + '">' + track.name +'</a> - <p style="display:inline">'+ track.artist['#text'] + '</p></li>';
                     });
 
                     tracklist.innerHTML = content;
@@ -57,8 +57,8 @@ extra_js:
                 </a>
             </p>
             <p>
-                <a href="http://tubmlr.com/fakelbst">
-                    <strong>tubmlr</strong>.com/fakelbst
+                <a href="http://fakelbst.tubmlr.com/">
+                    fakelbst.<strong>tubmlr</strong>.com
                 </a>
             </p>
 
