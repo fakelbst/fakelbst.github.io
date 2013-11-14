@@ -17,6 +17,10 @@ getData = (page) ->
         if @image[@image.length - 1]["#text"] isnt "http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png"
           markup = $("<div class='album'><div class='front'><img class='lazy' height='200px' width='200px' src='/images/transparent.gif' data-src='" + @image[3]['#text'] + "'></img></div><div class='back'><h5>" + @artist.name + "</h5><h6>" + @name + "</h6></div></div>")
           $('.albums').append markup
+          $('.albums').find('.album').hover ->
+            $(@).addClass 'coverhover'
+          , ->
+            $(@).removeClass 'coverhover'
           lastdata = data
           $("img.lazy").lazy
             effect: "fadeIn"

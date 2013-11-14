@@ -1,0 +1,10 @@
+{
+  "name": "fakelbst.github.io",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-sass": "~0.5.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}

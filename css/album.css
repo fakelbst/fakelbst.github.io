@@ -1,15 +1,30 @@
 .albums {
-    font-size:0px
+  position: relative;
 }
+
 .album {
-    display: inline;
+  float: left;
+  position: relative;
+  height: auto;
 }
+.album .back {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
 .album *:hover {
-    opacity: 0.98;
+  opacity: 0.98;
 }
+
 .front {
-    display: inline;
+  display: inline;
 }
-.back {
-    display: none;
+
+.coverhover .back {
+  z-index: 0;
 }
