@@ -7,7 +7,7 @@ totalpage = 0
 
 getData = (page) ->
   albums = []
-  url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + 30 + "&page=" + page + "&callback=?"
+  url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + 50 + "&page=" + page + "&callback=?"
   $.getJSON url, (data) ->
     if totalpage == 0
       totalpage = data['topalbums']['@attr']['totalPages']
