@@ -1,7 +1,7 @@
 .albums {
 }
 .album {
-    float: left;
+    display: inline-block;
     position: relative;
     height: 200px;
     .back {
@@ -12,15 +12,13 @@
         text-align: center;
         width: 100%;
         height: 100%;
+        padding-top: 5px;
     }
-}
-.front {
-    display: inline;
 }
 .coverhover {
     .back {
         z-index: 0;
-        background: rgba(0,0,0,.85);
+        background: rgba(0,0,0,.8);
         h5, h6{
             color: #FFF;
         }
