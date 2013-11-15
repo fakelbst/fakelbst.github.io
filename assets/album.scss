@@ -1,11 +1,9 @@
 .albums {
-    // font-size:0px;
-    position: relative;
 }
 .album {
     float: left;
     position: relative;
-    height: auto;
+    height: 200px;
     .back {
         position: absolute;
         z-index: -1;
@@ -16,15 +14,15 @@
         height: 100%;
     }
 }
-.album *:hover {
-    opacity: 0.98;
-}
 .front {
     display: inline;
 }
-
 .coverhover {
     .back {
         z-index: 0;
+        background: rgba(0,0,0,.85);
+        h5, h6{
+            color: #FFF;
+        }
     }
 }
