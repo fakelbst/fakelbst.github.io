@@ -8,30 +8,39 @@ strong {
     color: #FFF;
     font-weight: normal;
 }
-.contact {
-    text-align: right;
-    width: 50%;
-    float: left;
+@media screen and (min-width:600px){
+    .about{
+        padding: 100px;
+    }
+    .recent{
+        text-align: left;
+        float: left;
+        width:50%;
+    }
+    .contact{
+        text-align: right;
+        margin-left:25%;
+    }
+    .bitcoin {
+        margin-left:25%;
+    }
 }
-.about {
-    position: relative;
-    padding: 100px;
-}
-.recent {
-    width: 50%;
-    float: left;
+@media screen and (max-width:599px){
+    .about{
+        padding-top: 100px;
+    }
+    .contact{
+        padding-top: 20px;
+    }
 }
 .recent {
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     border-bottom: none;
-    text-align: left;
 }
 .bitcoin {
-    position: relative;
-    left: 50%;
-    /* top: -30px; */
     width: 220px;
+    margin: 0 auto;
 }
 .bitcoin img {
     opacity: 0.5;
@@ -40,7 +49,6 @@ a {
     color: rgba(255, 255, 255, 0.4);
     text-decoration: none;
     border-bottom: none;
-    text-align: right;
 }
 a:hover {
     color: #FFF;

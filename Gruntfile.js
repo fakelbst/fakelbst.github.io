@@ -31,14 +31,14 @@ module.exports = function(grunt) {
         },
         watch: {
             css: {
-                files: '**/*.scss',
+                files: ['assets/*.scss', '!_site/'],
                 tasks: ['sass'],
                 options: {
                     livereload: true
                 }
             },
             scripts: {
-                files: '**/*.coffee',
+                files: 'assets/*.coffee',
                 tasks: ['coffee'],
             }
         }
