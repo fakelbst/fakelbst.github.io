@@ -16,7 +16,6 @@
 
 .coverhover .back {
   z-index: 0;
-  background: rgba(0, 0, 0, 0.8);
 }
 .coverhover .back h5, .coverhover .back h6 {
   color: #FFF;

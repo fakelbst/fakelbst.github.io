@@ -25,9 +25,16 @@ getData = function(page) {
           markup = $("<div class='album'><div class='front'><img class='lazy' height='200px' width='200px' src='/images/transparent.gif' data-src='" + this.image[3]['#text'] + "'></img></div><div class='back'><h5>" + this.artist.name + "</h5><h6>" + this.name + "</h6></div></div>");
           $('.albums').append(markup);
           $('.albums').find('.album').hover(function() {
-            return $(this).addClass('coverhover');
+            $(this).addClass('coverhover');
+            if ($(this).children().children(':first').is('img')) {
+              return $(this).children().children('img').pixelate();
+            }
           }, function() {
-            return $(this).removeClass('coverhover');
+            $(this).removeClass('coverhover');
+            if ($(this).children().children(':first').is('canvas')) {
+              $(this).children().children('canvas').remove();
+              return $(this).children().children('img').show();
+            }
           });
           lastdata = data;
           return $("img.lazy").lazy({
