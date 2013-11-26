@@ -19,13 +19,13 @@ getData = (page) ->
           $('.albums').append markup
           $('.albums').find('.album').hover ->
             $(@).addClass 'coverhover'
-            if $(@).children().children(':first').is('img') 
-              $(@).children().children('img').pixelate()
+            # if $(@).children().children(':first').is('img') 
+            #   $(@).children().children('img').pixelate()
           , ->
             $(@).removeClass 'coverhover'
-            if $(@).children().children(':first').is('canvas') 
-              $(@).children().children('canvas').remove()
-              $(@).children().children('img').show()
+            # if $(@).children().children(':first').is('canvas') 
+              # $(@).children().children('canvas').remove()
+              # $(@).children().children('img').show()
 
           lastdata = data
           $("img.lazy").lazy
