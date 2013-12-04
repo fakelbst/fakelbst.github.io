@@ -4,6 +4,9 @@
     display: inline-block;
     position: relative;
     height: 200px;
+    .front {
+        height: 200px;
+    }
     .back {
         position: absolute;
         z-index: -1;
@@ -12,7 +15,9 @@
         text-align: center;
         width: 100%;
         height: 100%;
-        padding-top: 5px;
+        h5 {
+            padding-top: 5px;
+        }
     }
 }
 .coverhover {
