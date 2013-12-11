@@ -1,6 +1,7 @@
 .album {
   display: inline-block;
   position: relative;
+  vertical-align: top;
   height: 200px;
 }
 .album .front {
