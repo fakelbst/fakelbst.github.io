@@ -5,6 +5,7 @@
   "devDependencies": {
     "grunt-contrib-coffee": "~0.7.0",
     "grunt-contrib-sass": "~0.6.0",
-    "grunt-contrib-watch": "~0.5.3"
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-jade": "~0.11.0"
   }
 }
