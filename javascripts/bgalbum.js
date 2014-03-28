@@ -16,7 +16,7 @@ rainbowArray = ['#FF0000', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'
 $(document).ready(function() {
   $('.nav').hide();
   return $("body").keypress(function() {
-    $("#back").css('background-color', rainbowArray[Math.floor(Math.random() * 7)]);
-    return $("#back").css('opacity', '0.8');
+    $(".back").css('background-color', rainbowArray[Math.floor(Math.random() * 7)]);
+    return $(".back").css('opacity', '0.8');
   });
 });
