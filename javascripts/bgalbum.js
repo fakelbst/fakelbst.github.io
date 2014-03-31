@@ -15,9 +15,14 @@ rainbowArray = ['#FF0000', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'
 
 $(document).ready(function() {
   $('.nav').hide();
-  return $("body").keypress(function() {
+  return $("body").keypress(function(e) {
     var a;
-    a = make();
+    if (String.fromCharCode(e.keyCode | e.charCode) === 'c') {
+      two.clear();
+      return;
+    } else {
+      a = make(3);
+    }
     return uupdate(a);
   });
 });
@@ -54,9 +59,9 @@ generate = function(amount) {
   });
 };
 
-make = function() {
+make = function(c) {
   var points, poly;
-  points = generate(3);
+  points = generate(c);
   poly = new Two.Polygon(points, true);
   return poly;
 };

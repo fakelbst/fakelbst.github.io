@@ -13,8 +13,13 @@ rainbowArray = ['#FF0000', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'
 
 $(document).ready ->
   $('.nav').hide()
-  $("body").keypress ->
-    a = make()
+  $("body").keypress (e) ->
+    if(String.fromCharCode(e.keyCode|e.charCode) == 'c')
+      two.clear()
+      return
+    else
+      # a = make((Math.random()*8) + 1)
+      a = make(3)
     uupdate(a)
 
 uupdate =(a) ->
@@ -44,8 +49,8 @@ generate =(amount) ->
     anchor.origin = new Two.Vector().copy(anchor)
     anchor
 
-make = ->
-  points = generate(3)
+make = (c) ->
+  points = generate(c)
   poly = new Two.Polygon(points, true)
   poly
 
