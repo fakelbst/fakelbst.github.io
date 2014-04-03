@@ -22,7 +22,7 @@ require [
       require [
         "image!"+imageUrl
       ], (awesome) ->
-        wrapper = document.getElementById("albums")
+        wrapper = document.getElementsByClassName("albums")[0]
         wrapper.appendChild awesome
         return
     i++

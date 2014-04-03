@@ -26,7 +26,7 @@ require(["async!" + url], function(datas) {
       imageUrl = albums[i].image[3]['#text'];
       require(["image!" + imageUrl], function(awesome) {
         var wrapper;
-        wrapper = document.getElementById("albums");
+        wrapper = document.getElementsByClassName("albums")[0];
         wrapper.appendChild(awesome);
       });
     }
