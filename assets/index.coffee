@@ -6,14 +6,16 @@ url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User 
 
 require.config
   baseUrl: "../js/lib"
-  waitSeconds : 45
+  waitSeconds : 20
   paths: 
+    jquery: "jquery-1.10.2.min"
     image: "image"
     async: "async"
 
 require [
-  "async!"+url
-], (datas) ->
+  "jquery"
+  "async!" + url
+], ($, datas) ->
   albums = datas.topalbums.album
   i = 0
   while i < albums.length
