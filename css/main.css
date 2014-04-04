@@ -1,130 +1,97 @@
-/*****************************************************************************/
-/*
-/* Common
-/*
-/*****************************************************************************/
-
-/* Global Reset */
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html, body { height: 100%; }
-
-@font-face {
-    font-family: monoOne;
-    src: url('/font/monoOne.otf')
-}
-
-body {
-  background-color: #000;
-  font: 13.34px monoOne, Arial, sans-serif;
-  font-size: small;
-  text-align: center;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-size: 100%; }
-
-h1 { margin-bottom: 1em; }
-p { margin: 1em 0; }
-
-h1, h2, h3, h4, h5, h6, p, a {
-    font-family: monoOne;
-}
-
-/*****************************************************************************/
-/*
-/* Home
-/*
-/*****************************************************************************/
-
-.navbar-fixed-top {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0; z-index: 1030;
-  margin-bottom: 0;
-}
-.pbhead {
-  height: 35px;
-  padding: 10px 0;
-  background-color: #444;
-  background: rgba(221, 219, 219,.5);
-  text-align: center;
-}
-/*****************************************************************************/
-/*
-/* Site
-/*
-/*****************************************************************************/
-
-.site {
-  font-size: 115%;
-}
-
-.site .header a {
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.site .header h1.title {
+.album {
   display: inline-block;
-  margin-bottom: 2em;
+  position: relative;
+  vertical-align: top;
+  float: right;
+  height: 175px;
 }
-
-.site .header h1.title a {
-  color: #a00;
+.album .front {
+  height: 175px;
 }
-
-.site .header h1.title a:hover {
-  color: #000;
-}
-
-.site .header a.extra {
-  color: #aaa;
-  margin-left: 1em;
-}
-
-.site .header a.extra:hover {
-  color: #000;
-}
-
-.site .meta {
-  color: #aaa;
-}
-
-.site .footer p {
-  color: #666;
-}
-
-.nav {
+.album .back {
   position: absolute;
+  z-index: -1;
   top: 0;
-  right: 0;
-  left: 0; z-index: 1030;
-  margin-bottom: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
 }
-.nav {
-    background: #15151F;
-    text-align: center;
-    opacity: 0.85;
+.album .back h5 {
+  font-size: 1.5em;
+  padding-top: 5px;
 }
-.nav div{
-    float: left;
-    width: 33.3%;
-    display: block;
-    text-align: center;
-    padding: 2.1em 0;
-}
-.nav div a {
-    color: #aaa;
-    font: inherit;
-    text-decoration: none;
-    font-size: 18px;
-}
-.nav div a:hover{
-    color: #fff;
+.album .back h6 {
+  font-size: 1.2em;
 }
 
+.coverhover .back {
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.coverhover .back h5, .coverhover .back h6 {
+  color: #FFF;
+}
+
+.red {
+  background: #FF0000;
+  transform: rotate(2deg);
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+}
+
+.orange {
+  background: #eb4c2f;
+  transform: rotate(3deg);
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+}
+
+.yellow {
+  background: #FFFF00;
+  transform: rotate(-1deg);
+  -webkit-transform: rotate(-1deg);
+  -moz-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  -o-transform: rotate(-1deg);
+}
+
+.green {
+  background: #00FF00;
+  transform: rotate(0deg);
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+}
+
+.blue {
+  background: #0000FF;
+  transform: rotate(2deg);
+  -webkit-transform: rotate(-1deg);
+  -moz-transform: rotate(-1deg);
+  -ms-transform: rotate(-1deg);
+  -o-transform: rotate(-1deg);
+}
+
+.indigo {
+  background: #4B0082;
+  transform: rotate(-3deg);
+  -webkit-transform: rotate(-3deg);
+  -moz-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  -o-transform: rotate(-3deg);
+}
+
+.violet {
+  background: #8B00FF;
+  transform: rotate(1deg);
+  -webkit-transform: rotate(1deg);
+  -moz-transform: rotate(1deg);
+  -ms-transform: rotate(1deg);
+  -o-transform: rotate(1deg);
+}
