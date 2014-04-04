@@ -19,16 +19,18 @@ require.config({
 });
 
 require(["jquery", "async!" + url], function($, datas) {
-  var albums, i, imageUrl;
+  var albums, i, imageUrl, markup;
   albums = datas.topalbums.album;
   i = 0;
   while (i < albums.length) {
     if (albums[i].image[3]['#text'] !== "http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png") {
       imageUrl = albums[i].image[3]['#text'];
-      require(["image!" + imageUrl], function(awesome) {
-        var wrapper;
-        wrapper = document.getElementsByClassName("albums")[0];
-        wrapper.appendChild(awesome);
+      markup = "<div class='album'><div class='front'><img height='175px' width='175px' src='" + imageUrl + "'></img></div><div class='back'><h5>" + albums[i].artist.name + "</h5><h6>" + albums[i].name + "</h6></div></div>";
+      $('.albums').append(markup);
+      $('.albums').find('.album').hover(function() {
+        return $(this).addClass('coverhover');
+      }, function() {
+        return $(this).removeClass('coverhover');
       });
     }
     i++;

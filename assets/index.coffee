@@ -21,12 +21,18 @@ require [
   while i < albums.length
     if albums[i].image[3]['#text'] isnt "http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png"
       imageUrl = albums[i].image[3]['#text']
-      require [
-        "image!"+imageUrl
-      ], (awesome) ->
-        wrapper = document.getElementsByClassName("albums")[0]
-        wrapper.appendChild awesome
-        return
+      markup = "<div class='album'><div class='front'><img height='175px' width='175px' src='" + imageUrl + "'></img></div><div class='back'><h5>" + albums[i].artist.name + "</h5><h6>" + albums[i].name + "</h6></div></div>"
+      # require [
+      #   "image!"+imageUrl
+      # ], (awesome) ->
+      $('.albums').append markup
+      $('.albums').find('.album').hover ->
+        $(@).addClass 'coverhover'
+      , ->
+        $(@).removeClass 'coverhover'
+        # wrapper = document.getElementsByClassName("albums")[0]
+        # wrapper.appendChild awesome
+        # return
     i++
   return
 
