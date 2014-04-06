@@ -27,12 +27,12 @@ require(["jquery", "async!" + url], function($, datas) {
       imageUrl = albums[i].image[3]['#text'];
       markup = "<div class='album'><div class='front'><img height='175px' width='175px' src='" + imageUrl + "'></img></div><div class='back'><h5>" + albums[i].artist.name + "</h5><h6>" + albums[i].name + "</h6></div></div>";
       $('.albums').append(markup);
-      $('.albums').find('.album').hover(function() {
-        return $(this).addClass('coverhover');
-      }, function() {
-        return $(this).removeClass('coverhover');
-      });
     }
     i++;
+    $('.albums').find('.album').hover(function() {
+      return $(this).addClass('coverhover');
+    }, function() {
+      return $(this).removeClass('coverhover');
+    });
   }
 });
