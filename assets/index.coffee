@@ -1,8 +1,9 @@
 APIkey = "4dff88a0423651b3570253b10b745b2c"
 User = "fakelbst"
-Limit = 52
+Limit = 104
+Page = 1
 
-url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + 1 + "&callback=?"
+url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?"
 
 require.config
   baseUrl: "../js/lib"
