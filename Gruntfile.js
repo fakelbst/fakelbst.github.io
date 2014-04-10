@@ -9,7 +9,7 @@ module.exports = function(grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'assets/',
+                    cwd: 'assets/scss/',
                     src: '*.scss',
                     dest: 'css/',
                     ext: '.css'
@@ -23,7 +23,7 @@ module.exports = function(grunt) {
                 },
                 expand: true,
                 flatten: true,
-                cwd: 'assets/',
+                cwd: 'assets/coffee/',
                 src: ['*.coffee'],
                 dest: 'javascripts/',
                 ext: '.js'
@@ -31,14 +31,14 @@ module.exports = function(grunt) {
         },
         watch: {
             css: {
-                files: ['assets/*.scss', '!_site/'],
+                files: ['assets/scss/*.scss', '!_site/'],
                 tasks: ['sass'],
                 options: {
                     livereload: true
                 }
             },
             scripts: {
-                files: 'assets/*.coffee',
+                files: 'assets/coffee/*.coffee',
                 tasks: ['coffee'],
             }
         }

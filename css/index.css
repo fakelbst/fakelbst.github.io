@@ -1,0 +1,34 @@
+.album {
+  display: inline-block;
+  position: relative;
+  vertical-align: top;
+  float: right;
+  height: 175px;
+}
+.album .front {
+  height: 175px;
+}
+.album .back {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+.album .back h5 {
+  font-size: 1.5em;
+  padding-top: 5px;
+}
+.album .back h6 {
+  font-size: 1.2em;
+}
+
+.coverhover .back {
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+.coverhover .back h5, .coverhover .back h6 {
+  color: #FFF;
+}
