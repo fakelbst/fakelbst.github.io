@@ -1,27 +1,8 @@
 @charset "UTF-8";
 @font-face {
-  font-family: 'iconfont';
-  src: url("../font/iconfont.eot");
-  /* IE9*/
-  src: url("../font/iconfont.eot?#iefix") format("embedded-opentype"), url("../font/iconfont.woff") format("woff"), url("../font/iconfont.ttf") format("truetype"), url("../font/iconfont.svg#uxiconfont") format("svg");
-  /* iOS 4.1- */
-}
-
-.iconfont {
-  font-family: "iconfont" !important;
-  font-size: 24px;
-  margin-right: .2em;
-  margin-left: .2em;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-@font-face {
   font-family: 'lastfm';
-  src: url("../font/lastfm.eot?15769095");
-  src: url("../font/lastfm.eot?15769095#iefix") format("embedded-opentype"), url("../font/lastfm.woff?15769095") format("woff"), url("../font/lastfm.ttf?15769095") format("truetype"), url("../font/lastfm.svg?15769095#lastfm") format("svg");
+  src: url("../font/lastfm.eot?60119073");
+  src: url("../font/lastfm.eot?60119073#iefix") format("embedded-opentype"), url("../font/lastfm.woff?60119073") format("woff"), url("../font/lastfm.ttf?60119073") format("truetype"), url("../font/lastfm.svg?60119073#lastfm") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -32,7 +13,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'lastfm';
-    src: url('../font/lastfm.svg?15769095#lastfm') format('svg');
+    src: url('../font/lastfm.svg?60119073#lastfm') format('svg');
   }
 }
 */
@@ -56,41 +37,61 @@
   /* remove if not needed */
   margin-left: .2em;
   /* you can be more comfortable with increased icons size */
-  font-size: 20px;
+  font-size: 1.3em;
   /* Uncomment for 3D effect */
   /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 }
 
+.icon-douban:before {
+  content: '\e807';
+}
+
+/* '顮�' */
+.icon-weibo:before {
+  content: '\e806';
+}
+
+/* '顮�' */
+.icon-left-open:before {
+  content: '\e809';
+}
+
+/* '顮�' */
+.icon-right-open:before {
+  content: '\e808';
+}
+
+/* '顮�' */
 .icon-facebook-rect:before {
   content: '\e801';
 }
 
-/* '' */
+/* '顮�' */
 .icon-twitter-bird:before {
   content: '\e802';
 }
 
-/* '' */
+/* '顮�' */
 .icon-tumblr-rect:before {
   content: '\e805';
 }
 
-/* '' */
+/* '顮�' */
 .icon-github:before {
   content: '\e804';
 }
 
-/* '' */
+/* '顮�' */
 .icon-lastfm:before {
   content: '\e800';
 }
 
-/* '' */
+/* '顮�' */
 .icon-instagram:before {
   content: '\e803';
 }
 
-/* '' */
+/* '顮�' */
 nav a {
   color: #FFF;
 }
