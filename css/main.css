@@ -98,6 +98,9 @@ nav a {
 nav a:hover {
   color: #FFF;
 }
+nav div:hover {
+  opacity: 0.95;
+}
 
 .red {
   background: #FF0000;
