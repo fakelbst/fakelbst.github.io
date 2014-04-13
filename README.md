@@ -8,4 +8,4 @@ Todo
 
 Inspired by
 ------------
- - Pink Floyd - ***The Dark Side of The Moon***
+ - Pink Floyd - *The Dark Side of The Moon*
