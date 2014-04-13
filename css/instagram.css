@@ -1,0 +1,11 @@
+body {
+  background: #FFF;
+}
+
+.slider img {
+  margin: 0 auto;
+}
+.slider video {
+  display: block;
+  margin: 0 auto;
+}
