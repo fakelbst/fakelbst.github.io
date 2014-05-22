@@ -1,6 +1,6 @@
 APIkey = "4dff88a0423651b3570253b10b745b2c"
 User = "fakelbst"
-Limit = 104
+Limit = 80
 Page = 1
 
 url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?"
