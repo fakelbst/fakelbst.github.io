@@ -4,7 +4,7 @@ APIkey = "4dff88a0423651b3570253b10b745b2c";
 
 User = "fakelbst";
 
-Limit = 80;
+Limit = 79;
 
 Page = 1;
 
