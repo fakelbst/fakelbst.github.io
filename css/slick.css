@@ -12,7 +12,7 @@
   user-select: none;
   -ms-touch-action: none;
   touch-action: none;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .slick-list {
@@ -98,7 +98,6 @@
   font-weight: normal;
   font-style: normal;
 }
-
 /* Arrows */
 .slick-prev,
 .slick-next {

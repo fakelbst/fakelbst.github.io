@@ -2,27 +2,24 @@
 layout: default
 title: recent tracks
 extra_css:
-    - /css/about.css
+extra_before_js:
+    - /js/lib/angular.min.js
 extra_js:
     - /javascripts/tracks.js
 ---
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
 <style>
-li {list-style-type: none;}
+li {list-style-type: none; line-height: 39px;}
 li * {display: inline-block;}
 li img {
   float: right;
   clear: both;   
 }
-p { color: #777;}
 section {padding: 50px 0;}
 </style>
 
-<section id='section-a' ng-app="myApp" ng-controller="lastfm">
-    <button ng-click="doRequest()">load</button>
+<section id='section-a' ng-app="myApp" ng-controller="recentTracks">
     <li ng-repeat="track in datas">
-        <p>{(track.artist['#text'])} -</p>
-        <p>{(track.name)}</p>
-        <img src="{(track.image[0]['#text'])}">
+        {(track.artist['#text'])} - {(track.name)}
+        <img ng-src="{(track.image[0]['#text'])}">
     </li>
 </section>

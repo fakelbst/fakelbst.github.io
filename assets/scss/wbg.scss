@@ -1,0 +1,42 @@
+body {
+  background: #FFF;
+  color: #777;
+}
+h1 {
+  color: #222;
+}
+
+nav {
+  a {
+      color: #FFF;
+  }
+  a:hover {
+      color: #FFF;
+  }
+  div:hover{
+    opacity: 0.95;
+  }
+  * {
+    opacity: 1;
+  }
+}
+
+.slider {
+  img {
+    margin: 0 auto;
+  }
+  video {
+    display: block;
+    margin: 0 auto;
+  }
+}
+.tumblrposts img {
+    border-radius: 10px;
+}
+
+footer {
+  p {
+    color: #777;
+  }
+}
+
