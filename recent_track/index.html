@@ -8,18 +8,17 @@ extra_js:
     - /javascripts/tracks.js
 ---
 <style>
-li {list-style-type: none; line-height: 39px;}
+li {list-style-type: none; line-height: 39px; }
 li * {display: inline-block;}
-li img {
-  float: right;
-  clear: both;   
-}
+li img {float: right; clear: both; opacity: 0.9;}
+i.icon-star-filled {color: #FFCB08;}
 section {padding: 50px 0;}
 </style>
 
 <section id='section-a' ng-app="myApp" ng-controller="recentTracks">
     <li ng-repeat="track in datas">
-        {(track.artist['#text'])} - {(track.name)}
+        {(track.artist['name'])} - {(track.name)}
+        <i ng-if="track.loved == 1" class="icon-star-filled"></i>
         <img ng-src="{(track.image[0]['#text'])}">
     </li>
 </section>
