@@ -15,10 +15,12 @@ i.icon-star-filled {color: #FFCB08;}
 section {padding: 50px 0;}
 </style>
 
-<section id='section-a' ng-app="myApp" ng-controller="recentTracks">
+<section ng-app="myApp" ng-controller="recentTracks">
+  <ul scroller>
     <li ng-repeat="track in datas">
         {(track.artist['name'])} - {(track.name)}
         <i ng-if="track.loved == 1" class="icon-star-filled"></i>
         <img ng-src="{(track.image[0]['#text'])}">
     </li>
+  </ul>
 </section>
