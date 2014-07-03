@@ -11,7 +11,7 @@ extra_js:
 <style>
 li {list-style-type: none; line-height: 39px; }
 li * {display: inline-block;}
-li img {float: right; clear: both; opacity: 0.9;}
+li img {float: right; clear: both; opacity: 0.9; height: 34px; width: 34px;}
 i.icon-star-filled {color: #FFCB08;}
 section {padding: 50px 0;}
 </style>
@@ -21,7 +21,7 @@ section {padding: 50px 0;}
     <li ng-repeat="track in datas">
         {(track.artist['name'])} - {(track.name)}
         <i ng-if="track.loved == 1" class="icon-star-filled"></i>
-        <img ng-src="{(track.image[0]['#text'])}" height="34" width="34">
+        <img ng-if="track.image[0]['#text'] != ''" ng-src="{(track.image[0]['#text'])}">
     </li>
   </ul>
 </section>
