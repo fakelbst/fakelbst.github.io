@@ -299,6 +299,13 @@ footer {
   bottom: 50px;
   font-size: 1.3em;
 }
+footer p {
+  display: inline;
+  color: #aa6f52;
+}
+footer i:hover {
+  opacity: 0.85;
+}
 
 @media print, screen and (max-width: 960px) {
   div.wrapper {
@@ -350,11 +357,6 @@ footer {
     word-wrap: normal;
   }
 }
-footer p {
-  display: inline;
-  color: #aa6f52;
-}
-
 @media print, screen and (max-width: 480px) {
   body {
     padding: 15px;

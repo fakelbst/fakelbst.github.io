@@ -302,6 +302,13 @@ footer {
   position:fixed;
   bottom:50px;
   font-size: 1.3em;
+  p {
+    display: inline;
+    color: $bgc-lighter-1;
+  }
+  i:hover {
+    opacity: 0.85;
+  }
 }
 
 @media print, screen and (max-width: 960px) {
@@ -354,13 +361,6 @@ footer {
   
   pre, code {
     word-wrap:normal;
-  }
-}
-
-footer {
-  p {
-    display: inline;
-    color: $bgc-lighter-1;
   }
 }
 
