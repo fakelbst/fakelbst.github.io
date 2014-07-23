@@ -19,7 +19,7 @@ section {padding: 50px 0;}
 <section ng-app="myApp" ng-controller="recentTracks">
   <ul scroller>
     <li ng-repeat="track in datas">
-        {(track.artist['name'])} - {(track.name)}
+    {(track.artist['name'])} - {(track.name.length > 55 ? track.name.slice(0, 50) + '...' : track.name)}
         <i ng-if="track.loved == 1" class="icon-star-filled"></i>
         <img ng-if="track.image[0]['#text'] != ''" ng-src="{(track.image[0]['#text'])}">
     </li>
