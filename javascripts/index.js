@@ -11,7 +11,7 @@ Page = 1;
 url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?";
 
 require.config({
-  baseUrl: "../js/lib",
+  baseUrl: "../javascripts/lib",
   waitSeconds: 20,
   paths: {
     jquery: "jquery-1.10.2.min",

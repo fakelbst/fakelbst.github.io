@@ -25,10 +25,6 @@ h1 {
   font-size: 3em;
 }
 
-h2 {
-  color: #393939;
-}
-
 h3, h4, h5, h6 {
   color: #494949;
 }
@@ -63,7 +59,6 @@ blockquote {
   border-left: 1px solid #e5e5e5;
   margin: 0;
   padding: 0 0 0 20px;
-  font-style: italic;
 }
 
 code, pre {
@@ -223,6 +218,12 @@ nav div:hover {
 }
 nav * {
   opacity: 0.8;
+}
+
+blockquote {
+  border-left: 2px solid #bb8b73;
+  margin: 0 1em 1.5em;
+  padding: 0 1em;
 }
 
 .red {

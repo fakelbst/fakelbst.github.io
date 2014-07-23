@@ -5,7 +5,7 @@ count = 50;
 url = "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&count=" + count;
 
 require.config({
-  baseUrl: "../js/lib",
+  baseUrl: "../javascripts/lib",
   waitSeconds: 20,
   paths: {
     jquery: "jquery-1.10.2.min",
