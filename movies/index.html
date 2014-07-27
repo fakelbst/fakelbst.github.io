@@ -4,8 +4,13 @@ title: fakelbst
 extra_css:
 extra_js:
     - /javascripts/lib/jquery-1.10.2.min.js
-    - /javascripts/movies.json
     - /javascripts/movies.js
 ---
-<section class="movies"></section>
+<section class="movies">
+    <div id="detail"></div>
+    {% for movie in site.data.movies.movies %}
+        <a href="javascript:void(0)" onclick="bgdetail()"><abbr title="' + a + '">{{ movie.title }}</abbr></a>
+    {% endfor %}
+</section>
+
 

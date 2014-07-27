@@ -3,7 +3,6 @@ still under construction
 
 Todo
 ------------
- - different style for each page 
 
 
 Inspired by

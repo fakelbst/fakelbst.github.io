@@ -1,0 +1,37 @@
+---
+movies:
+    - title: The Butterfly Effect
+      date : 2004 
+      imdb : tt0289879 
+      themoviedb : 1954
+      file: the-butterfly-effect.jpg
+    - title: In Bruges
+      date : 2008 
+      imdb : tt0780536
+      themoviedb : 8321
+      file: in-bruges.jpg
+    - title: Triangle
+      date : 2009 
+      imdb : tt1187064
+      themoviedb : 26466
+      file: triangle.jpg
+    - title: No Country for Old Men
+      date : 2007 
+      imdb : tt0477348
+      themoviedb : 6977
+      file: no-country-for-old-man.jpg
+    - title: Cashback
+      date : 2006
+      imdb : tt0460740
+      themoviedb : 12225
+      file: cashback.jpg
+    - title: The Social Network
+      date : 2010
+      imdb : tt1285016
+      themoviedb: 37799
+      file: the-social-network.jpg
+    - title: (500) Days of Summer
+      date : 2009
+      imdb : tt1022603
+      themoviedb : 19913
+      file: 500-days-of-summer.jpg

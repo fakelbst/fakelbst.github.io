@@ -3,8 +3,6 @@ $bgc-lighter-1: lighten($bgc, 15%);
 $bgc-lighter-2: lighten($bgc, 10%);
 $bgc-darker-1: darken($bgc, 15%);
 
-@import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
-
 body {
   background: $bgc;
   padding:50px;
@@ -316,6 +314,23 @@ footer {
   i:hover {
     opacity: 0.85;
   }
+}
+
+.movies {
+  a {
+    display:block;
+  }
+}
+
+.site-bg {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.85);
 }
 
 @media print, screen and (max-width: 960px) {

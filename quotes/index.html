@@ -6,20 +6,14 @@ extra_before_js:
     - /javascripts/lib/jquery-1.10.2.min.js
     - /javascripts/blockquote.json
 ---
-<section class="inspired"></section>
+<section class="inspired">
+    {% for i in site.data.quotes.quotes %}
+        <blockquote>
+            <p>{{i.quote}}</p>
+            {% if i.from %} 
+            <p><cite>{{i.from}}</cite></p>
+            {% endif %}
+        </blockquote>
+    {% endfor %}
+</section>
 
-<script>
-var c = 0;
-for(var i in s){
-    $('.inspired').append("<h2>" + i + "</h2>");
-    for(var j=0;j<s[i].length;j++){
-        if(s[i][j].author !== ""){
-            $('.inspired').append("<blockquote><p>" + s[i][j].quote + "</p><p><i>- " + s[i][j].author + "</i></p></blockquote>");
-        }
-        else{
-            $('.inspired').append("<blockquote><p>" + s[i][j].quote + "</p></blockquote>");
-        }
-    }
-    c++;
-}
-</script>
