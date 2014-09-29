@@ -1,6 +1,6 @@
 APIkey = "4dff88a0423651b3570253b10b745b2c"
 User = "fakelbst"
-Limit = 79
+Limit = 78
 Page = 1
 
 url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?"
@@ -8,7 +8,7 @@ url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User 
 require.config
   baseUrl: "../javascripts/lib"
   waitSeconds : 20
-  paths: 
+  paths:
     jquery: "jquery-1.10.2.min"
     image: "image"
     async: "async"
