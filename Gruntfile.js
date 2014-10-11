@@ -41,12 +41,23 @@ module.exports = function(grunt) {
                 files: 'assets/coffee/*.coffee',
                 tasks: ['coffee'],
             }
-        }
+        },
+        imagemin: {
+            dynamic: {
+              files: [{
+                expand: true,
+                cwd: 'imgs/',
+                src: ['**/*.{png,jpg,gif}'],
+                dest: 'images/'
+              }]
+            }
+          }
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-imagemin');
 
     grunt.registerTask('default', ['sass', 'coffee', 'watch']);
 };
