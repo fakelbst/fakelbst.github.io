@@ -8,9 +8,9 @@ Limit = 78;
 
 Page = 1;
 
-Period = 'overall';
+Period = "overall";
 
-url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=" + Period(+"&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?");
+url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=" + Period + "&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?";
 
 require.config({
   baseUrl: "../javascripts/lib",
@@ -24,6 +24,7 @@ require.config({
 
 require(["jquery", "async!" + url], function($, datas) {
   var albums, i, imageUrl, markup;
+  console.log(22);
   albums = datas.topalbums.album;
   i = 0;
   while (i < albums.length) {
