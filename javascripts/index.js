@@ -1,4 +1,4 @@
-var APIkey, Limit, Page, User, url;
+var APIkey, Limit, Page, Period, User, url;
 
 APIkey = "4dff88a0423651b3570253b10b745b2c";
 
@@ -8,7 +8,9 @@ Limit = 78;
 
 Page = 1;
 
-url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=12month&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?";
+Period = 'overall';
+
+url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=" + Period(+"&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?");
 
 require.config({
   baseUrl: "../javascripts/lib",

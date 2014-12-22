@@ -1,9 +1,12 @@
+.albums {
+  text-align: right;
+}
+
 .album {
     display: inline-block;
     position: relative;
     vertical-align: top;
     opacity: 0.8;
-    float: right;
     height: 175px;
     .front {
         height: 175px;
