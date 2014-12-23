@@ -8,7 +8,7 @@ Limit = 79;
 
 Page = 1;
 
-Period = "overall";
+Period = "6month";
 
 url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=" + Period + "&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?";
 
