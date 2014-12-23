@@ -1,6 +1,6 @@
 APIkey = "4dff88a0423651b3570253b10b745b2c"
 User = "fakelbst"
-Limit = 79
+Limit = 78
 Page = 1
 Period = "6month"
 
