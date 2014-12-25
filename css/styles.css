@@ -1,3 +1,4 @@
+@import url("http://fonts.googleapis.com/css?family=Mouse+Memoirs");
 body {
   background: #764d39;
   padding: 50px;
@@ -320,6 +321,8 @@ footer i:hover {
 }
 .movies .movie p {
   font-size: 2em;
+  padding: 10px;
+  font-family: "Mouse Memoirs";
 }
 .movies .movie .backdrops {
   width: 100%;
