@@ -15,6 +15,7 @@ $(document).keyup (e) ->
 
 jQuery ($) ->
   Apikey = 'dbbe52bb8e34a312e6c564b375a159f0'
+  imgBaseUrl = 'https://image.tmdb.org/t/p/original'
   # http://api.themoviedb.org/3/movie/9778?api_key=dbbe52bb8e34a312e6c564b375a159f0
   $('.movie a').each (i) ->
     id = $(@).attr 'data-value'
@@ -23,5 +24,7 @@ jQuery ($) ->
     $.getJSON url, (data) ->
       console.log data
 
-      $(that).parent('section').append '<p>' + data.overview + '</p>'
+      $(that).parent('section').append '<p>' + data.tagline + '</p>'
+      imgUrl = 'url("' + imgBaseUrl + data.backdrop_path + '")'
+      $(that).prev('.backdrops').css 'background-image', imgUrl
 

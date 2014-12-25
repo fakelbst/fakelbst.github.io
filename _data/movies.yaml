@@ -1,10 +1,5 @@
 ---
 movies:
-    - title: The Butterfly Effect
-      date : 2004 
-      imdb : tt0289879 
-      themoviedb : 1954
-      file: the-butterfly-effect.jpg
     - title: In Bruges
       date : 2008 
       imdb : tt0780536
@@ -35,3 +30,9 @@ movies:
       imdb : tt1022603
       themoviedb : 19913
       file: 500-days-of-summer.jpg
+    - title: The Butterfly Effect
+      date : 2004 
+      imdb : tt0289879 
+      themoviedb : 1954
+      file: the-butterfly-effect.jpg
+
