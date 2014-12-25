@@ -9,7 +9,10 @@ extra_js:
 <section class="movies">
     <div id="detail"></div>
     {% for movie in site.data.movies.movies %}
-        <a href="javascript:void(0)" onclick="bgdetail()"><abbr title="' + a + '">{{ movie.title }}</abbr></a>
+        <section class="movie">
+            <div class="backdrops"></div>
+            <a href="javascript:void(0)" data-value="{{ movie.themoviedb }}" onclick="bgdetail()"><abbr title="' + a + '">{{ movie.title }}</abbr></a>
+        </section>
     {% endfor %}
 </section>
 
