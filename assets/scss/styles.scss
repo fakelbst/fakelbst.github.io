@@ -60,12 +60,6 @@ a:hover small {
   margin:0 auto;
 }
 
-blockquote {
-  border-left:1px solid #e5e5e5;
-  margin:0;
-  padding:0 0 0 20px;
-}
-
 code, pre {
   font-family:Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
   color:#333;
@@ -74,7 +68,7 @@ code, pre {
 
 pre {
   padding:8px 15px;
-  background: #f8f8f8;  
+  background: #f8f8f8;
   border-radius:5px;
   border:1px solid #e5e5e5;
   overflow-x: auto;
@@ -239,7 +233,12 @@ nav {
 blockquote {
     border-left: 2px solid lighten($bgc, 25%);
     margin: 0 1em 1.5em;
-    padding: 0 1em; 
+    padding: 0 1em;
+    cite {
+      color: darken($bgc, 10%);
+      font-weight: bold;
+      font-size: 1.3em;
+    }
 }
 .red {
     background:#FF0000;
