@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Miltonian+Tattoo");
+@import url("http://fonts.googleapis.com/css?family=Indie+Flower");
 body {
   background: #764d39;
   padding: 50px;
@@ -321,7 +321,7 @@ footer i:hover {
 .movies .movie p {
   font-size: 2em;
   padding: 10px;
-  font-family: 'Miltonian Tattoo';
+  font-family: 'Indie Flower';
 }
 .movies .movie .backdrops {
   width: 100%;
