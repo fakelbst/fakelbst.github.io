@@ -1,4 +1,4 @@
-@import url("http://fonts.googleapis.com/css?family=Mouse+Memoirs");
+@import url("http://fonts.googleapis.com/css?family=Miltonian+Tattoo");
 body {
   background: #764d39;
   padding: 50px;
@@ -321,7 +321,7 @@ footer i:hover {
 .movies .movie p {
   font-size: 2em;
   padding: 10px;
-  font-family: "Mouse Memoirs";
+  font-family: 'Miltonian Tattoo';
 }
 .movies .movie .backdrops {
   width: 100%;

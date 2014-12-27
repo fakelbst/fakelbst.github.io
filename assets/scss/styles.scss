@@ -2,7 +2,7 @@ $bgc: #764d39;
 $bgc-lighter-1: lighten($bgc, 15%);
 $bgc-lighter-2: lighten($bgc, 10%);
 $bgc-darker-1: darken($bgc, 15%);
-@import url('http://fonts.googleapis.com/css?family=Mouse+Memoirs');
+@import url('http://fonts.googleapis.com/css?family=Miltonian+Tattoo');
 
 body {
   background: $bgc;
@@ -330,7 +330,7 @@ footer {
     p {
       font-size: 2em;
       padding: 10px;
-      font-family: 'Mouse Memoirs'
+      font-family: 'Miltonian Tattoo';
     }
     .backdrops {
       width: 100%;
