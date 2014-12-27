@@ -21,16 +21,18 @@ jQuery(function($) {
   Apikey = 'dbbe52bb8e34a312e6c564b375a159f0';
   imgBaseUrl = 'https://image.tmdb.org/t/p/original';
   return $('.movie a').each(function(i) {
-    var id, that, url;
+    var id, imdb, that, url;
     id = $(this).attr('data-value');
     url = 'http://api.themoviedb.org/3/movie/' + id + '?api_key=' + Apikey;
+    imdb = 'http://www.imdb.com/title/';
     that = $(this);
     return $.getJSON(url, function(data) {
       var imgUrl;
       console.log(data);
       $(that).parent('section').append('<p>' + data.tagline + '</p>');
       imgUrl = 'url("' + imgBaseUrl + data.backdrop_path + '")';
-      return $(that).prev('.backdrops').css('background-image', imgUrl);
+      $(that).prev('.backdrops').css('background-image', imgUrl);
+      return $(that).parent('section').wrap('<a href="' + imdb + data.imdb_id + '" target="_blank"></a>');
     });
   });
 });

@@ -3,6 +3,7 @@ $bgc-lighter-1: lighten($bgc, 15%);
 $bgc-lighter-2: lighten($bgc, 10%);
 $bgc-darker-1: darken($bgc, 15%);
 @import url('http://fonts.googleapis.com/css?family=Indie+Flower');
+@import url('http://fonts.googleapis.com/css?family=Averia Libre');
 
 body {
   background: $bgc;
@@ -327,6 +328,11 @@ footer {
     margin-bottom: 10px;
     background: rgba(0,0,0,0.7);
     color: #FFF;
+    a {
+      font-family: 'Averia Libre';
+      font-size: 1.6em;
+      padding: 5px 10px 0 10px;
+    }
     p {
       font-size: 2em;
       padding: 10px;

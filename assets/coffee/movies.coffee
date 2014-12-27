@@ -20,11 +20,12 @@ jQuery ($) ->
   $('.movie a').each (i) ->
     id = $(@).attr 'data-value'
     url = 'http://api.themoviedb.org/3/movie/' + id + '?api_key=' + Apikey
+    imdb = 'http://www.imdb.com/title/'
     that = $(@)
     $.getJSON url, (data) ->
       console.log data
-
       $(that).parent('section').append '<p>' + data.tagline + '</p>'
       imgUrl = 'url("' + imgBaseUrl + data.backdrop_path + '")'
       $(that).prev('.backdrops').css 'background-image', imgUrl
+      $(that).parent('section').wrap '<a href="' + imdb+data.imdb_id + '" target="_blank"></a>'
 
