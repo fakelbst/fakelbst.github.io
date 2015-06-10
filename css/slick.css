@@ -26,7 +26,7 @@
   outline: none;
 }
 .slick-loading .slick-list {
-  background: white url(/images/ajax-loader.gif) center center no-repeat;
+  background: #fff url(/images/ajax-loader.gif) center center no-repeat;
 }
 .slick-list.dragging {
   cursor: pointer;
@@ -38,9 +38,7 @@
 .slick-slide,
 .slick-slide img {
   -webkit-transform: translate3d(0, 0, 0);
-  -moz-transform: translate3d(0, 0, 0);
   -ms-transform: translate3d(0, 0, 0);
-  -o-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 

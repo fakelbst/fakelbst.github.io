@@ -1,16 +1,16 @@
 @import url("http://fonts.googleapis.com/css?family=Indie+Flower");
 @import url("http://fonts.googleapis.com/css?family=Averia Libre");
 body {
-  background: #764d39;
+  background: #000;
   padding: 50px;
   /* font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; */
   font: 16px "Imprima", Helvetica, Arial, sans-serif;
-  color: #aa6f52;
+  color: RGBA(254, 254, 253, 0.9);
   font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: #422b20;
+  color: RGBA(254, 254, 253, 0.9);
   margin: 0 0 20px;
 }
 
@@ -111,15 +111,12 @@ header ul {
   height: 40px;
   padding: 0;
   background: #eee;
-  background: -moz-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f8f8f8), color-stop(100%, #dddddd));
   background: -webkit-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-  background: -o-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
-  background: -ms-linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
   background: linear-gradient(top, #f8f8f8 0%, #dddddd 100%);
   border-radius: 5px;
   border: 1px solid #d2d2d2;
-  box-shadow: inset white 0 1px 0, inset rgba(0, 0, 0, 0.03) 0 -1px 0;
+  box-shadow: inset #fff 0 1px 0, inset rgba(0, 0, 0, 0.03) 0 -1px 0;
   width: 270px;
 }
 
@@ -150,17 +147,12 @@ header ul a {
 
 header ul a:hover {
   color: #999;
-  background: -moz-linear-gradient(top, white 0%, #dddddd 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, white), color-stop(100%, #dddddd));
-  background: -webkit-linear-gradient(top, white 0%, #dddddd 100%);
-  background: -o-linear-gradient(top, white 0%, #dddddd 100%);
-  background: -ms-linear-gradient(top, white 0%, #dddddd 100%);
-  background: linear-gradient(top, white 0%, #dddddd 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fff), color-stop(100%, #ddd));
+  background: -webkit-linear-gradient(top, #fff 0%, #ddd 100%);
+  background: linear-gradient(top, #fff 0%, #ddd 100%);
 }
 
 header ul a:active {
-  -webkit-box-shadow: inset 0px 2px 2px 0px #ddd;
-  -moz-box-shadow: inset 0px 2px 2px 0px #ddd;
   box-shadow: inset 0px 2px 2px 0px #ddd;
 }
 
@@ -216,12 +208,12 @@ nav * {
 }
 
 blockquote {
-  border-left: 2px solid #bb8b73;
+  border-left: 2px solid #404040;
   margin: 0 1em 1.5em;
   padding: 0 1em;
 }
 blockquote cite {
-  color: #543728;
+  color: #4d4d4d;
   font-weight: bold;
   font-size: 1.3em;
 }
@@ -290,7 +282,7 @@ blockquote cite {
 }
 
 li.ng-binding.ng-scope {
-  color: #e5d2c9;
+  color: gray;
 }
 
 footer {
@@ -302,7 +294,7 @@ footer {
 }
 footer p {
   display: inline;
-  color: #aa6f52;
+  color: RGBA(254, 254, 253, 0.9);
 }
 footer i:hover {
   opacity: 0.85;
