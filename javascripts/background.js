@@ -82,3 +82,30 @@ window.onload = init;
 // calls the handleResize function when the window is resized
 window.addEventListener('resize', handleResize, false);
 
+var APIkey, Limit, Page, Period, User, url;
+APIkey = "4dff88a0423651b3570253b10b745b2c";
+User = "fakelbst";
+Limit = 50;
+Page = 1;
+Period = "6month";
+url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=" + Period + "&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?";
+
+$.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&", {
+  user: User,
+  period: Period,
+  api_key: APIkey,
+  limit: Limit,
+  format: 'json',
+  page: 1
+}, function(datas) {
+    console.log(datas)
+
+    var albums = datas.topalbums.album;
+
+    var src = albums[0].image[3]['#text'];
+    THREE.ImageUtils.crossOrigin = '';
+    var texture = THREE.ImageUtils.loadTexture( src);
+    cube.material.map = texture;
+    cube.material.needsUpdate = true;
+});
+
