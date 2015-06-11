@@ -100,12 +100,12 @@ $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&", {
 }, function(datas) {
     console.log(datas)
 
-    var albums = datas.topalbums.album;
+    // var albums = datas.topalbums.album;
 
-    var src = albums[0].image[3]['#text'];
-    THREE.ImageUtils.crossOrigin = '';
-    var texture = THREE.ImageUtils.loadTexture( src);
-    cube.material.map = texture;
-    cube.material.needsUpdate = true;
+    // var src = albums[0].image[3]['#text'];
+    // THREE.ImageUtils.crossOrigin = '';
+    // var texture = THREE.ImageUtils.loadTexture( src);
+    // cube.material.map = texture;
+    // cube.material.needsUpdate = true;
 });
 
