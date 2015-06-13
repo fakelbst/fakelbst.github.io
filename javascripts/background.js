@@ -99,13 +99,11 @@ $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&", {
   page: 1
 }, function(datas) {
     console.log(datas)
-
-    // var albums = datas.topalbums.album;
-
-    // var src = albums[0].image[3]['#text'];
-    // THREE.ImageUtils.crossOrigin = '';
-    // var texture = THREE.ImageUtils.loadTexture( src);
-    // cube.material.map = texture;
-    // cube.material.needsUpdate = true;
+    var albums = datas.topalbums.album;
+    var src = albums[0].image[3]['#text'];
+    THREE.ImageUtils.crossOrigin = '';
+    cube.material.map = THREE.ImageUtils.loadTexture("http://162.243.40.125/albums/1.png");
+    cube.material.needsUpdate = true;
 });
+
 
