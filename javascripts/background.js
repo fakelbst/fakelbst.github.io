@@ -13,6 +13,7 @@ var cube;
  */
 function init() {
 
+    THREE.ImageUtils.crossOrigin = '';
     // create a scene, that will hold all our elements such as objects, cameras and lights.
     scene = new THREE.Scene();
 
@@ -82,28 +83,36 @@ window.onload = init;
 // calls the handleResize function when the window is resized
 window.addEventListener('resize', handleResize, false);
 
-var APIkey, Limit, Page, Period, User, url;
+function intervalTexture(datas) {
+    var file = datas.shift();
+    datas.push(file);
+    cube.material.map = THREE.ImageUtils.loadTexture("http://162.243.40.125/albums/" + file);
+    cube.material.needsUpdate = true;
+}
+
+var APIkey, Limit, Page, Period, User;
 APIkey = "4dff88a0423651b3570253b10b745b2c";
 User = "fakelbst";
 Limit = 50;
 Page = 1;
-Period = "6month";
-url = "http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=" + User + "&period=" + Period + "&api_key=" + APIkey + "&format=json&limit=" + Limit + "&page=" + Page + "&callback=?";
 
 $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&", {
   user: User,
-  period: Period,
   api_key: APIkey,
   limit: Limit,
   format: 'json',
   page: 1
 }, function(datas) {
-    console.log(datas)
+    var allCovers = [];
     var albums = datas.topalbums.album;
     var src = albums[0].image[3]['#text'];
-    THREE.ImageUtils.crossOrigin = '';
-    cube.material.map = THREE.ImageUtils.loadTexture("http://162.243.40.125/albums/1.png");
-    cube.material.needsUpdate = true;
+    for(var i=0,j=albums.length; i<j; i++){
+        var title = albums[i].name.split(' ').join('-');
+        var ext = albums[i].image[3]['#text'].split('.').pop();
+        allCovers.push(title + '.' + ext);
+    }
+    setInterval(function(){
+        intervalTexture(allCovers);
+    }, 8000);
 });
-
 
