@@ -93,7 +93,7 @@ function intervalTexture(datas) {
 var APIkey, Limit, Page, Period, User;
 APIkey = "4dff88a0423651b3570253b10b745b2c";
 User = "fakelbst";
-Limit = 50;
+Limit = 100;
 Page = 1;
 
 $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&", {
