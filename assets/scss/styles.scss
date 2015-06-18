@@ -10,7 +10,9 @@ body {
   background: $bgc;
   padding:50px;
   /* font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; */
-  font: 16px "Imprima", Helvetica, Arial, sans-serif;
+  // font: 16px "Imprima", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
   // color: $bgc-lighter-1;
   color: $default-color;
   font-weight:300;
@@ -198,7 +200,7 @@ header ul a strong {
 section {
   width:600px;
   float:right;
-  padding-bottom:50px;
+  // padding-bottom:50px;
 }
 
 small {
@@ -360,11 +362,26 @@ footer {
   background: rgba(0,0,0,0.85);
 }
 
-.about, .resume {
-  font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
+.about {
+  position: relative;
+  text-align: center;
   color: #555;
-  p {
-    line-height: 1.9em;
+  height: 100vh;
+  #bg {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+  }
+  .content {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+    top: 35%;
+    width: 80%;
+    p {
+      font-weight: bold;
+      line-height: 1.5em;
+    }
   }
 }
 
