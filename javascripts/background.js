@@ -113,6 +113,6 @@ $.getJSON("http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&", {
     }
     setInterval(function(){
         intervalTexture(allCovers);
-    }, 8000);
+    }, 6000);
 });
 
