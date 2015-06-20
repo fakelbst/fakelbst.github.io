@@ -36,7 +36,11 @@ nav {
 
 footer {
   p {
-    color: #777;
+    color: #2e3434;
+    opacity: 0.6;
+    &:hover {
+      opacity: 1;
+    }
   }
 }
 

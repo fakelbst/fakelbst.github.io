@@ -33,5 +33,9 @@ nav * {
 }
 
 footer p {
-  color: #777;
+  color: #2e3434;
+  opacity: 0.6;
+}
+footer p:hover {
+  opacity: 1;
 }
