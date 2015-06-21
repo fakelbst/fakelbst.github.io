@@ -23,7 +23,7 @@ function init() {
     // create a render, sets the background color and the size
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(0x000000, 1.0);
-    renderer.setSize(document.getElementById('albums').offsetWidth, window.innerHeight);
+    renderer.setSize(document.getElementById('albums').offsetWidth, window.innerHeight - 10);
     renderer.shadowMapEnabled = true;
 
     // add the output of the renderer to the html element
@@ -75,7 +75,7 @@ function render() {
 function handleResize() {
     camera.aspect = document.getElementById('albums').offsetWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize(document.getElementById('albums').offsetWidth, window.innerHeight);
+    renderer.setSize(document.getElementById('albums').offsetWidth, window.innerHeight - 10);
 }
 
 // calls the init function when the window is done loading.
