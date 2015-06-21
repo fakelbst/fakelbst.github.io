@@ -365,6 +365,13 @@ footer i:hover {
   font-weight: bold;
   line-height: 1.5em;
 }
+.about .content a {
+  color: #000;
+  font-weight: bold;
+}
+.about .content a:hover {
+  opacity: 0.6;
+}
 
 @media print, screen and (max-width: 960px) {
   div.wrapper {
