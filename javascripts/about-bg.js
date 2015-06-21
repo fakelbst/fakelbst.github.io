@@ -9,24 +9,6 @@ var mouseX = 0, mouseY = 0;
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 
-var dDistance = 600,
-    dRotX = 0,
-    dRotY = 0;
-
-var mousePos = {
-    x: 0,
-    y: 0
-};
-var cameraPos = {
-    x: 0,
-    y: 0,
-    z: 0,
-    dx: 0,
-    dy: 0,
-    dz: 0
-};
-
-
 document.addEventListener( 'mousemove', onDocumentMouseMove, false );
 
 init();
@@ -36,21 +18,25 @@ function init() {
 
     container = document.getElementById( 'bg' );
     outer = document.getElementById( 'about' );
-    windowHalfX = outer.offsetWidth / 2;
-    // outer.appendChild( container );
+    outer.appendChild( container );
 
-    camera = new THREE.PerspectiveCamera( 80, outer.offsetWidth / window.innerHeight, 0.1, 20000 );
+    camera = new THREE.PerspectiveCamera( 60, outer.offsetWidth / window.innerHeight, 0.1, 20000 );
+    camera.position.z = 800;
 
     scene = new THREE.Scene();
 
-    var g = new THREE.Geometry();
+    var geometry = new THREE.Geometry( );
 
-    g.before = [];
-    g.verticesNeedUpdate = true;
+    var material = new THREE.PointCloudMaterial({
+        color: 0x000000,
+        size: 1.5
+    });
 
-    for (var i = 0; i < 3500; i++) {
+    group = new THREE.PointCloud(geometry, material);
+
+    for ( var i = 0; i < 5000; i ++ ) {
+
 	    var v = new THREE.Vector3();
-        g.before[i] = [];
 
         var rand1 = Math.random();
         var rand2 = Math.random();
@@ -63,75 +49,73 @@ function init() {
         v.y = radius * Math.sin(theta2);
         v.z = radius * Math.cos(theta2) * Math.cos(theta1);
 
-        g.before[i].t1 = rand1;
-        g.before[i].t2 = rand2;
-  		g.vertices.push(v);
+  		geometry.vertices.push(v);
+
     }
 
-    var texture = THREE.ImageUtils.loadTexture('../images/particle.png');
-
-    var material = new THREE.PointCloudMaterial({
-        color: 0x000000,
-        size: 1.5,
-        map: texture
-    });
-
-    group = new THREE.PointCloud(g, material);
-
+    group = new THREE.PointCloud(geometry, material);
 
     scene.add( group );
 
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor( 0xffffff );
-    renderer.setSize( outer.offsetWidth - 110, window.innerHeight - 110 );
+    renderer.setPixelRatio( window.devicePixelRatio );
+    renderer.setSize( outer.offsetWidth, window.innerHeight );
     renderer.sortObjects = false;
 
     container.appendChild( renderer.domElement );
 
-    window.addEventListener( 'resize', onWindowResize, false );
+
+window.addEventListener( 'resize', onWindowResize, false );
 
 }
 
 function onWindowResize() {
 
-    windowHalfX =  outer.offsetWidth / 2;
+    windowHalfX = window.innerWidth / 2;
     windowHalfY = window.innerHeight / 2;
 
     camera.aspect = outer.offsetWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( outer.offsetWidth - 110, window.innerHeight - 110 );
+
+    renderer.setSize( outer.offsetWidth, window.innerHeight );
 
 }
 
+
 function onDocumentMouseMove(event) {
-    mousePos.x = event.clientX / outer.offsetWidth * 2 - 1;
-    mousePos.y = event.clientY / window.innerHeight * 2 - 1;
+
+    mouseX = event.clientX - windowHalfX;
+    mouseY = event.clientY - windowHalfY;
+
 }
 
 function animate() {
+
     requestAnimationFrame( animate );
+
     render();
+
 }
+
 
 function render() {
 
-    rotX = mousePos.x * 180;
-    rotY = mousePos.y * 90;
-    dRotX += (rotX - dRotX) * 0.05;
+    var time = Date.now() * 0.005;
 
-// cameraPos.x += camera.dx;
-//       cameraPos.y += camera.dy;
-//       cameraPos.z += camera.dz;
-//       camera.position.x = cameraPos.x;
-//       camera.position.y = cameraPos.y;
-//       camera.position.z = cameraPos.z;
+    var rx = Math.sin( time * 0.7 ) * 0.5,
+        ry = Math.sin( time * 0.3 ) * 0.5,
+        rz = Math.sin( time * 0.2 ) * 0.5;
 
-    camera.position.x = dDistance * Math.sin(dRotX * Math.PI / 180);
-    camera.position.y = dDistance * Math.sin(dRotY * Math.PI / 180);
-    camera.position.z = dDistance * Math.cos(dRotX * Math.PI / 180);
+    camera.position.x += ( mouseX - camera.position.x ) * .05;
+    camera.position.y += ( - mouseY - camera.position.y ) * .05;
 
     camera.lookAt( scene.position );
 
-    renderer.render( scene, camera );
-}
+    group.rotation.x = rx;
+    group.rotation.y = ry;
+    group.rotation.z = rz;
 
+    renderer.render( scene, camera );
+
+}
