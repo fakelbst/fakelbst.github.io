@@ -8,14 +8,11 @@ $bgc-darker-1: darken($bgc, 15%);
 
 body {
   background: $bgc;
-  padding:50px;
-  /* font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif; */
-  // font: 16px "Imprima", Helvetica, Arial, sans-serif;
   font-size: 16px;
   font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
-  // color: $bgc-lighter-1;
   color: $default-color;
   font-weight:300;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -107,10 +104,11 @@ header {
   width:270px;
   float:left;
   position:fixed;
+  padding-top: 50px;
 }
 
 header h1 {
-  font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  // font:14px/1.5 Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 3em;
   font-weight: bold;
 }

@@ -60,7 +60,7 @@ function init() {
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor( 0xffffff );
     renderer.setPixelRatio( window.devicePixelRatio );
-    renderer.setSize( outer.offsetWidth, window.innerHeight );
+    renderer.setSize( outer.offsetWidth, window.innerHeight - 10 );
     renderer.sortObjects = false;
 
     container.appendChild( renderer.domElement );
@@ -78,7 +78,7 @@ function onWindowResize() {
     camera.aspect = outer.offsetWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize( outer.offsetWidth, window.innerHeight );
+    renderer.setSize( outer.offsetWidth, window.innerHeight - 10 );
 
 }
 
