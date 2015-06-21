@@ -353,9 +353,12 @@ footer i:hover {
 }
 .about .content {
   position: absolute;
-  right: 0;
-  z-index: 2;
   top: 35%;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 2;
   width: 80%;
 }
 .about .content p {
