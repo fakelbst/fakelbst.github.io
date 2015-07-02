@@ -6,6 +6,7 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer');
 var jade = require('gulp-jade');
+var react = require('gulp-react');
 
 var paths = {
   scripts: ['assets/coffee/*.coffee'],
@@ -40,10 +41,17 @@ gulp.task('scripts', function() {
 //     .pipe(notify({ message: 'Images task complete' }));
 // });
 
+gulp.task('react-instagram', function () {
+    return gulp.src('assets/instagram.jsx')
+        .pipe(react())
+        .pipe(gulp.dest('javascripts'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['scripts']);
   gulp.watch(paths.css, ['scss']);
+  gulp.watch('assets/instagram.jsx', ['react-instagram']);
   gulp.watch('./*.jade', ['templates']);
 });
 
-gulp.task('default', ['scss', 'watch']);
+gulp.task('default', ['scss', 'react-instagram', 'watch']);

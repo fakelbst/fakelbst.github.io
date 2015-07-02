@@ -1,4 +1,4 @@
-var MyInstagram = React.createClass({displayName: "MyInstagram",
+var MyInstagram = React.createClass({
   getInitialState: function() {
     return {
       test: ''
@@ -18,14 +18,14 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
 
   render: function() {
     return (
-      React.createElement("article", null, 
-        this.state.test, "'s last gist is"
-      )
+      <article>
+        {this.state.test}'s last gist is
+      </article>
     );
   }
 });
 
 React.render(
-  React.createElement(MyInstagram, {source: "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&callback=?"}),
+  <MyInstagram source="https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&callback=?" />,
   document.getElementById('instagram')
 );
