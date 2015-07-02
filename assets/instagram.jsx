@@ -1,25 +1,26 @@
 var MyInstagram = React.createClass({
   getInitialState: function() {
     return {
-      test: ''
+      results: []
     };
   },
-
   componentDidMount: function() {
     $.getJSON(this.props.source, function(result) {
       console.log(result);
       if (this.isMounted()) {
         this.setState({
-          test: 'aaa'
+          results: result.data
         });
       }
     }.bind(this));
   },
-
   render: function() {
+    var results = this.state.results;
     return (
       <article>
-        {this.state.test}'s last gist is
+        {results.map(function(result){
+            return <div><img src={result.images.standard_resolution.url} /></div>;
+        })}
       </article>
     );
   }
