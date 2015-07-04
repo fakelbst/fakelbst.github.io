@@ -16,7 +16,7 @@ i.icon-star-filled {color: #FFCB08;}
 section {padding: 50px 0;}
 </style>
 
-<section ng-app="myApp" ng-controller="recentTracks">
+<section class="main-content" ng-app="myApp" ng-controller="recentTracks">
   <ul scroller>
     <li ng-repeat="track in datas">
     {(track.artist['name'])} - {(track.name.length > 55 ? track.name.slice(0, 50) + '...' : track.name)}

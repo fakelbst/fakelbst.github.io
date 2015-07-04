@@ -36,6 +36,10 @@ h3, h4, h5, h6 {
   color:#494949;
 }
 
+ul {
+  list-style-type: none;
+}
+
 a {
   color:#39c;
   font-weight:400;
@@ -198,10 +202,9 @@ header ul a strong {
   color:#222;
 }
 
-section {
+.main-content {
   width:600px;
   float:right;
-  // padding-bottom:50px;
 }
 
 small {
@@ -393,6 +396,18 @@ footer {
       &:hover {
         opacity: 0.6;
       }
+    }
+  }
+}
+
+.instagram {
+  color: black;
+  article {
+    border: 1px solid #edeeee;
+    border-radius: 3px;
+    margin-bottom: 60px;
+    .content {
+      padding: 0 24px;
     }
   }
 }

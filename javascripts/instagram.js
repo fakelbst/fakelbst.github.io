@@ -17,12 +17,14 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
   render: function() {
     var results = this.state.results;
     return (
-      React.createElement("article", null, 
+      React.createElement("div", null, 
         results.map(function(result){
-            return React.createElement("div", null, React.createElement("img", {src: result.images.standard_resolution.url}), 
-                result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, "likes")) : '', 
-                result.caption ? React.createElement("ul", null, React.createElement("li", null, React.createElement("span", null, result.caption.text))) : ''
-            );
+            return React.createElement("article", null, React.createElement("div", null, React.createElement("img", {src: result.images.standard_resolution.url}), 
+                React.createElement("div", {className: "content"}, 
+                    result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, "likes")) : '', 
+                    result.caption ? React.createElement("span", null, result.caption.text) : ''
+                )
+            ));
         })
       )
     );
