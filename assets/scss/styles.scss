@@ -402,12 +402,18 @@ footer {
 
 .instagram {
   color: black;
+  font-size: 15px;
+  section {
+    margin-top: 20px;
+    margin-bottom: 7px;
+  }
   article {
     border: 1px solid #edeeee;
     border-radius: 3px;
     margin-bottom: 60px;
     .content {
       padding: 0 24px;
+      margin-bottom: 20px;
     }
   }
 }

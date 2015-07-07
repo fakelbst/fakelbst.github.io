@@ -382,6 +382,11 @@ footer i:hover {
 
 .instagram {
   color: black;
+  font-size: 15px;
+}
+.instagram section {
+  margin-top: 20px;
+  margin-bottom: 7px;
 }
 .instagram article {
   border: 1px solid #edeeee;
@@ -390,6 +395,7 @@ footer i:hover {
 }
 .instagram article .content {
   padding: 0 24px;
+  margin-bottom: 20px;
 }
 
 @media print, screen and (max-width: 960px) {

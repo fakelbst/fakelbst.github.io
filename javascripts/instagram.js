@@ -19,9 +19,9 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
     return (
       React.createElement("div", null, 
         results.map(function(result){
-            return React.createElement("article", null, React.createElement("div", null, React.createElement("img", {src: result.images.standard_resolution.url}), 
+            return React.createElement("article", null, React.createElement("div", null, React.createElement("a", {target: "_blank", href: result.link}, React.createElement("img", {src: result.images.standard_resolution.url})), 
                 React.createElement("div", {className: "content"}, 
-                    result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, "likes")) : '', 
+                    result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, " likes")) : '', 
                     result.caption ? React.createElement("span", null, result.caption.text) : ''
                 )
             ));

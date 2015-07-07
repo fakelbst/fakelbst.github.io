@@ -19,9 +19,9 @@ var MyInstagram = React.createClass({
     return (
       <div>
         {results.map(function(result){
-            return <article><div><img src={result.images.standard_resolution.url} />
+            return <article><div><a target="_blank" href={result.link}><img src={result.images.standard_resolution.url} /></a>
                 <div className="content">
-                    {result.likes.count > 0 ? <section><span>{result.likes.count}</span><span>likes</span></section> : ''}
+                    {result.likes.count > 0 ? <section><span>{result.likes.count}</span><span> likes</span></section> : ''}
                     {result.caption ? <span>{result.caption.text}</span> : '' }
                 </div>
             </div></article>;
