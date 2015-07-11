@@ -403,6 +403,37 @@ footer {
 .instagram {
   color: black;
   font-size: 15px;
+  .load-more {
+    color: #4090db;
+    height: 120px;
+    width: 120px;
+    display: table;
+    margin: 60px auto 0;
+    position: relative;
+    &:hover {
+      color: #0d3c5f;
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      height: 120px;
+      width: 120px;
+      border-radius: 50%;
+      border: 2px solid;
+    }
+  }
+  .load-more-a {
+    display: table-cell;
+    font-size: 12px;
+    padding: 0 9px;
+    position: relative;
+    text-align: center;
+    vertical-align: middle;
+  //   color: #4090db;
+  //   &:hover {
+  //     color: #0d3c5f;
+  //   }
+  }
   section {
     margin-top: 20px;
     margin-bottom: 7px;

@@ -1,4 +1,22 @@
+var LoadMore = React.createClass({displayName: "LoadMore",
+  handleClick: function(){
+    // this.props.source = {result.pagination.next_url};
+  },
+  render: function(){
+    return (
+      React.createElement("div", {className: "load-more", onClick: this.handleClick}, 
+        React.createElement("a", {className: "load-more-a", href: "#"}, "more")
+      )
+    )
+  }
+});
+
 var MyInstagram = React.createClass({displayName: "MyInstagram",
+  // getDefaultProps: {
+  //   return {
+  //     source: "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&callback=?"
+  //   }
+  // },
   getInitialState: function() {
     return {
       results: []
@@ -6,7 +24,6 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
   },
   componentDidMount: function() {
     $.getJSON(this.props.source, function(result) {
-      console.log(result);
       if (this.isMounted()) {
         this.setState({
           results: result.data
@@ -19,13 +36,14 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
     return (
       React.createElement("div", null, 
         results.map(function(result){
-            return React.createElement("article", null, React.createElement("div", null, React.createElement("a", {target: "_blank", href: result.link}, React.createElement("img", {src: result.images.standard_resolution.url})), 
-                React.createElement("div", {className: "content"}, 
-                    result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, " likes")) : '', 
-                    result.caption ? React.createElement("span", null, result.caption.text) : ''
-                )
+          return React.createElement("article", null, React.createElement("div", null, React.createElement("a", {target: "_blank", href: result.link}, React.createElement("img", {src: result.images.standard_resolution.url})), 
+            React.createElement("div", {className: "content"}, 
+              result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, " likes")) : '', 
+                result.caption ? React.createElement("span", null, result.caption.text) : ''
+            )
             ));
-        })
+        }), 
+        React.createElement(LoadMore, null)
       )
     );
   }
@@ -33,5 +51,6 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
 
 React.render(
   React.createElement(MyInstagram, {source: "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&callback=?"}),
+  // <MyInstagram source={this.props.source} />,
   document.getElementById('instagram')
 );
