@@ -12,27 +12,34 @@ var LoadMore = React.createClass({displayName: "LoadMore",
 });
 
 var MyInstagram = React.createClass({displayName: "MyInstagram",
-  // getDefaultProps: {
-  //   return {
-  //     source: "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&callback=?"
-  //   }
-  // },
+  handleClick: function(){
+    this.getDatas(this.state.nextPage);
+  },
   getInitialState: function() {
     return {
-      results: []
+      results: [],
+      nextPage: ''
     };
   },
+  getDatas: function(url){
+    var that = this;
+    $.ajax({
+      url: url,
+      dataType: 'jsonp',
+    }).done(function(result){
+      var newDatas = that.state.results.concat(result.data);
+      that.setState({
+        results: newDatas,
+        nextPage: result.pagination.next_url
+      });
+    });
+  },
   componentDidMount: function() {
-    $.getJSON(this.props.source, function(result) {
-      if (this.isMounted()) {
-        this.setState({
-          results: result.data
-        });
-      }
-    }.bind(this));
+    this.getDatas(this.props.source);
   },
   render: function() {
     var results = this.state.results;
+    var nextPage =  this.state.nextPage;
     return (
       React.createElement("div", null, 
         results.map(function(result){
@@ -43,14 +50,17 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
             )
             ));
         }), 
-        React.createElement(LoadMore, null)
+        nextPage ? 
+        React.createElement("div", {className: "load-more", onClick: this.handleClick}, 
+          React.createElement("a", {className: "load-more-a", href: "javascript:;"}, "more")
+        ) : ''
+        
       )
     );
   }
 });
 
 React.render(
-  React.createElement(MyInstagram, {source: "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2&callback=?"}),
-  // <MyInstagram source={this.props.source} />,
+  React.createElement(MyInstagram, {source: "https://api.instagram.com/v1/users/287140978/media/recent/?client_id=f316052a8b2749dbb3b80beab72a29a2"}),
   document.getElementById('instagram')
 );
