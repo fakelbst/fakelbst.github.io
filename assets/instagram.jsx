@@ -43,14 +43,19 @@ var MyInstagram = React.createClass({
     return (
       <div>
         {results.map(function(result){
-          return <article><div><a target="_blank" href={result.link}><img src={result.images.standard_resolution.url} /></a>
+          return <article>
+            <div>
+                {result.videos ?
+                <video src={result.videos.standard_resolution.url} controls width="598" height="598"></video> :
+                <img src={result.images.standard_resolution.url} />
+                }
             <div className="content">
               {result.likes.count > 0 ? <section><span>{result.likes.count}</span><span> likes</span></section> : ''}
                 {result.caption ? <span>{result.caption.text}</span> : '' }
             </div>
             </div></article>;
         })}
-        {nextPage ? 
+        {nextPage ?
         <div className="load-more" onClick={this.handleClick}>
           <a className="load-more-a" href="javascript:;">more</a>
         </div> : ''

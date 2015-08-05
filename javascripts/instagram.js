@@ -43,14 +43,19 @@ var MyInstagram = React.createClass({displayName: "MyInstagram",
     return (
       React.createElement("div", null, 
         results.map(function(result){
-          return React.createElement("article", null, React.createElement("div", null, React.createElement("a", {target: "_blank", href: result.link}, React.createElement("img", {src: result.images.standard_resolution.url})), 
+          return React.createElement("article", null, 
+            React.createElement("div", null, 
+                result.videos ?
+                React.createElement("video", {src: result.videos.standard_resolution.url, controls: true, width: "598", height: "598"}) :
+                React.createElement("img", {src: result.images.standard_resolution.url}), 
+                
             React.createElement("div", {className: "content"}, 
               result.likes.count > 0 ? React.createElement("section", null, React.createElement("span", null, result.likes.count), React.createElement("span", null, " likes")) : '', 
                 result.caption ? React.createElement("span", null, result.caption.text) : ''
             )
             ));
         }), 
-        nextPage ? 
+        nextPage ?
         React.createElement("div", {className: "load-more", onClick: this.handleClick}, 
           React.createElement("a", {className: "load-more-a", href: "javascript:;"}, "more")
         ) : ''
