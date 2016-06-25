@@ -15,4 +15,5 @@ npm run dev
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# Credits
+[JavaScript port](https://gist.github.com/1104622) of the [MMCQ](http://www.leptonica.com/papers/mediancut.pdf) algorithm
