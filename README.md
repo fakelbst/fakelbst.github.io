@@ -16,4 +16,4 @@ npm run build
 ```
 
 # Credits
-[JavaScript port](https://gist.github.com/1104622) of the [MMCQ](http://www.leptonica.com/papers/mediancut.pdf) algorithm
+[albumcolors](https://github.com/chengyin/albumcolors)
