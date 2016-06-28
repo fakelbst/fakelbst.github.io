@@ -1,0 +1,56 @@
+header {
+  width: 270px;
+  float: left;
+  position: fixed;
+  padding-top: 85px;
+  h1 {
+    font-size: 3em;
+    font-weight: bold;
+  }
+}
+
+nav a {
+  color: #FFF;
+}
+nav div:hover {
+  opacity: 1;
+}
+nav * {
+  opacity: 0.8;
+}
+
+.red {
+  background: #FF0000;
+  transform: rotate(2deg);
+}
+
+.orange {
+  background: #eb4c2f;
+  transform: rotate(3deg);
+}
+
+.yellow {
+  background: #FFFF00;
+  transform: rotate(-1deg);
+}
+
+.green {
+  background: #00FF00;
+  transform: rotate(0deg);
+}
+
+.blue {
+  background: #0000FF;
+  transform: rotate(2deg);
+}
+
+.indigo {
+  background: #4B0082;
+  transform: rotate(-3deg);
+}
+
+.violet {
+  background: #8B00FF;
+  transform: rotate(1deg);
+}
+

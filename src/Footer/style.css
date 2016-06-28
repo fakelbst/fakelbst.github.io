@@ -1,0 +1,16 @@
+footer {
+  float: left;
+  position: fixed;
+  bottom: 50px;
+  font-size: 1.3em;
+  color: #2e3434;
+}
+footer p {
+  display: inline;
+  color: RGBA(254, 254, 253, 0.9);
+}
+footer i:hover {
+  opacity: 0.85;
+}
+
+
