@@ -1,8 +1,11 @@
 var path = require('path')
 var webpack = require('webpack')
+var autoprefixer = require('autoprefixer')
+var precss = require('precss')
 
 module.exports = {
-  entry: './src/main.js',
+  context: path.join(__dirname, './src'),
+  entry: './main.js',
   output: {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
@@ -13,6 +16,22 @@ module.exports = {
   },
   module: {
     loaders: [
+      {
+        test: /\.woff(\?\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      }, {
+        test: /\.woff2(\?\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/font-woff"
+      }, {
+        test: /\.ttf(\?\d+)?$/,
+        loader: "url?limit=10000&mimetype=application/octet-stream"
+      }, {
+        test: /\.eot(\?\d+)?$/,
+        loader: "file"
+      }, {
+        test: /\.svg(\?\d+)?$/,
+        loader: "url?limit=10000&mimetype=image/svg+xml"
+      },
       {
         test: /\.vue$/,
         loader: 'vue'
@@ -27,6 +46,14 @@ module.exports = {
         loader: 'json'
       },
       {
+        test:   /\.css$/,
+        include: /src/,
+        loaders: ['style-loader',
+          'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss-loader'
+        ]
+      },
+      {
         test: /\.html$/,
         loader: 'vue-html'
       },
@@ -39,6 +66,9 @@ module.exports = {
         }
       }
     ]
+  },
+  postcss: function () {
+    return [ autoprefixer, precss];
   },
   devServer: {
     historyApiFallback: true,
