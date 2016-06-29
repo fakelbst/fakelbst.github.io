@@ -1,29 +1,45 @@
 import Vue from 'vue'
+import Router from 'vue-router'
 import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
+import quotes from './Quotes'
 import THREE from 'three'
+import style from './style.css'
 
-const style = require('./style.css')
+Vue.use(Router)
 
 Vue.component('app-header', appHeader)
 Vue.component('app-footer', appFooter)
-Vue.component('album-cube', albumCube)
+// Vue.component('album-cube', albumCube)
+// Vue.component('quotes', quotes)
 
 const layout = Vue.extend({
+  replace: false,
   template: '<div class="' + style.wrapper + '">' +
-    '<app-header></app-header>' + 
+    '<app-header></app-header>' +
     '<section class="' + style['main-content'] + '">' +
-      '<album-cube></album-cube>' + 
+      '<router-view></router-view>' +
     '</section>' +
     '<app-footer></app-footer>'
 })
 
-Vue.component('app', layout)
+// Vue.component('app', layout)
 
-new Vue({
-  el: 'body',
-  components: { layout }
+const router = new Router()
+
+router.map({
+  '/': {
+    component: albumCube
+  },
+  '/quotes': {
+    component: quotes
+  }
 })
 
+router.start(layout, 'body')
+// new Vue({
+//   el: 'body',
+//   components: { layout }
+// })
 

@@ -1,7 +1,6 @@
 import Vue from 'vue'
-
-const style = require('./style.css')
-const fontello = require('./fontello.css')
+import style from './style.css'
+import fontello from './fontello.css'
 
 const Footer = Vue.extend({
   template: '<footer>' +

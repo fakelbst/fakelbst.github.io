@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import THREE from 'three'
-
-const style = require('./style.css')
+import style from './style.css'
 
 Vue.use(VueResource)
 
