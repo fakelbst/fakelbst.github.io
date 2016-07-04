@@ -4,15 +4,12 @@ import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
 import quotes from './Quotes'
-import THREE from 'three'
 import style from './style.css'
 
 Vue.use(Router)
 
 Vue.component('app-header', appHeader)
 Vue.component('app-footer', appFooter)
-// Vue.component('album-cube', albumCube)
-// Vue.component('quotes', quotes)
 
 const layout = Vue.extend({
   replace: false,
@@ -23,8 +20,6 @@ const layout = Vue.extend({
     '</section>' +
     '<app-footer></app-footer>'
 })
-
-// Vue.component('app', layout)
 
 const router = new Router()
 
@@ -38,8 +33,4 @@ router.map({
 })
 
 router.start(layout, 'body')
-// new Vue({
-//   el: 'body',
-//   components: { layout }
-// })
 

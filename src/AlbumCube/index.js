@@ -6,13 +6,16 @@ import style from './style.css'
 Vue.use(VueResource)
 
 const AlbumCube = Vue.extend({
-  template: '<div id="main"><div class="' + style.albumInfo + '"><p v-bind:style="{color: color1}">{{artist}}</p><p v-bind:style="{color: color2}">{{title}}</p></div></div>',
+  template: '<div id="main"></div><div class="' + style.albumInfo + '"><p v-bind:style="{color: color1}">{{artist}}</p><p v-bind:style="{color: color2}">{{title}}</p></div>',
   data() {
     return {
       artist: '',
       title: '',
       color1: '#333',
-      color2: '#333'
+      color2: '#333',
+      cube: {},
+      renderer: {},
+      interval: {}
     }
   },
   ready() {
@@ -33,13 +36,13 @@ const AlbumCube = Vue.extend({
       camera = new THREE.PerspectiveCamera(35,  document.getElementById('main').offsetWidth / window.innerHeight, 0.1, 1000)
 
       // create a render, sets the background color and the size
-      renderer = new THREE.WebGLRenderer()
-      renderer.setClearColor(0x000000, 1.0)
-      renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
-      renderer.shadowMap.enabled = true
+      that.renderer = new THREE.WebGLRenderer()
+      that.renderer.setClearColor(0x000000, 1.0)
+      that.renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
+      that.renderer.shadowMap.enabled = true
 
       // add the output of the renderer to the html element
-      document.getElementById('main').appendChild(renderer.domElement)
+      document.getElementById('main').appendChild(that.renderer.domElement)
 
       var ambientLight = new THREE.AmbientLight( 0x000000 )
       scene.add( ambientLight )
@@ -58,8 +61,8 @@ const AlbumCube = Vue.extend({
 
       let geometry = new THREE.BoxGeometry( 1, 1, 1 )
       let material = new THREE.MeshLambertMaterial({color: 0x6C6C6C, transparent: true, opacity: 0.7})
-      cube = new THREE.Mesh( geometry, material )
-      scene.add( cube )
+      that.cube = new THREE.Mesh( geometry, material )
+      scene.add( that.cube )
       camera.position.z = 5
       // call the render function, after the first render, interval is determined
       // by requestAnimationFrame
@@ -72,9 +75,9 @@ const AlbumCube = Vue.extend({
      */
     function render() {
       requestAnimationFrame( render )
-      cube.rotation.x += 0.01
-      cube.rotation.y += 0.01
-      renderer.render( scene, camera )
+      that.cube.rotation.x += 0.01
+      that.cube.rotation.y += 0.01
+      that.renderer.render( scene, camera )
     }
 
     /**
@@ -84,7 +87,7 @@ const AlbumCube = Vue.extend({
     function handleResize() {
       camera.aspect = document.getElementById('main').offsetWidth / window.innerHeight
       camera.updateProjectionMatrix()
-      renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
+      that.renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
     }
 
     // calls the init function when the window is done loading.
@@ -92,78 +95,98 @@ const AlbumCube = Vue.extend({
     // calls the handleResize function when the window is resized
     window.addEventListener('resize', handleResize, false)
 
-    function componentToHex(c) {
-      var hex = c.toString(16)
-      return hex.length == 1 ? "0" + hex : hex
-    }
+  },
 
-    function rgbToHex(rgb) {
-      let c = ''
-      for(let i=0; i<3; i++){
-        c += componentToHex(rgb[i])
+  methods: {
+
+    intervalTexture: function(datas) {
+      let that = this
+      let loader = new THREE.TextureLoader()
+
+      function componentToHex(c) {
+        var hex = c.toString(16)
+        return hex.length == 1 ? "0" + hex : hex
       }
-      return c
+
+      function rgbToHex(rgb) {
+        let c = ''
+        for(let i=0; i<3; i++){
+          c += componentToHex(rgb[i])
+        }
+        return c
+      }
+
+      that.interval = setInterval(function(){
+        let album = datas.shift()
+        datas.push(album.file)
+        loader.load(
+          'http://162.243.40.125/albums/' + album.file,
+          ( texture ) => {
+            that.cube.material.map = texture
+            that.cube.material.needsUpdate = true
+          },
+          ( xhr ) => {
+            let url = 'http://162.243.40.125/albums/' + album.file
+            let albumColors = new AlbumColors(url)
+
+            albumColors.getColors(function(colors) {
+              that.renderer.setClearColor(parseInt(rgbToHex(colors[0]), 16), 1.0)
+              document.body.style.background = '#'+rgbToHex(colors[0])
+              document.body.style.color = '#'+rgbToHex(colors[1])
+              document.getElementsByTagName('header')[0].firstElementChild.style.color = '#'+rgbToHex(colors[2])
+              that.title = album.title
+              that.artist = album.artist
+              that.color1 = '#'+rgbToHex(colors[1])
+              that.color2 = '#'+rgbToHex(colors[1])
+            })
+          },
+          function ( xhr ) {
+            console.log( 'An error happened' )
+          }
+        )
+      }, 6000)
+
+    },
+    clearIntervalTexture: () => {
+      clearInterval(this.interval)
     }
 
-    function intervalTexture(datas) {
-      var album = datas.shift()
-      datas.push(album.file)
-      var loader = new THREE.TextureLoader()
-      loader.load(
-        'http://162.243.40.125/albums/' + album.file,
-        function ( texture ) {
-          cube.material.map = texture
-          cube.material.needsUpdate = true
-        },
-        function ( xhr ) {
-        },
-        function ( xhr ) {
-          console.log( 'An error happened' )
-        }
-      )
-      let url = 'http://162.243.40.125/albums/' + album.file
-      let albumColors = new AlbumColors(url)
+  },
+  route: {
+    activate: (transition) => {
+      let that = this
 
-      albumColors.getColors(function(colors) {
-        renderer.setClearColor(parseInt(rgbToHex(colors[0]), 16), 1.0)
-        document.body.style.background = '#'+rgbToHex(colors[0])
-        document.body.style.color = '#'+rgbToHex(colors[1])
-        document.getElementsByTagName('header')[0].firstElementChild.style.color = '#'+rgbToHex(colors[2])
-        that.title = album.title
-        that.artist = album.artist
-        that.color1 = '#'+rgbToHex(colors[1])
-        that.color2 = '#'+rgbToHex(colors[1])
+      let APIkey = "4dff88a0423651b3570253b10b745b2c",
+        Limit = 100,
+        Page = 1,
+        User = "fakelbst"
+
+      Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
+        params: {
+          method: 'user.gettopalbums',
+          format: 'json',
+          user: User,
+          api_key: APIkey,
+          limit: Limit,
+          page: 1
+        }
+      }).then((d) => {
+          let datas = d.json()
+          let allCovers = []
+          let albums = datas.topalbums.album
+          let src = albums[0].image[3]['#text']
+          for(let i=0,j=albums.length; i<j; i++){
+              let title = albums[i].name.split(' ').join('-')
+              let ext = albums[i].image[3]['#text'].split('.').pop()
+              allCovers.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
+          }
+
+          // that.intervalTexture(allCovers)
+          transition.next()
       })
+    },
+    deactivate: (transition) => {
     }
-
-    let APIkey = "4dff88a0423651b3570253b10b745b2c",
-      Limit = 100,
-      Page = 1,
-      User = "fakelbst"
-
-    Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
-      params: {
-        method: 'user.gettopalbums',
-        format: 'json',
-        user: User,
-        api_key: APIkey,
-        limit: Limit,
-        page: 1
-      }
-    }).then((d) => {
-        let datas = d.json()
-        let allCovers = []
-        let albums = datas.topalbums.album
-        let src = albums[0].image[3]['#text']
-        for(let i=0,j=albums.length; i<j; i++){
-            let title = albums[i].name.split(' ').join('-')
-            let ext = albums[i].image[3]['#text'].split('.').pop()
-            allCovers.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
-        }
-        setInterval(function(){
-            intervalTexture(allCovers)
-        }, 6000)
-    })
   }
 
 })
