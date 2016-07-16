@@ -1,10 +1,10 @@
 import Vue from 'vue'
 
 const Quotes = Vue.extend({
-  template: '<blockquote v-for="q in quotes">' +
-      '<p>{{q.quote}}</p>' +
-      '<p><cite>{{q.from}}</cite></p>' +
-    '</blockquote>',
+  template: `<blockquote v-for="q in quotes">
+      <p>{{q.quote}}</p>
+      <p><cite>{{q.from}}</cite></p>
+    </blockquote>`,
   data() {
     return {
       quotes: [

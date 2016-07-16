@@ -13,12 +13,17 @@ Vue.component('app-footer', appFooter)
 
 const layout = Vue.extend({
   replace: false,
-  template: '<div class="' + style.wrapper + '">' +
-    '<app-header></app-header>' +
-    '<section class="' + style['main-content'] + '">' +
-      '<router-view></router-view>' +
-    '</section>' +
-    '<app-footer></app-footer>'
+  data() {
+    return {
+      style
+    }
+  },
+  template: `<div class={{style.wrapper}}>
+    <app-header></app-header>
+    <section class={{style['main-content']}}>
+      <router-view></router-view>
+    </section>
+    <app-footer></app-footer>`
 })
 
 const router = new Router()

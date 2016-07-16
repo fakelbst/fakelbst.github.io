@@ -6,9 +6,14 @@ import style from './style.css'
 Vue.use(VueResource)
 
 const AlbumCube = Vue.extend({
-  template: '<div id="main"></div><div class="' + style.albumInfo + '"><p v-bind:style="{color: color1}">{{artist}}</p><p v-bind:style="{color: color2}">{{title}}</p></div>',
+  template: `<div id="main"></div>
+    <div class={{style.albumInfo}}>
+      <p v-bind:style="{color: color1}">{{artist}}</p>
+      <p v-bind:style="{color: color2}">{{title}}</p>
+    </div>`,
   data() {
     return {
+      style,
       artist: '',
       title: '',
       color1: '#333',
