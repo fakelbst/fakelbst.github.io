@@ -8,7 +8,7 @@ Vue.use(VueResource)
 
 const AlbumCube = Vue.extend({
   template: `<div id="main"></div>
-    <i class="{{fontello['icon-right-open']}} {{style['to-right']}}" v-on:click="loadTexture()"></i>
+    <i class="{{fontello['icon-right-open']}} {{style['to-right']}} {{style['arrow-right']}}" v-on:click="loadTexture()"></i>
     <div class={{style.albumInfo}}>
       <p v-bind:style="{color: color1}">{{artist}}</p>
       <p v-bind:style="{color: color2}">{{title}}</p>
@@ -84,39 +84,8 @@ const AlbumCube = Vue.extend({
     window.onload = init
     window.addEventListener('resize', handleResize, false)
 
-    this.getDatas()
   },
   methods: {
-    getDatas() {
-      let that = this
-
-      let APIkey = "4dff88a0423651b3570253b10b745b2c",
-        Limit = 100,
-        Page = 1,
-        User = "fakelbst"
-
-      Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
-        params: {
-          method: 'user.gettopalbums',
-          format: 'json',
-          user: User,
-          api_key: APIkey,
-          limit: Limit,
-          page: 1
-        }
-      }).then((d) => {
-          let datas = d.json()
-          let albums = datas.topalbums.album
-          let src = albums[0].image[3]['#text']
-          for(let i=0,j=albums.length; i<j; i++){
-              let title = albums[i].name.split(' ').join('-')
-              let ext = albums[i].image[3]['#text'].split('.').pop()
-              that.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
-          }
-
-          this.loadTexture()
-      })
-    },
 
     loadTexture: function() {
       let that = this
@@ -135,36 +104,64 @@ const AlbumCube = Vue.extend({
         return c
       }
 
-        let album = that.allAlbums.shift()
-        that.allAlbums.push(album.file)
-        loader.load(
-          'http://162.243.40.125/albums/' + album.file,
-          ( texture ) => {
-            that.cube.material.map = texture
-            that.material.needsUpdate = true
-          },
-          ( xhr ) => {
-            let url = 'http://162.243.40.125/albums/' + album.file
-            let albumColors = new AlbumColors(url)
+      let album = that.allAlbums.shift()
+      that.allAlbums.push(album.file)
+      loader.load(
+        'http://162.243.40.125/albums/' + album.file,
+        ( texture ) => {
+          that.cube.material.map = texture
+          that.material.needsUpdate = true
+        },
+        ( xhr ) => {
+          let url = 'http://162.243.40.125/albums/' + album.file
+          let albumColors = new AlbumColors(url)
 
-            albumColors.getColors(function(colors) {
-              that.renderer.setClearColor(parseInt(rgbToHex(colors[0]), 16), 1.0)
-              document.body.style.background = '#'+rgbToHex(colors[0])
-              document.body.style.color = '#'+rgbToHex(colors[1])
-              document.getElementsByTagName('header')[0].firstElementChild.style.color = '#'+rgbToHex(colors[2])
-              that.title = album.title
-              that.artist = album.artist
-              that.color1 = '#'+rgbToHex(colors[2])
-              that.color2 = '#'+rgbToHex(colors[1])
-            })
-          },
-          function ( xhr ) {
-            console.log( 'An error happened' )
-          }
-        )
+          albumColors.getColors(function(colors) {
+            that.renderer.setClearColor(parseInt(rgbToHex(colors[0]), 16), 1.0)
+            document.body.style.background = '#'+rgbToHex(colors[0])
+            document.body.style.color = '#'+rgbToHex(colors[1])
+            document.getElementsByTagName('header')[0].firstElementChild.style.color = '#'+rgbToHex(colors[2])
+            that.title = album.title
+            that.artist = album.artist
+            that.color1 = '#'+rgbToHex(colors[2])
+            that.color2 = '#'+rgbToHex(colors[1])
+          })
+        },
+        function ( xhr ) {
+          console.log( 'An error happened' )
+        }
+      )
     }
   },
   route: {
+    activate: function(transition){
+      let that = this
+      let APIkey = "4dff88a0423651b3570253b10b745b2c",
+        Limit = 100,
+        Page = 1,
+        User = "fakelbst"
+
+      Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
+        params: {
+          method: 'user.gettopalbums',
+          format: 'json',
+          user: User,
+          api_key: APIkey,
+          limit: Limit,
+          page: 1
+        }
+      }).then((d) => {
+        let datas = d.json()
+        let albums = datas.topalbums.album
+        let src = albums[0].image[3]['#text']
+        for(let i=0,j=albums.length; i<j; i++){
+            let title = albums[i].name.split(' ').join('-')
+            let ext = albums[i].image[3]['#text'].split('.').pop()
+            that.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
+        }
+      })
+      transition.next()
+    }
   }
 
 })
