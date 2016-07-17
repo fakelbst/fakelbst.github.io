@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import style from './style.css'
-import fontello from './fontello.css'
+import fontello from '../fontello.css'
 
 const Footer = Vue.extend({
   data() {
