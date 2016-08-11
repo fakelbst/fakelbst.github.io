@@ -1,7 +1,5 @@
 footer {
-  float: left;
-  position: fixed;
-  bottom: 50px;
+  padding-bottom: 30px;
   font-size: 1.3em;
   color: #2e3434;
 }
