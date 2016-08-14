@@ -81,7 +81,7 @@ const AlbumCube = Vue.extend({
       that.renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
     }
 
-    window.onload = init
+    init()
     window.addEventListener('resize', handleResize, false)
 
   },
