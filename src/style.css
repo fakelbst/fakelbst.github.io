@@ -141,9 +141,6 @@ blockquote cite {
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  margin: auto;
-  height: 100vh;
   .fake {
     display: block; /* 1 */
     flex-grow: 1;

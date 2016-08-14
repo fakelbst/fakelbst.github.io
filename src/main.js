@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import appFooter from './Footer'
 import appHeader from './Header'
+import albumCube from './AlbumCube'
 import index from './Index'
 import albums from './Albums'
 import quotes from './Quotes'
@@ -38,11 +39,13 @@ const layout = Vue.extend({
     </section>`
 })
 
-const router = new Router()
+const router = new Router({
+  hashbang: false
+})
 
 router.map({
   '/': {
-    component: albums
+    component: albumCube
   },
   '/quotes': {
     component: quotes

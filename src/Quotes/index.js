@@ -1,12 +1,16 @@
 import Vue from 'vue'
+import style from './style.css'
 
 const Quotes = Vue.extend({
-  template: `<blockquote v-for="q in quotes">
-      <p>{{q.quote}}</p>
-      <p><cite>{{q.from}}</cite></p>
-    </blockquote>`,
+  template: `<div class={{style.warp}}>
+      <blockquote v-for="q in quotes">
+        <p>{{q.quote}}</p>
+        <p><cite>{{q.from}}</cite></p>
+      </blockquote>
+    </div>`,
   data() {
     return {
+      style,
       quotes: [
         {quote: 'Life moves pretty fast. If you don’t stop and look around once in a while, you could miss it.', from: 'Ferris Bueller’s Day Off'},
         {quote: 'Because the only people for me are the mad ones, the ones who are mad to live, mad to talk, mad to be saved, desirous of everything at the same time, the ones who never yawn or say a commonplace thing, but burn, burn, burn like fabulous yellow roman candles exploding like spiders across the stars and in the middle you see the blue centerlight pop and everybody goes “Awww!”', from: 'On the Road'},

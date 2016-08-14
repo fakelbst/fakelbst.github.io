@@ -1,19 +1,19 @@
+.main {
+  flex: 1;
+}
+
 .albumInfo {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 10px;
   text-align: right;
 }
 
 .to-right {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: -10px;
-  margin: auto;
   width: 10px;
   height: 10px;
   cursor: pointer;
+  justify-content: flex-end;
 }
 
 .arrow-right {

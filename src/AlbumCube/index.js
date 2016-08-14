@@ -7,7 +7,7 @@ import fontello from '../fontello.css'
 Vue.use(VueResource)
 
 const AlbumCube = Vue.extend({
-  template: `<div id="main"></div>
+  template: `<div class={{style.main}} id="main"></div>
     <i class="{{fontello['icon-right-open']}} {{style['to-right']}} {{style['arrow-right']}}" v-on:click="loadTexture()"></i>
     <div class={{style.albumInfo}}>
       <p v-bind:style="{color: color1}">{{artist}}</p>
@@ -39,7 +39,7 @@ const AlbumCube = Vue.extend({
       camera = new THREE.PerspectiveCamera(35,  document.getElementById('main').offsetWidth / window.innerHeight, 0.1, 1000)
 
       that.renderer = new THREE.WebGLRenderer()
-      that.renderer.setClearColor(0x000000, 1.0)
+      that.renderer.setClearColor(0x1e2021, 1.0)
       that.renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
       that.renderer.shadowMap.enabled = true
 
@@ -107,13 +107,13 @@ const AlbumCube = Vue.extend({
       let album = that.allAlbums.shift()
       that.allAlbums.push(album.file)
       loader.load(
-        'http://162.243.40.125/albums/' + album.file,
+        '/static/albums/' + album.file,
         ( texture ) => {
           that.cube.material.map = texture
           that.material.needsUpdate = true
         },
         ( xhr ) => {
-          let url = 'http://162.243.40.125/albums/' + album.file
+          let url = '/static/albums/' + album.file
           let albumColors = new AlbumColors(url)
 
           albumColors.getColors(function(colors) {
@@ -121,6 +121,8 @@ const AlbumCube = Vue.extend({
             document.body.style.background = '#'+rgbToHex(colors[0])
             document.body.style.color = '#'+rgbToHex(colors[1])
             document.getElementsByTagName('header')[0].firstElementChild.style.color = '#'+rgbToHex(colors[2])
+            let footers = document.querySelectorAll('footer p')
+            footers.forEach(elem => elem.style.color = '#'+rgbToHex(colors[2]))
             that.title = album.title
             that.artist = album.artist
             that.color1 = '#'+rgbToHex(colors[2])
@@ -134,7 +136,7 @@ const AlbumCube = Vue.extend({
     }
   },
   route: {
-    activate: function(transition){
+    data: function(transition){
       let that = this
       let APIkey = "4dff88a0423651b3570253b10b745b2c",
         Limit = 100,
