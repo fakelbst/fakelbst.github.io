@@ -52,7 +52,7 @@ a:hover small {
   width: 960px;
   margin: 0 auto;
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
 }
 
 code, pre {

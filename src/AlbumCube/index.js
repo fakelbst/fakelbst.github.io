@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import THREE from 'three'
+import colorPalettes from 'color-palettes'
 import style from './style.css'
 import fontello from '../fontello.css'
 
@@ -36,11 +37,11 @@ const AlbumCube = Vue.extend({
       THREE.ImageUtils.crossOrigin = ''
       scene = new THREE.Scene()
 
-      camera = new THREE.PerspectiveCamera(35,  document.getElementById('main').offsetWidth / window.innerHeight, 0.1, 1000)
+      camera = new THREE.PerspectiveCamera(35, document.querySelector('[class*=main-content]').offsetWidth / window.innerHeight, 0.1, 1000)
 
       that.renderer = new THREE.WebGLRenderer()
       that.renderer.setClearColor(0x1e2021, 1.0)
-      that.renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
+      that.renderer.setSize(document.querySelector('[class*=main-content]').offsetWidth, window.innerHeight - 10)
       that.renderer.shadowMap.enabled = true
 
       document.getElementById('main').appendChild(that.renderer.domElement)
@@ -76,57 +77,44 @@ const AlbumCube = Vue.extend({
     }
 
     function handleResize() {
-      camera.aspect = document.getElementById('main').offsetWidth / window.innerHeight
+      camera.aspect = document.querySelector('[class*=main-content]').offsetWidth / window.innerHeight
       camera.updateProjectionMatrix()
-      that.renderer.setSize(document.getElementById('main').offsetWidth, window.innerHeight - 10)
+      that.renderer.setSize(document.querySelector('[class*=main-content]').offsetWidth, window.innerHeight - 10)
     }
 
-    init()
+    setTimeout( init, 200)
     window.addEventListener('resize', handleResize, false)
 
   },
   methods: {
 
     loadTexture: function() {
-      let that = this
       let loader = new THREE.TextureLoader()
 
-      function componentToHex(c) {
-        var hex = c.toString(16)
-        return hex.length == 1 ? "0" + hex : hex
-      }
-
-      function rgbToHex(rgb) {
-        let c = ''
-        for(let i=0; i<3; i++){
-          c += componentToHex(rgb[i])
-        }
-        return c
-      }
-
-      let album = that.allAlbums.shift()
-      that.allAlbums.push(album.file)
+      let album = this.allAlbums.shift()
+      this.allAlbums.push(album.file)
       loader.load(
         '/static/albums/' + album.file,
         ( texture ) => {
-          that.cube.material.map = texture
-          that.material.needsUpdate = true
+          this.cube.material.map = texture
+          this.material.needsUpdate = true
         },
         ( xhr ) => {
           let url = '/static/albums/' + album.file
-          let albumColors = new AlbumColors(url)
-
-          albumColors.getColors(function(colors) {
-            that.renderer.setClearColor(parseInt(rgbToHex(colors[0]), 16), 1.0)
-            document.body.style.background = '#'+rgbToHex(colors[0])
-            document.body.style.color = '#'+rgbToHex(colors[1])
-            document.getElementsByTagName('header')[0].firstElementChild.style.color = '#'+rgbToHex(colors[2])
+          let cp = new colorPalettes(url)
+          cp.dominantThree({
+            format: 'hex'
+          }).then( (colors) => {
+            this.renderer.setClearColor(parseInt(colors[0], 16), 1.0)
+            document.body.style.background = '#' + colors[0]
+            document.body.style.color = '#' + colors[1]
+            document.getElementsByTagName('header')[0].firstElementChild.style.color = '#' + colors[2]
             let footers = document.querySelectorAll('footer p')
-            footers.forEach(elem => elem.style.color = '#'+rgbToHex(colors[2]))
-            that.title = album.title
-            that.artist = album.artist
-            that.color1 = '#'+rgbToHex(colors[2])
-            that.color2 = '#'+rgbToHex(colors[1])
+            footers.forEach(elem => elem.style.color = '#' + colors[2])
+            this.title = album.title
+            this.artist = album.artist
+            this.color1 = '#' + colors[2]
+            this.color2 = '#' + colors[1]
           })
         },
         function ( xhr ) {
