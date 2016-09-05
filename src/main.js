@@ -3,8 +3,8 @@ import Router from 'vue-router'
 import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
+import instagram from './Instagram'
 import index from './Index'
-import albums from './Albums'
 import quotes from './Quotes'
 import style from './style.css'
 
@@ -49,6 +49,9 @@ router.map({
   },
   '/quotes': {
     component: quotes
+  },
+  '/ins': {
+    component: instagram
   }
 })
 

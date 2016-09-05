@@ -8,12 +8,14 @@ import fontello from '../fontello.css'
 Vue.use(VueResource)
 
 const AlbumCube = Vue.extend({
-  template: `<div class={{style.main}} id="main"></div>
+  template: `<div class={{style['main-wrapper']}}>
+    <div class={{style.main}} id="main"></div>
     <i class="{{fontello['icon-right-open']}} {{style['to-right']}} {{style['arrow-right']}}" v-on:click="loadTexture()"></i>
     <div class={{style.albumInfo}}>
       <p v-bind:style="{color: color1}">{{artist}}</p>
       <p v-bind:style="{color: color2}">{{title}}</p>
-    </div>`,
+    </div>
+  </div>`,
   data() {
     return {
       style,
@@ -124,7 +126,7 @@ const AlbumCube = Vue.extend({
     }
   },
   route: {
-    data: function(transition){
+    activate: function(transition){
       let that = this
       let APIkey = "4dff88a0423651b3570253b10b745b2c",
         Limit = 100,
@@ -150,6 +152,16 @@ const AlbumCube = Vue.extend({
             that.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
         }
       })
+      transition.next()
+    },
+    deactivate: (transition) => {
+      // TODO: add some animation
+      document.body.style.background = '#1e2021'
+      document.body.style.color = '#e8e8e8'
+      document.getElementsByTagName('header')[0].firstElementChild.style.color = '#e8e8e8'
+      let footers = document.querySelectorAll('footer p')
+      footers.forEach(elem => elem.style.color = '#e8e8e8')
+
       transition.next()
     }
   }

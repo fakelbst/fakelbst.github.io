@@ -1,0 +1,20 @@
+
+.wrap {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 50px;
+  color: #5f6669;
+}
+
+.item {
+  margin-top: 20px;
+}
+
+.images {
+  background-position: 50% 50%;
+  background-size: cover;
+  width: 450px;
+  height: 450px;
+  opacity: 0.5;
+}

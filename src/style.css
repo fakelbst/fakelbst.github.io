@@ -100,9 +100,7 @@ strong {
 
 .main-content {
   width: 600px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin-left: 20px;
 }
 
 small {
