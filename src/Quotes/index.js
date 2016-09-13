@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import style from './style.css'
 
-const Quotes = Vue.extend({
-  template: `<div class={{style.warp}}>
+export default Vue.extend({
+  template: `<div class={{style.wrap}}>
       <blockquote v-for="q in quotes">
         <p>{{q.quote}}</p>
         <p><cite>{{q.from}}</cite></p>
@@ -26,7 +26,61 @@ const Quotes = Vue.extend({
         {quote: 'I always wonder why birds stay in thr same place when they can fly anywhere on earth. Then I ask myself the same question.'}
       ]
     }
+  },
+  ready() {
+
+    function throttle (callback) {
+      var wait = false
+      return function () {
+        if (!wait) {
+          callback.call()
+          wait = true
+          setTimeout(function () {
+            wait = false
+          }, 50);
+        }
+      }
+    }
+
+    let y = 0
+    let domWrap = document.querySelector('[class*=__wrap__]')
+    let domDrag = document.querySelector('[class*=__drag__]')
+
+    function calcBarHeight (){
+      let newWh = window.innerHeight
+      return Math.max((newWh / domWrap.offsetHeight) * newWh, 50) + 'px'
+    }
+
+    let handleScroll = function(evt){
+
+      if (!evt) evt = event
+      let direction = (evt.detail<0 || evt.wheelDelta>0) ? 1 : -1
+      y += Math.abs(evt.deltaY) * direction
+      if( y < 0 && Math.abs(y) < (domWrap.offsetHeight - window.innerHeight + 30)){
+        domWrap.style.transform = `translate3d(0, ${y}px, 0)`
+      }
+      else{
+        y += evt.deltaY
+      }
+
+      let prescent =  Math.abs(y) / domWrap.offsetHeight
+      let sbarPrescent = domDrag.offsetHeight/ window.innerHeight
+      let scrollbar = Math.round(window.innerHeight * prescent * 10) / 10;
+      if(prescent < 0.02){
+        scrollbar = 0
+      }
+      if(prescent + sbarPrescent > 0.95){
+        scrollbar = window.innerHeight - domDrag.offsetHeight
+      }
+      domDrag.style.transform = `translate3d(0, ${scrollbar}px, 0)`
+    };
+    document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle( handleScroll), false); // for Firefox
+    document.querySelector('[class*=main-content]').addEventListener('mousewheel', throttle(handleScroll), false); // for everyone else
+
+    window.onresize = throttle (function(){
+      domDrag.style.height = calcBarHeight();
+    })
+
   }
 })
 
-export default Quotes

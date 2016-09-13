@@ -1,0 +1,14 @@
+.scrollbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  width: 10px;
+  height: 100%;
+  .drag {
+    position: absolute;
+    height: 50px;
+    width: 10px;
+    background-color: #ffeb3b;
+  }
+}
