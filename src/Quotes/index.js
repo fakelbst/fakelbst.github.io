@@ -37,7 +37,7 @@ export default Vue.extend({
           wait = true
           setTimeout(function () {
             wait = false
-          }, 50);
+          }, 50)
         }
       }
     }
@@ -65,7 +65,7 @@ export default Vue.extend({
 
       let prescent =  Math.abs(y) / domWrap.offsetHeight
       let sbarPrescent = domDrag.offsetHeight/ window.innerHeight
-      let scrollbar = Math.round(window.innerHeight * prescent * 10) / 10;
+      let scrollbar = Math.round(window.innerHeight * prescent * 10) / 10
       if(prescent < 0.02){
         scrollbar = 0
       }
@@ -74,12 +74,17 @@ export default Vue.extend({
       }
       domDrag.style.transform = `translate3d(0, ${scrollbar}px, 0)`
     };
-    document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle( handleScroll), false); // for Firefox
-    document.querySelector('[class*=main-content]').addEventListener('mousewheel', throttle(handleScroll), false); // for everyone else
+    // for Firefox
+    document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle( handleScroll), false)
+    document.querySelector('[class*=main-content]').addEventListener('mousewheel', throttle(handleScroll), false)
 
     window.onresize = throttle (function(){
-      domDrag.style.height = calcBarHeight();
+      domDrag.style.height = calcBarHeight()
     })
+
+    window.onload = function(){
+      domDrag.style.height = calcBarHeight()
+    }
 
   }
 })

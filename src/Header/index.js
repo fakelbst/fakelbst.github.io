@@ -19,7 +19,7 @@ const header = Vue.extend({
         <a href="#"><div class={{style.orange}}><span>&nbsp;</span></div></a>
         <a href="#"><div class={{style.yellow}}><span>&nbsp;</span></div></a>
         <a v-link="{path: \'/quotes\'}"><div class={{style.green}}><span>quotes</span></div></a>
-        <a v-link="{path: \'/ins\'}"><div class={{style.blue}}><span>&nbsp;</span></div></a>
+        <a v-link="{path: \'/ins\'}"><div class={{style.blue}}><span>Instagram</span></div></a>
         <a href="#"><div class={{style.indigo}}><span>&nbsp;</span></div></a>
         <a href="#"><div class={{style.violet}}><span>&nbsp;</span></div></a>
       </nav>
