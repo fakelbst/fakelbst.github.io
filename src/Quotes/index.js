@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import style from './style.css'
+import scrollbar from '../Components/scrollbar'
+
+Vue.component('scrollbar', scrollbar)
 
 export default Vue.extend({
   template: `<div class={{style.wrap}}>
@@ -7,7 +10,9 @@ export default Vue.extend({
         <p>{{q.quote}}</p>
         <p><cite>{{q.from}}</cite></p>
       </blockquote>
-    </div>`,
+    </div>
+    <scrollbar></scrollbar>
+    `,
   data() {
     return {
       style,
