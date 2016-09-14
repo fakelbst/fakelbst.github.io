@@ -21,14 +21,6 @@ const layout = Vue.extend({
     }
   },
   template: `<div class={{style.wrapper}}>
-    <svg class={{style.hidden}}>
-      <defs>
-        <!-- From Karen Menezes: https://www.smashingmagazine.com/2015/05/creating-responsive-shapes-with-clip-path/ -->
-        <clipPath id="polygon-clip-rhomboid" clipPathUnits="objectBoundingBox">
-          <polygon points="0 1, 0.3 0, 1 0, 0.7 1" />
-        </clipPath>
-      </defs>
-    </svg>
     <div class={{style.sidebar}}>
       <app-header></app-header>
       <div class={{style.fake}}></div>
