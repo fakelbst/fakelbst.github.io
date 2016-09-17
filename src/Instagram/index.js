@@ -7,7 +7,7 @@ import scrollbar from '../Components/scrollbar'
 
 Vue.component('scrollbar', scrollbar)
 
-const Instagram = Vue.extend({
+export default Vue.extend({
   data() {
     return {
       style,
@@ -21,29 +21,48 @@ const Instagram = Vue.extend({
     photos: {
       handler: function(val, oldVal) {
 
+        function throttle (callback) {
+          var wait = false
+          return function () {
+            if (!wait) {
+              callback.call()
+              wait = true
+              setTimeout(function () {
+                wait = false
+              }, 100)
+            }
+          }
+        }
+
         imagesLoaded( document.querySelector('[class*=__item__]'), {background: '[class*=__images__]'},  () => {
           this.loading = false
 
           let pics = document.querySelectorAll('[class*=__item__]')
           let scrollHandler = () => {
-            // console.log(this.value)
-            // pics.forEach(function(el, i){
-            //   if(Math.abs(this.value) + window.innerHeight > el.offsetTop && el.offsetTop + el.clientHeight > Math.abs(this.value)){
-            //     el.
-            //   }
-            //   console.log(el);
-            //   console.log(el.clientHeight);
-            // })
+            pics.forEach( (el, i) => {
+              if(Math.abs(this.value) + window.innerHeight > el.offsetTop && el.offsetTop + el.clientHeight > Math.abs(this.value)){
+                let toggleClass = function(){
+                  el.classList.add(style['fade-animation'])
+                }
+
+                requestAnimationFrame(toggleClass)
+
+              }
+              else{
+                el.classList.remove(style['fade-animation'])
+                el.classList.add(style['fade-animation-init'])
+              }
+            })
           }
 
-          document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', scrollHandler, false)
-          document.querySelector('[class*=main-content]').addEventListener('mousewheel', scrollHandler, false)
+          document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
+          document.querySelector('[class*=main-content]').addEventListener('mousewheel', throttle(scrollHandler), false)
         });
       }
     }
   },
   template: `<div class={{style.wrap}}>
-    <div v-for="p in photos" class={{style.item}}>
+    <div v-for="p in photos" class="{{style.item}} {{style['fade-animation-init']}}">
       <div class={{style.images}} v-bind:style="{ backgroundImage: 'url(' + p.images.standard_resolution.url + ')' }"></div>
       <p>{{p.caption ? p.caption.text: ''}}</p>
       </div>
@@ -70,5 +89,3 @@ const Instagram = Vue.extend({
   }
 })
 
-
-export default Instagram
