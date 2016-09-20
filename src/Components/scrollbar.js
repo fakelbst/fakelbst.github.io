@@ -60,8 +60,8 @@ export default Vue.extend({
       domDrag.style.transform = `translate3d(0, ${scrollbar}px, 0)`
     };
     // for Firefox
-    document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle( handleScroll), false)
-    document.querySelector('[class*=main-content]').addEventListener('mousewheel', throttle(handleScroll), false)
+    document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', handleScroll, false)
+    document.querySelector('[class*=main-content]').addEventListener('mousewheel', handleScroll, false)
 
     window.onresize = throttle (function(){
       domDrag.style.height = calcBarHeight()
@@ -70,7 +70,6 @@ export default Vue.extend({
     window.onload = function(){
       domDrag.style.height = calcBarHeight()
     }
-
   }
 })
 

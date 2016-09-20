@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
+import books from './Books'
 import instagram from './Instagram'
 import index from './Index'
 import quotes from './Quotes'
@@ -42,8 +43,11 @@ router.map({
   '/quotes': {
     component: quotes
   },
-  '/ins': {
+  '/inst': {
     component: instagram
+  },
+  '/books': {
+    component: books
   }
 })
 

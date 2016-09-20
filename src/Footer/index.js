@@ -2,7 +2,7 @@ import Vue from 'vue'
 import style from './style.css'
 import fontello from '../fontello.css'
 
-const Footer = Vue.extend({
+export default Vue.extend({
   data() {
     return {
       style,
@@ -21,4 +21,3 @@ const Footer = Vue.extend({
     </footer>`
 })
 
-export default Footer

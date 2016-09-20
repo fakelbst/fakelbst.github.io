@@ -14,7 +14,8 @@ export default Vue.extend({
       fontello,
       loading: true,
       photos: [],
-      value: 0
+      value: 0,
+      max_id: ''
     }
   },
   watch: {
@@ -44,20 +45,20 @@ export default Vue.extend({
                 let toggleClass = function(){
                   el.classList.add(style['fade-animation'])
                 }
-
                 requestAnimationFrame(toggleClass)
-
-              }
-              else{
-                el.classList.remove(style['fade-animation'])
-                el.classList.add(style['fade-animation-init'])
               }
             })
+
+            if(Math.abs(this.value) > document.querySelector('[class*=__wrap__]').clientHeight * 0.9 && this.loading === false){
+              this.loading = true
+              this.getDatas()
+            }
+
           }
 
           document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
-          document.querySelector('[class*=main-content]').addEventListener('mousewheel', throttle(scrollHandler), false)
-        });
+          document.querySelector('[class*=main-content]').addEventListener('mousewheel', scrollHandler, false)
+        })
       }
     }
   },
@@ -74,16 +75,23 @@ export default Vue.extend({
     </div>
     <scrollbar :sy.sync="value" v-show="!loading"></scrollbar>
     `,
-  route: {
-    activate: function(transition){
+  methods: {
+    getDatas() {
       let url = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=287140978.f316052.2c964e349edc4fc7b2497e60ca88f2c3'
       Vue.http.jsonp(url, {
         params: {
-          count: 8
+          count: 8,
+          max_id: this.max_id
         }
       }).then((d) => {
-        this.photos = d.data.data
+        this.photos = this.photos.concat(d.data.data)
+        this.max_id = d.data.data[d.data.data.length - 1].id
       })
+    },
+  },
+  route: {
+    activate: function(transition){
+      this.getDatas()
       transition.next()
     }
   }
