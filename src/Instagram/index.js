@@ -14,8 +14,9 @@ export default Vue.extend({
       fontello,
       loading: true,
       photos: [],
-      value: 0,
-      max_id: ''
+      scrollValue: 0,
+      max_id: '',
+      next: true
     }
   },
   watch: {
@@ -41,7 +42,7 @@ export default Vue.extend({
           let pics = document.querySelectorAll('[class*=__item__]')
           let scrollHandler = () => {
             pics.forEach( (el, i) => {
-              if(Math.abs(this.value) + window.innerHeight > el.offsetTop && el.offsetTop + el.clientHeight > Math.abs(this.value)){
+              if(Math.abs(this.scrollValue) + window.innerHeight > el.offsetTop && el.offsetTop + el.clientHeight > Math.abs(this.scrollValue)){
                 let toggleClass = function(){
                   el.classList.add(style['fade-animation'])
                 }
@@ -49,15 +50,15 @@ export default Vue.extend({
               }
             })
 
-            if(Math.abs(this.value) > document.querySelector('[class*=__wrap__]').clientHeight * 0.9 && this.loading === false){
+            if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__wrap__]').clientHeight - window.innerHeight) && this.loading === false && this.next){
               this.loading = true
               this.getDatas()
             }
-
           }
 
-          document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
-          document.querySelector('[class*=main-content]').addEventListener('mousewheel', scrollHandler, false)
+          document.body.addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
+          document.body.addEventListener('mousewheel', scrollHandler, false)
+
         })
       }
     }
@@ -73,7 +74,7 @@ export default Vue.extend({
       <div class={{style.bar}}></div>
       <div class={{style.bar}}></div>
     </div>
-    <scrollbar :sy.sync="value" v-show="!loading"></scrollbar>
+    <scrollbar :sy.sync="scrollValue" v-show="!loading"></scrollbar>
     `,
   methods: {
     getDatas() {
@@ -84,6 +85,7 @@ export default Vue.extend({
           max_id: this.max_id
         }
       }).then((d) => {
+        if(d.data.data.length === 0) this.next = false
         this.photos = this.photos.concat(d.data.data)
         this.max_id = d.data.data[d.data.data.length - 1].id
       })
