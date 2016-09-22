@@ -1,0 +1,23 @@
+.wrap {
+
+  .label {
+    color: #ffeb3b;
+  }
+}
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  .book {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+  }
+  .cover {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+}
