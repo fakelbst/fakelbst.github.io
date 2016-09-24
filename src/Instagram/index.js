@@ -4,15 +4,17 @@ import imagesLoaded from 'imagesloaded'
 import style from './style.css'
 import fontello from '../fontello.css'
 import scrollbar from '../Components/scrollbar'
+import loading from '../Components/loading'
 
 Vue.component('scrollbar', scrollbar)
+Vue.component('loading', loading)
 
 export default Vue.extend({
   data() {
     return {
       style,
       fontello,
-      loading: true,
+      loadingVisible: true,
       photos: [],
       scrollValue: 0,
       max_id: '',
@@ -36,8 +38,8 @@ export default Vue.extend({
           }
         }
 
-        imagesLoaded( document.querySelector('[class*=__item__]'), {background: '[class*=__images__]'},  () => {
-          this.loading = false
+        imagesLoaded( document.querySelector('[class*=__item___]'), {background: '[class*=__images___]'},  () => {
+          this.loadingVisible = false
 
           let pics = document.querySelectorAll('[class*=__item__]')
           let scrollHandler = () => {
@@ -50,8 +52,8 @@ export default Vue.extend({
               }
             })
 
-            if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__wrap__]').clientHeight - window.innerHeight) && this.loading === false && this.next){
-              this.loading = true
+            if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__wrap__]').clientHeight - window.innerHeight) && this.loadingVisible === false && this.next){
+              this.loadingVisible = true
               this.getDatas()
             }
           }
@@ -64,24 +66,21 @@ export default Vue.extend({
     }
   },
   template: `<div class={{style.wrap}}>
+    <loading :visible.sync="loadingVisible" v-if="photos.length === 0"></loading>
     <div v-for="p in photos" class="{{style.item}} {{style['fade-animation-init']}}">
       <div class={{style.images}} v-bind:style="{ backgroundImage: 'url(' + p.images.standard_resolution.url + ')' }"></div>
       <p>{{p.caption ? p.caption.text: ''}}</p>
       </div>
+      <loading :visible.sync="loadingVisible" v-if="photos.length > 0"></loading>
     </div>
-    <div class={{style.loading}} v-show="loading">
-      <div class={{style.bar}}></div>
-      <div class={{style.bar}}></div>
-      <div class={{style.bar}}></div>
-    </div>
-    <scrollbar :sy.sync="scrollValue" v-show="!loading"></scrollbar>
+    <scrollbar :sy.sync="scrollValue" v-show="!loadingVisible"></scrollbar>
     `,
   methods: {
     getDatas() {
       let url = 'https://api.instagram.com/v1/users/self/media/recent/?access_token=287140978.f316052.2c964e349edc4fc7b2497e60ca88f2c3'
       Vue.http.jsonp(url, {
         params: {
-          count: 8,
+          count: 6,
           max_id: this.max_id
         }
       }).then((d) => {

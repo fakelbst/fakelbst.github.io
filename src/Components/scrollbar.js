@@ -30,11 +30,6 @@ export default Vue.extend({
     let domWrap = document.querySelector('[class*=__wrap__]')
     let domDrag = document.querySelector('[class*=__drag__]')
 
-    function calcBarHeight (){
-      let newWh = window.innerHeight
-      return Math.max((newWh / domWrap.offsetHeight) * newWh, 50) + 'px'
-    }
-
     let handleScroll = (evt) => {
 
       if (!evt) evt = event
@@ -63,12 +58,24 @@ export default Vue.extend({
     document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', handleScroll, false)
     document.querySelector('[class*=main-content]').addEventListener('mousewheel', handleScroll, false)
 
-    window.onresize = throttle (function(){
-      domDrag.style.height = calcBarHeight()
+    window.onresize = throttle (() => {
+      domDrag.style.height = this.calcBarHeight()
     })
 
-    window.onload = function(){
-      domDrag.style.height = calcBarHeight()
+    window.onload = () => {
+      domDrag.style.height = this.calcBarHeight()
+    }
+  },
+  methods: {
+    calcBarHeight: function(){
+      let domWrap = document.querySelector('[class*=__wrap__]')
+      let newWh = window.innerHeight
+      return Math.max((newWh / domWrap.offsetHeight) * newWh, 50) + 'px'
+    }
+  },
+  events: {
+    reCalcHeight: function(){
+      this.calcBarHeight()
     }
   }
 })
