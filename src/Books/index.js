@@ -15,7 +15,8 @@ export default Vue.extend({
       loadingRead: true,
       reading: [],
       read: [],
-      scrollValue: 0
+      scrollValue: 0,
+      start: 0
     }
   },
   template: `<div class={{style.wrap}}>
@@ -30,7 +31,6 @@ export default Vue.extend({
       </div>
 
       <h3 class={{style.label}}>Read</h3>
-      <loading :visible.sync="loadingRead"></loading>
       <div class="{{style.books}} {{style.read}}">
         <div v-for="r in read" class={{style.book}}>
           <a href={{r.book.alt}} target="_blank" title={{r.book.alt_title}}>
@@ -38,10 +38,22 @@ export default Vue.extend({
           </a>
         </div>
       </div>
+      <loading :visible.sync="loadingRead"></loading>
     </div>
     <scrollbar :sy.sync="scrollValue" v-show="!loading"></scrollbar>
     `,
+  ready() {
+    let scrollHandler = () => {
 
+      if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__wrap__]').clientHeight - window.innerHeight) && this.loadingRead === false){
+        this.loadingRead = true
+        this.getRead()
+      }
+    }
+
+    document.body.addEventListener('DOMMouseScroll', scrollHandler, false)
+    document.body.addEventListener('mousewheel', scrollHandler, false)
+  },
   route: {
     activate: function(transition){
 
@@ -64,14 +76,22 @@ export default Vue.extend({
           })
         })
       })
+      this.getRead()
+      transition.next()
+    }
+  },
+  methods: {
+    getRead() {
 
       Vue.http.jsonp("https://api.douban.com/v2/book/user/wber/collections", {
         params: {
           status: 'read',
-          count: 20
+          count: 20,
+          start: this.start
         }
       }).then((d) => {
-        this.read = d.data.collections
+        this.read = this.read.concat(d.data.collections)
+        this.start += 20
 
         imagesLoaded( document.querySelector('[class*=__read___]'), {background: '[class*=__cover___]'},  () => {
           this.loadingRead = false
@@ -83,11 +103,8 @@ export default Vue.extend({
             }, 50 * i);
           })
         })
-
-
       })
 
-      transition.next()
     }
   }
 })

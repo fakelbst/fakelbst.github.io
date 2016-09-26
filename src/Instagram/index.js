@@ -58,7 +58,7 @@ export default Vue.extend({
             }
           }
 
-          document.body.addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
+          document.body.addEventListener('DOMMouseScroll', scrollHandler, false)
           document.body.addEventListener('mousewheel', scrollHandler, false)
 
         })
