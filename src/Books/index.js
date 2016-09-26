@@ -17,6 +17,7 @@ export default Vue.extend({
       read: [],
       scrollValue: 0,
       start: 0
+
     }
   },
   template: `<div class={{style.wrap}}>
