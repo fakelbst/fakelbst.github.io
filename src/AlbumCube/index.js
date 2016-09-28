@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
-import THREE from 'three'
 import colorPalettes from 'color-palettes'
 import style from './style.css'
 import fontello from '../fontello.css'
+const THREE = require('three')
 
 Vue.use(VueResource)
 

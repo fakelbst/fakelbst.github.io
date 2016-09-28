@@ -5,7 +5,7 @@ import appHeader from './Header'
 import albumCube from './AlbumCube'
 import books from './Books'
 import instagram from './Instagram'
-import index from './Index'
+import about from './About'
 import quotes from './Quotes'
 import style from './style.css'
 
@@ -48,6 +48,9 @@ router.map({
   },
   '/books': {
     component: books
+  },
+  '/about': {
+    component: about
   }
 })
 
