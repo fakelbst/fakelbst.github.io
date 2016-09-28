@@ -16,4 +16,6 @@ npm run build
 ```
 
 # Credits
-[albumcolors](https://github.com/chengyin/albumcolors)
+[Last.fm api](http://www.last.fm/api)
+[Douban api](https://developers.douban.com/)
+[Instagram api](https://www.instagram.com/developer/)
