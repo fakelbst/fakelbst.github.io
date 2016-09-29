@@ -42,6 +42,8 @@ export default Vue.extend({
           this.loadingVisible = false
 
           let pics = document.querySelectorAll('[class*=__item__]')
+          pics[0].classList.add(style['fade-animation'])
+
           let scrollHandler = () => {
             pics.forEach( (el, i) => {
               if(Math.abs(this.scrollValue) + window.innerHeight > el.offsetTop && el.offsetTop + el.clientHeight > Math.abs(this.scrollValue)){
