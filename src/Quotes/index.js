@@ -31,6 +31,9 @@ export default Vue.extend({
         {quote: 'I always wonder why birds stay in thr same place when they can fly anywhere on earth. Then I ask myself the same question.'}
       ]
     }
+  },
+  ready() {
+    this.$broadcast('reSetBarHeight')
   }
 })
 

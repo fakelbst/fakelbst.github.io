@@ -71,11 +71,15 @@ export default Vue.extend({
       let domWrap = document.querySelector('[class*=__wrap__]')
       let newWh = window.innerHeight
       return Math.max((newWh / domWrap.offsetHeight) * newWh, 50) + 'px'
+    },
+    setBarHeight: function(){
+      let domDrag = document.querySelector('[class*=__drag__]')
+      domDrag.style.height = this.calcBarHeight()
     }
   },
   events: {
-    reCalcHeight: function(){
-      this.calcBarHeight()
+    reSetBarHeight: function(){
+      this.setBarHeight()
     }
   }
 })
