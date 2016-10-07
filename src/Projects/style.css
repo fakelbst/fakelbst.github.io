@@ -1,0 +1,22 @@
+.wrap {
+}
+
+.project {
+  h2 {
+    color: #ffeb3b;
+    .year {
+      color: #e8e8e8;
+      font-size: 0.6em;
+      margin-left: 0.5em;
+    }
+  }
+  .link {
+    color: #5f6669;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .intro {
+    color: #e8e8e8;
+  }
+}

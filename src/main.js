@@ -4,6 +4,7 @@ import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
 import books from './Books'
+import projects from './Projects'
 import instagram from './Instagram'
 import about from './About'
 import quotes from './Quotes'
@@ -51,6 +52,9 @@ router.map({
   },
   '/about': {
     component: about
+  },
+  '/projects': {
+    component: projects
   }
 })
 
