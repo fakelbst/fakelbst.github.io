@@ -14,6 +14,12 @@ module.exports = {
   resolveLoader: {
     root: path.join(__dirname, 'node_modules'),
   },
+  resolve: {
+    fallback: [path.join(__dirname, 'node_modules')],
+    alias: {
+      'vue': 'vue/dist/vue.js',
+    }
+  },
   module: {
     loaders: [
       {
