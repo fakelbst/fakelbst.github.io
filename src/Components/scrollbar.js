@@ -1,17 +1,17 @@
 import Vue from 'vue'
 import style from './style.css'
 
-export default Vue.extend({
+export default {
   props: ['sy'],
   data() {
     return {
       style
     }
   },
-  template: `<div class={{style.scrollbar}}>
-      <div class={{style.drag}}></div>
+  template: `<div v-bind:class="style.scrollbar">
+      <div v-bind:class="style.drag"></div>
     </div>`,
-  ready() {
+  mounted() {
 
     function throttle (callback) {
       var wait = false
@@ -82,5 +82,5 @@ export default Vue.extend({
       this.setBarHeight()
     }
   }
-})
+}
 

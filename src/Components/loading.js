@@ -1,19 +1,17 @@
 import Vue from 'vue'
 import style from './style.css'
 
-export default Vue.extend({
+export default {
   data() {
     return {
       style
     }
   },
   props: ['visible'],
-  template: ` <div class={{style.loading}} v-show="visible">
-      <div class={{style.bar}}></div>
-      <div class={{style.bar}}></div>
-      <div class={{style.bar}}></div>
-    </div>`,
-  ready() {
-  }
-})
+  template: ` <div v-bind:class="style.loading" v-show="visible">
+    <div v-bind:class="style.bar"></div>
+    <div v-bind:class="style.bar"></div>
+    <div v-bind:class="style.bar"></div>
+  </div>`,
+}
 

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
@@ -10,53 +10,40 @@ import about from './About'
 import quotes from './Quotes'
 import style from './style.css'
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
 Vue.component('app-header', appHeader)
 Vue.component('app-footer', appFooter)
 
-const layout = Vue.extend({
-  replace: false,
+const router = new VueRouter({
+  mode: 'history',
+  routes: [
+    {path: '/', component: albumCube },
+    {path: '/quotes', component: quotes},
+    {path: '/inst', component: instagram},
+    {path: '/books', component: books},
+    {path: '/about', component: about},
+    {path: '/projects', component: projects},
+  ]
+})
+
+const Layout = Vue.extend({
+  router,
   data() {
     return {
       style
     }
   },
-  template: `<div class={{style.wrapper}}>
-    <div class={{style.sidebar}}>
+  template: `<div v-bind:class="style.wrapper">
+    <div v-bind:class="style.sidebar">
       <app-header></app-header>
-      <div class={{style.fake}}></div>
+      <div v-bind:class="style.fake"></div>
       <app-footer></app-footer>
     </div>
-    <section class={{style['main-content']}}>
+    <section v-bind:class="style['main-content']">
       <router-view></router-view>
     </section>`
 })
 
-const router = new Router({
-  hashbang: false
-})
-
-router.map({
-  '/': {
-    component: albumCube
-  },
-  '/quotes': {
-    component: quotes
-  },
-  '/inst': {
-    component: instagram
-  },
-  '/books': {
-    component: books
-  },
-  '/about': {
-    component: about
-  },
-  '/projects': {
-    component: projects
-  }
-})
-
-router.start(layout, 'body')
+new Layout().$mount('#app')
 

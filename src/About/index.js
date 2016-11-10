@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import style from './style.css'
 
-export default Vue.extend({
-  template: `<div class={{style.wrap}}>
-    <!--img src="/static/about-bg.jpg" alt=""-->
-    <!--div class={{style.bg}}></div-->
-    <ul class={{style.tags}}>
-      <li v-for="t in shuffleTags()" class={{style.tag}} v-bind:style="{fontSize: randomFontSize() + 'px'}" >{{t}}</li>
+export default {
+  template: `<div v-bind:class="style.wrap">
+    <ul v-bind:class="style.tags">
+      <li v-for="t in shuffleTags()" v-bind:class="style.tag" v-bind:style="{fontSize: randomFontSize() + 'px'}" >{{t}}</li>
     </ul>
     </div> `,
   data() {
@@ -26,5 +24,5 @@ export default Vue.extend({
       return o;
     }
   }
-})
+}
 

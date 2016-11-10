@@ -4,8 +4,8 @@ import scrollbar from '../Components/scrollbar'
 
 Vue.component('scrollbar', scrollbar)
 
-export default Vue.extend({
-  template: `<div class={{style.wrap}}>
+export default {
+  template: `<div v-bind:class="style.wrap">
       <blockquote v-for="q in quotes">
         <p>{{q.quote}}</p>
         <p><cite>{{q.from}}</cite></p>
@@ -33,8 +33,8 @@ export default Vue.extend({
       ]
     }
   },
-  ready() {
+  mounted() {
     this.$broadcast('reSetBarHeight')
   }
-})
+}
 

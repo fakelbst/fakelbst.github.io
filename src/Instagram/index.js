@@ -9,7 +9,7 @@ import loading from '../Components/loading'
 Vue.component('scrollbar', scrollbar)
 Vue.component('loading', loading)
 
-export default Vue.extend({
+export default {
   data() {
     return {
       style,
@@ -67,15 +67,15 @@ export default Vue.extend({
       }
     }
   },
-  template: `<div class={{style.wrap}}>
-    <loading :visible.sync="loadingVisible" v-if="photos.length === 0"></loading>
-    <div v-for="p in photos" class="{{style.item}} {{style['fade-animation-init']}}">
-      <div class={{style.images}} v-bind:style="{ backgroundImage: 'url(' + p.images.standard_resolution.url + ')' }"></div>
+  template: `<div v-bind:class="style.wrap">
+    <loading :visible="loadingVisible" v-if="photos.length === 0"></loading>
+    <div v-for="p in photos" v-bind:class="[style.item, style['fade-animation-init']]">
+      <div v-bind:class="style.images" v-bind:style="{ backgroundImage: 'url(' + p.images.standard_resolution.url + ')' }"></div>
       <p>{{p.caption ? p.caption.text: ''}}</p>
       </div>
-      <loading :visible.sync="loadingVisible" v-if="photos.length > 0"></loading>
+      <loading :visible="loadingVisible" v-if="photos.length > 0"></loading>
     </div>
-    <scrollbar :sy.sync="scrollValue" v-show="!loadingVisible"></scrollbar>
+    <scrollbar :sy="scrollValue" v-show="!loadingVisible"></scrollbar>
     `,
   methods: {
     getDatas() {
@@ -98,5 +98,5 @@ export default Vue.extend({
       transition.next()
     }
   }
-})
+}
 

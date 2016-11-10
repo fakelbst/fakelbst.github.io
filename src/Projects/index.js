@@ -2,7 +2,7 @@ import Vue from 'vue'
 import style from './style.css'
 import fontello from '../fontello.css'
 
-export default Vue.extend({
+export default {
   data() {
     return {
       style,
@@ -50,14 +50,14 @@ export default Vue.extend({
       }]
     }
   },
-  template: `<div class={{style.wrap}}>
-      <div v-for="p in projects" class={{style.project}}>
-        <h2>{{p.name}}<span class={{style.year}}>({{p.year}})</span></h2>
-        <a class={{style.link}} href="{{p.link}}">{{p.link}}</a>
-        <p class={{style.intro}}>{{p.intro}}</p>
+  template: `<div v-bind:class="style.wrap">
+      <div v-for="p in projects" v-bind:class="style.project">
+        <h2>{{p.name}}<span v-bind:class="style.year">({{p.year}})</span></h2>
+        <a v-bind:class="style.link" v-bind:href="p.link">{{p.link}}</a>
+        <p v-bind:class="style.intro">{{p.intro}}</p>
       </div>
     </div>
-    <scrollbar :sy.sync="scrollValue"></scrollbar>
+    <scrollbar :sy="scrollValue"></scrollbar>
     `
-})
+}
 
