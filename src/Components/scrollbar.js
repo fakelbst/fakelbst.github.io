@@ -5,7 +5,13 @@ export default {
   props: ['sy'],
   data() {
     return {
-      style
+      style,
+      positionY: 0,
+    }
+  },
+  watch: {
+    sy: function(v){
+      this.positionY = v;
     }
   },
   template: `<div v-bind:class="style.scrollbar">
@@ -41,7 +47,7 @@ export default {
       else{
         y += evt.deltaY
       }
-      this.sy = y
+      this.positionY = y
 
       let prescent =  Math.abs(y) / domWrap.offsetHeight
       let sbarPrescent = domDrag.offsetHeight/ window.innerHeight
@@ -52,7 +58,9 @@ export default {
       if(prescent + sbarPrescent > 0.95){
         scrollbar = window.innerHeight - domDrag.offsetHeight
       }
+
       domDrag.style.transform = `translate3d(0, ${scrollbar}px, 0)`
+      this.$emit('scrolling', y);
     };
     // for Firefox
     document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', handleScroll, false)
@@ -65,6 +73,7 @@ export default {
     window.onload = () => {
       domDrag.style.height = this.calcBarHeight()
     }
+
   },
   methods: {
     calcBarHeight: function(){
@@ -72,15 +81,10 @@ export default {
       let newWh = window.innerHeight
       return Math.max((newWh / domWrap.offsetHeight) * newWh, 50) + 'px'
     },
-    setBarHeight: function(){
-      let domDrag = document.querySelector('[class*=__drag__]')
-      domDrag.style.height = this.calcBarHeight()
-    }
+    // setBarHeight: function(){
+    //   let domDrag = document.querySelector('[class*=__drag__]')
+    //   domDrag.style.height = this.calcBarHeight()
+    // }
   },
-  events: {
-    reSetBarHeight: function(){
-      this.setBarHeight()
-    }
-  }
 }
 

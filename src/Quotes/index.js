@@ -10,9 +10,8 @@ export default {
         <p>{{q.quote}}</p>
         <p><cite>{{q.from}}</cite></p>
       </blockquote>
-    </div>
-    <scrollbar></scrollbar>
-    `,
+      <scrollbar></scrollbar>
+    </div>`,
   data() {
     return {
       style,
@@ -33,8 +32,8 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.$broadcast('reSetBarHeight')
-  }
+  // mounted() {
+  //   this.$broadcast('reSetBarHeight')
+  // }
 }
 

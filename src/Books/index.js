@@ -7,7 +7,7 @@ import loading from '../Components/loading'
 Vue.component('loading', loading)
 Vue.component('scrollbar', scrollbar)
 
-export default Vue.extend({
+export default {
   data() {
     return {
       style,
@@ -19,7 +19,8 @@ export default Vue.extend({
       start: 0
     }
   },
-  template: `<div v-bind:class="style.wrap">
+  template: `<div>
+    <div v-bind:class="style.wrap">
       <h3 v-bind:class="style.label">Reading</h3>
       <loading :visible="loadingReading"></loading>
       <div v-bind:class="[style.books, style.reading]">
@@ -40,8 +41,8 @@ export default Vue.extend({
       </div>
       <loading :visible="loadingRead"></loading>
     </div>
-    <scrollbar :sy="scrollValue" v-show="!loading"></scrollbar>
-    `,
+    <scrollbar v-on:scrolling="toScroll" :sy="scrollValue"></scrollbar>
+  </div>`,
   mounted() {
     let scrollHandler = () => {
 
@@ -54,35 +55,8 @@ export default Vue.extend({
     document.body.addEventListener('DOMMouseScroll', scrollHandler, false)
     document.body.addEventListener('mousewheel', scrollHandler, false)
   },
-  route: {
-    activate: function(transition){
-
-      Vue.http.jsonp("https://api.douban.com/v2/book/user/wber/collections", {
-        params: {
-          status: 'reading',
-          count: 10
-        }
-      }).then((d) => {
-        this.reading = d.data.collections
-
-        imagesLoaded( document.querySelector('[class*=__reading___]'), {background: '[class*=__cover___]'},  () => {
-          this.loadingReading = false
-
-          document.querySelectorAll('[class*=__reading___]>div>a>div').forEach( function(el, i){
-            setTimeout(function() {
-              el.classList.remove(style['init'])
-              el.classList.add(style['scale-animation'])
-            }, 20 * i);
-          })
-        })
-      })
-      this.getRead()
-      transition.next()
-    }
-  },
   methods: {
     getRead() {
-
       Vue.http.jsonp("https://api.douban.com/v2/book/user/wber/collections", {
         params: {
           status: 'read',
@@ -104,8 +78,35 @@ export default Vue.extend({
           })
         })
       })
-
+    },
+    toScroll(v) {
+      this.scrollValue = v
     }
-  }
-})
+  },
+  beforeRouteEnter (to, from, next) {
+    next((vm) => {
+      console.log(9999);
+      Vue.http.jsonp("https://api.douban.com/v2/book/user/wber/collections", {
+        params: {
+          status: 'reading',
+          count: 10
+        }
+      }).then((d) => {
+        vm.reading = d.data.collections
+
+        imagesLoaded( document.querySelector('[class*=__reading___]'), {background: '[class*=__cover___]'},  () => {
+          vm.loadingReading = false
+
+          document.querySelectorAll('[class*=__reading___]>div>a>div').forEach( function(el, i){
+            setTimeout(function() {
+              el.classList.remove(style['init'])
+              el.classList.add(style['scale-animation'])
+            }, 20 * i);
+          })
+        })
+      })
+      vm.getRead()
+    })
+  },
+}
 

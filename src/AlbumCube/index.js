@@ -153,7 +153,7 @@ export default {
       })
     })
   },
-  beforeDestroy (to, from, next) {
+  beforeRouteLeave (to, from, next) {
     // TODO: add some animation
     document.body.style.background = '#1e2021'
     document.body.style.color = '#e8e8e8'

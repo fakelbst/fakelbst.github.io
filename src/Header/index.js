@@ -16,7 +16,7 @@ export default {
           <span>home</span>
         </div>
       </router-link>
-      <router-link to="/books'"><div v-bind:class="style.orange"><span>books</span></div></router-link>
+      <router-link to="/books"><div v-bind:class="style.orange"><span>books</span></div></router-link>
       <router-link to="/projects"><div v-bind:class="style.yellow"><span>projects</span></div></router-link>
       <router-link to="/quotes"><div v-bind:class="style.green"><span>quotes</span></div></router-link>
       <router-link to="/inst"><div v-bind:class="style.blue"><span>Instagram</span></div></router-link>
