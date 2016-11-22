@@ -50,14 +50,15 @@ export default {
       }]
     }
   },
-  template: `<div v-bind:class="style.wrap">
+  template: `<div>
+    <div v-bind:class="style.wrap">
       <div v-for="p in projects" v-bind:class="style.project">
         <h2>{{p.name}}<span v-bind:class="style.year">({{p.year}})</span></h2>
-        <a v-bind:class="style.link" v-bind:href="p.link">{{p.link}}</a>
+        <a v-bind:class="style.link" v-bind:href="p.link" target="_blank">{{p.link}}</a>
         <p v-bind:class="style.intro">{{p.intro}}</p>
       </div>
     </div>
     <scrollbar :sy="scrollValue"></scrollbar>
-    `
+  </div>`
 }
 

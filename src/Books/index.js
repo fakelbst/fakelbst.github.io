@@ -85,7 +85,6 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next((vm) => {
-      console.log(9999);
       Vue.http.jsonp("https://api.douban.com/v2/book/user/wber/collections", {
         params: {
           status: 'reading',
