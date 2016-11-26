@@ -8,7 +8,7 @@ export default {
     }
   },
   template: `<header>
-    <h1>Mao Yijie</h1>
+    <!--h1>Mao Yijie</h1>
     <p>What year is this?</p>
     <nav>
       <router-link to="/">
@@ -22,7 +22,17 @@ export default {
       <router-link to="/inst"><div v-bind:class="style.blue"><span>Instagram</span></div></router-link>
       <router-link to=""><div v-bind:class="style.indigo"><span>&nbsp;</span></div></router-link>
       <router-link to="/about"><div v-bind:class="style.violet"><span>about</span></div></router-link>
+    </nav-->
+    <nav>
+      <div v-bind:class="[style.column, style.red]"></div>
+      <div v-bind:class="[style.column, style.orange]"></div>
+      <div v-bind:class="[style.column, style.yellow]"></div>
+      <div v-bind:class="[style.column, style.green]"></div>
+      <div v-bind:class="[style.column, style.blue]"></div>
+      <div v-bind:class="[style.column, style.indigo]"></div>
+      <div v-bind:class="[style.column, style.violet]"></div>
     </nav>
+
   </header>`
 }
 

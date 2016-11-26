@@ -1,53 +1,61 @@
 header {
-  padding-top: 30px;
-  h1 {
-    font-size: 3em;
-    font-weight: bold;
-  }
+  width: calc(100vw / 5);
+  /* padding-top: 30px; */
+  /* h1 { */
+  /*   font-size: 3em; */
+  /*   font-weight: bold; */
+  /* } */
 }
 
-nav a {
-  color: #FFF;
+nav {
+  display: flex;
+  flex-direction: row;
 }
-nav div:hover {
-  opacity: 1;
-}
-nav * {
-  opacity: 0.9;
+
+.column {
+  height: 100vh;
+  width: calc(100% / 7);
 }
 
 .red {
-  background: #FF0000;
-  transform: rotate(2deg);
+  /* background: #FF0000; */
+  background: linear-gradient(to bottom, #FF0000, #1E2021);
+  /* transform: rotate(2deg); */
 }
 
 .orange {
-  background: #eb4c2f;
-  transform: rotate(3deg);
+  background: linear-gradient(to bottom, #eb4c2f, #1E2021);
+  /* background: #eb4c2f; */
+  /* transform: rotate(3deg); */
 }
 
 .yellow {
-  background: #FFFF00;
-  transform: rotate(-1deg);
+  background: linear-gradient(to bottom, #FFFF00, #1E2021);
+  /* background: #FFFF00; */
+  /* transform: rotate(-1deg); */
 }
 
 .green {
-  background: #00FF00;
-  transform: rotate(0deg);
+  background: linear-gradient(to bottom, #00FF00, #1E2021);
+  /* background: #00FF00; */
+  /* transform: rotate(0deg); */
 }
 
 .blue {
-  background: #0000FF;
-  transform: rotate(2deg);
+  background: linear-gradient(to bottom, #0000FF, #1E2021);
+  /* background: #0000FF; */
+  /* transform: rotate(2deg); */
 }
 
 .indigo {
-  background: #4B0082;
-  transform: rotate(-3deg);
+  background: linear-gradient(to bottom, #4B0082, #1E2021);
+  /* background: #4B0082; */
+  /* transform: rotate(-3deg); */
 }
 
 .violet {
-  background: #8B00FF;
-  transform: rotate(1deg);
+  background: linear-gradient(to bottom, #8B00FF, #1E2021);
+  /* background: #8B00FF; */
+  /* transform: rotate(1deg); */
 }
 

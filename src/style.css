@@ -1,27 +1,12 @@
+
 body {
-  background: #1e2021;
+  background: #27272b;
   font-size: 16px;
-  font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif;
-  color: #e8e8e8;
-  font-weight: 300;
+  font-family: 'Roboto Mono', monospace;
+  /* font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif; */
+  color: #ff4d3b;
   margin: 0;
   overflow: hidden;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: RGBA(254, 254, 253, 0.9);
-}
-
-h1, h2, h3 {
-  line-height: 1.1;
-}
-
-h1 {
-  font-size: 3em;
-}
-
-h3, h4, h5, h6 {
-  color: #494949;
 }
 
 ul {
@@ -29,198 +14,44 @@ ul {
 }
 
 a {
-  color: #39c;
-  font-weight: 400;
   text-decoration: none;
-}
-
-a:hover {
-  color: #069;
-}
-
-a small {
-  font-size: 11px;
-  color: #777;
-  margin-top: -0.6em;
-  display: block;
-}
-
-a:hover small {
-  color: #777;
-}
-
-.wrapper {
-  width: 960px;
-  margin: 0 auto;
-  display: flex;
-  flex-flow: row nowrap;
-}
-
-code, pre {
-  font-family: Monaco, Bitstream Vera Sans Mono, Lucida Console, Terminal, monospace;
-  color: #333;
-  font-size: 12px;
-}
-
-pre {
-  padding: 8px 15px;
-  background: #f8f8f8;
-  border-radius: 5px;
-  border: 1px solid #e5e5e5;
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th, td {
-  text-align: left;
-  padding: 5px 10px;
-  border-bottom: 1px solid #e5e5e5;
-}
-
-dt {
-  color: #444;
-  font-weight: 700;
-}
-
-th {
-  color: #444;
 }
 
 img {
   max-width: 100%;
 }
 
-strong {
-  color: #222;
-  font-weight: 700;
+.wrap {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
-.main-content {
-  width: 600px;
-  margin-left: 80px;
-}
-
-small {
-  font-size: 11px;
-}
-
-hr {
-  border: 0;
-  background: #e5e5e5;
-  height: 1px;
-  margin: 0 0 20px;
-}
-
-blockquote {
-  border-left: 2px solid #404040;
-  margin: 0 1em 1.5em;
-  padding: 0 1em;
-}
-blockquote cite {
-  color: #4d4d4d;
-  font-weight: bold;
-  font-size: 1.3em;
-}
-
-.site-bg {
-  position: fixed;
-  width: 100%;
-  z-index: 100;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.85);
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  .fake {
-    display: block; /* 1 */
-    flex-grow: 1;
-    flex-shrink: 1; /* 2 */
-    overflow: auto;
-  }
-}
-
-.hidden {
-  position: absolute;
-  overflow: hidden;
-  width: 0; 
-  height: 0;
-  pointer-events: none;
-} 
-
-@media print, screen and (max-width: 960px) {
-  div.wrapper {
-    width: auto;
-    margin: 0;
-  }
-
-  header, section, footer {
-    float: none;
-    position: static;
-    width: auto;
-  }
-
-  header {
-    padding-right: 220px;
-  }
-
-  section {
-    border: 1px solid #e5e5e5;
-    border-width: 1px 0;
-    padding: 20px 0;
-    margin: 0 0 20px;
-  }
-
-  header a small {
-    display: inline;
-  }
-
-  header ul {
+.content {
+  position: relative;
+	width: calc(100% - 12em);
+	margin: 0 0 0 2em;
+	max-width: 600px;
+  &::before, &::after {
+    content: '';
+    width: 100%;
+    background: rgba(0,0,0,0.05);
+    height: 100px;
     position: absolute;
-    right: 50px;
-    top: 52px;
+    top: 0;
   }
-}
-@media print, screen and (max-width: 720px) {
-  body {
-    word-wrap: break-word;
+  &::after {
+    top: auto;
+	  bottom: 0;
   }
-
-  header {
-    padding: 0;
-  }
-
-  header ul, header p.view {
-    position: static;
-  }
-
-  pre, code {
-    word-wrap: normal;
-  }
-}
-@media print, screen and (max-width: 480px) {
-  body {
-    padding: 15px;
-  }
-
-  header ul {
-    display: none;
-  }
-}
-@media print {
-  body {
-    padding: 0.4in;
-    font-size: 12pt;
-    color: #444;
+  .main {
+    padding: 10em;
+    position: relative;
+		display: block;
+		max-width: 100%;
+		margin: 150px 0;
+		box-shadow: 0 10px 20px -4px rgba(0,0,0,0.6);
   }
 }
 
