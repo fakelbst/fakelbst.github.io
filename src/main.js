@@ -29,30 +29,63 @@ Vue.component('scrollbar', scrollbar)
 //     {path: '/projects', component: projects},
 //   ]
 // })
+//
+// const modules = [
+//   {component: ''},
+//   {component: books},
+//   {component: albumCube},
+// ]
 
 const Layout = Vue.extend({
-  // router,
   data() {
     return {
       style,
-      scrollValue: 0,
+      currentView: 0,
+      zoomCurrenView: false,
+      movingNext: false,
+      modules: [
+        {c: 'index'},
+        {c: 'books'},
+        {c: 'albumCube'},
+      ],
+      tY: 0,
     }
+  },
+  computed: {
+
   },
   template: `<div v-bind:class="style.wrap">
     <menus></menus>
-    <section v-bind:class="style['content']">
-      <div v-bind:class="style.main">
-        <p>Hello, there</p>
-    
+    <section v-bind:class="[style['slider'], style['scroll-content']]"  v-bind:style="{transform: 'translateY(' + -tY + 'px)'}">
+      <div v-bind:class="[style['slider-item'], currentView===index? style['current-view']: '', currentView-1 === index? style.prev: '', currentView+1 === index? style.next: '', (currentView===index && zoomCurrenView)? style.zoom: '']" v-for="(item, index) in modules" @click="moveContent($event, index)">
+        <div v-if="index === currentView">
+          <p>{{item.c}}</p>
+        </div>
       </div>
     </section>
   </div>`,
   methods: {
-    toScroll(v) {
-      this.scrollValue = v
+    moveContent (event, index) {
+      let fullHeight = window.innerHeight
+      if(index === this.currentView) {
+        this.zoomCurrenView = !this.zoomCurrenView
+        if(this.zoomCurrenView) {
+          this.tY = fullHeight - 100
+        }
+        else {
+          this.tY = this.currentView * 400
+        }
+      }
+      if(this.currentView - 1 === index) { //prev
+        this.currentView--
+        this.tY = this.currentView * 400
+      }
+      if(this.currentView + 1 === index) { //next
+        this.currentView++
+        this.tY = this.currentView * 400
+      }
     }
   }
-
 })
 
 new Layout().$mount('#app')

@@ -1,12 +1,17 @@
+@import './variables';
 
 body {
-  background: #27272b;
+  background: $bg-color;
   font-size: 16px;
   font-family: 'Roboto Mono', monospace;
   /* font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif; */
-  color: #ff4d3b;
+  color: $main-text-color;
   margin: 0;
   overflow: hidden;
+}
+
+*, *::after, *::before { 
+  box-sizing: border-box;
 }
 
 ul {
@@ -22,36 +27,87 @@ img {
 }
 
 .wrap {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* justify-content: center; */
+	/* align-items: center; */
+}
+
+.slider {
+  position: absolute;
+  right: 0;
+  /* transform: translateX(-50%); */
+  top: 0;
+	width: calc(100% - 12em);
+	margin: 0 0 0 2em;
+  z-index: $zindex-normal;
+	/* max-width: 600px; */
+  height: 100vh;
+  /* .slider-wrap { */
+  /*   position: relative; */
+
+  /* } */
+  .slider-item {
+    position: relative;
+		display: block;
+		/* max-width: 100%; */
+		margin: 100px 0;
+    padding: 2em;
+    /* max-height: calc(100vh - 300px); */
+    height: calc(100vh - 300px);
+    width: 80%;
+    transition: all .8s;
+  }
+  .hide {
+    display: none;
+  }
+  .zoom {
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+  }
+  .current-view {
+		box-shadow: 0 10px 20px -4px rgba(0,0,0,0.6);
+  }
+  .prev, .next {
+    width: 80%;
+    /* background: rgba(0,0,0,0.05); */
+    background: #000;
+    opacity: 0.05;
+    /* height: 400px; */
+    /* position: absolute; */
+    /* top: -300px; */
+    cursor: pointer;
+    &:hover{
+      opacity: 0.15;
+    }
+  }
+}
+
+.scroll-content {
+  transition: all 1s;
+}
+
+.to-prev {
+  transform: translate3d(0, 400px, 0);
+}
+.to-next {
+  transform: translate3d(0, -400px, 0);
 }
 
 .content {
-  position: relative;
-	width: calc(100% - 12em);
-	margin: 0 0 0 2em;
-	max-width: 600px;
-  &::before, &::after {
-    content: '';
-    width: 100%;
-    background: rgba(0,0,0,0.05);
-    height: 100px;
-    position: absolute;
-    top: 0;
-  }
-  &::after {
-    top: auto;
-	  bottom: 0;
-  }
-  .main {
-    padding: 10em;
-    position: relative;
-		display: block;
-		max-width: 100%;
-		margin: 150px 0;
-		box-shadow: 0 10px 20px -4px rgba(0,0,0,0.6);
+  z-index: $zindex-cover;
+  transition-delay: 0.3s;
+  position: fixed;
+	top: 0;
+	left: -100%;
+	overflow: hidden;
+	overflow-y: scroll;
+	width: 100%;
+	height: 100vh;
+	background: $bg-color;
+  .content-item {
+
   }
 }
 
