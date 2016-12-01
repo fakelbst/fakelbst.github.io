@@ -1,35 +1,19 @@
 import Vue from 'vue'
-// import VueRouter from 'vue-router'
 import appFooter from './Footer'
 import appHeader from './Header'
 import albumCube from './AlbumCube'
 import books from './Books'
 import projects from './Projects'
 import instagram from './Instagram'
-import about from './About'
+import tags from './Tags'
 import quotes from './Quotes'
 import menus from './Menus'
 import style from './style.css'
 import scrollbar from './Components/scrollbar'
 
-// Vue.use(VueRouter)
-
-// Vue.component('app-header', appHeader)
-// Vue.component('app-footer', appFooter)
 Vue.component('menus', menus)
 Vue.component('scrollbar', scrollbar)
 
-// const router = new VueRouter({
-//   routes: [
-//     {path: '/', component: menus },
-//     {path: '/quotes', component: quotes},
-//     {path: '/inst', component: instagram},
-//     {path: '/books', component: books},
-//     {path: '/about', component: about},
-//     {path: '/projects', component: projects},
-//   ]
-// })
-//
 // const modules = [
 //   {component: ''},
 //   {component: books},
@@ -58,9 +42,9 @@ const Layout = Vue.extend({
     <menus></menus>
     <section v-bind:class="[style['slider'], style['scroll-content']]"  v-bind:style="{transform: 'translateY(' + -tY + 'px)'}">
       <div v-bind:class="[style['slider-item'], currentView===index? style['current-view']: '', currentView-1 === index? style.prev: '', currentView+1 === index? style.next: '', (currentView===index && zoomCurrenView)? style.zoom: '']" v-for="(item, index) in modules" @click="moveContent($event, index)">
-        <div v-if="index === currentView">
-          <p>{{item.c}}</p>
-        </div>
+          <div v-bind:class="style['title-wrap']">
+            <h2 v-bind:class="[style.title, currentView === index? style.pop: '']">{{item.c}}</h2>
+          </div>
       </div>
     </section>
   </div>`,
@@ -69,12 +53,26 @@ const Layout = Vue.extend({
       let fullHeight = window.innerHeight
       if(index === this.currentView) {
         this.zoomCurrenView = !this.zoomCurrenView
+
         if(this.zoomCurrenView) {
-          this.tY = fullHeight - 100
+
+          if(this.currentView === 0){
+            this.tY = 0
+          }
+          else if(this.currentView === this.modules.length - 1){
+            this.tY = this.currentView * fullHeight - 300
+          }
+          else {
+            this.tY = fullHeight - 100
+          }
+
         }
         else {
           this.tY = this.currentView * 400
         }
+      }
+      else {
+        this.zoomCurrenView = false
       }
       if(this.currentView - 1 === index) { //prev
         this.currentView--
