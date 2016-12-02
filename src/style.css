@@ -4,7 +4,6 @@ body {
   background: $bg-color;
   font-size: 16px;
   font-family: 'Roboto Mono', monospace;
-  /* font-family: "Helvetica Neue",Helvetica,"Nimbus Sans L",Arial,"Liberation Sans","Hiragino Sans GB","Source Han Sans CN","Source Han Sans SC","Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Zen Hei","ST Heiti",SimHei,"WenQuanYi Zen Hei Sharp",sans-serif; */
   color: $main-text-color;
   margin: 0;
   overflow: hidden;
@@ -26,13 +25,6 @@ img {
   max-width: 100%;
 }
 
-.wrap {
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* justify-content: center; */
-	/* align-items: center; */
-}
-
 .slider {
   position: absolute;
   right: 0;
@@ -41,6 +33,7 @@ img {
 	margin: 0 0 0 2em;
   z-index: $zindex-normal;
   height: 100vh;
+  will-change: transform;
   .slider-item {
     position: relative;
 		display: block;
@@ -54,6 +47,7 @@ img {
       left: -2em;
       overflow: hidden;
       bottom: 10%;
+      z-index: $zindex-top;
       .title {
         font-size: 3em;
         font-weight: normal;
@@ -67,9 +61,13 @@ img {
         transform: translateY(0);
       }
     }
-  }
-  .hide {
-    display: none;
+    .component-content {
+      overflow-y: hidden;
+      height: 100%;
+    }
+    .no-zoom {
+      opacity: 0.5;
+    }
   }
   .zoom {
     margin: 0;
@@ -81,12 +79,8 @@ img {
   }
   .prev, .next {
     width: 80%;
-    /* background: rgba(0,0,0,0.05); */
     background: #000;
     opacity: 0.05;
-    /* height: 400px; */
-    /* position: absolute; */
-    /* top: -300px; */
     cursor: pointer;
     &:hover{
       opacity: 0.15;

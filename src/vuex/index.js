@@ -1,19 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import books from '../Books'
 
 Vue.use(Vuex)
 Vue.config.debug = true
 
 const debug = process.env.NODE_ENV !== 'production'
 
-// const GET_INST_PHOTOS = 'GET_INST_PHOTOS'
-// const GET_READING = 'GET_READING'
-
 const state = {
   modules: [
-    {title: 'index', active: true},
-    {title: 'books', active: false},
-    {title: 'albums', active: false},
+    {title: 'index', active: true, component: books},
+    {title: 'books', active: false, component: books},
+    {title: 'albums', active: false, component: books},
   ],
   tags: ['Front-end Developer', 'Werder Bremen', 'Bundesliga', 'Dallas Mavericks', 'Supernatural', 'Explosions in The Sky', 'Gig', 'HangZhou', 'Music Festival', 'Rock n\' Roll', 'Baskball', 'Guitar', 'Drummer', 'ukulele', 'fantast', 'Post-rock'],
   instagrams: [],
@@ -29,6 +27,8 @@ const mutations = {
   GET_INST_PHOTOS (state) {
   },
   GET_READING (state) {
+  },
+  GET_READ (state) {
   }
 }
 

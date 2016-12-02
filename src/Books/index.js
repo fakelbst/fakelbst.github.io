@@ -44,16 +44,38 @@ export default {
     <scrollbar v-on:scrolling="toScroll" :sy="scrollValue"></scrollbar>
   </div>`,
   mounted() {
-    let scrollHandler = () => {
+    // let scrollHandler = () => {
 
-      if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__wrap__]').clientHeight - window.innerHeight) && this.loadingRead === false){
-        this.loadingRead = true
-        this.getRead()
-      }
-    }
+    //   if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__wrap__]').clientHeight - window.innerHeight) && this.loadingRead === false){
+    //     this.loadingRead = true
+    //     this.getRead()
+    //   }
+    // }
 
-    document.body.addEventListener('DOMMouseScroll', scrollHandler, false)
-    document.body.addEventListener('mousewheel', scrollHandler, false)
+    // document.body.addEventListener('DOMMouseScroll', scrollHandler, false)
+    // document.body.addEventListener('mousewheel', scrollHandler, false)
+
+      Vue.http.jsonp("https://api.douban.com/v2/book/user/wber/collections", {
+        params: {
+          status: 'reading',
+          count: 10
+        }
+      }).then((d) => {
+        this.reading = d.data.collections
+
+        imagesLoaded( document.querySelector('[class*=__reading___]'), {background: '[class*=__cover___]'},  () => {
+          this.loadingReading = false
+
+          document.querySelectorAll('[class*=__reading___]>div>a>div').forEach( function(el, i){
+            setTimeout(function() {
+              el.classList.remove(style['init'])
+              el.classList.add(style['scale-animation'])
+            }, 20 * i);
+          })
+        })
+      })
+      this.getRead()
+
   },
   methods: {
     getRead() {
