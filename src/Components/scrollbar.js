@@ -38,8 +38,8 @@ export default {
     }
 
     let y = 0
-    let domWrap = document.querySelector('[class*=__scroll-wrap__]')
-    let domDrag = document.querySelector('[class*=__drag__]')
+    let domWrap = this.$el.parentNode.firstElementChild
+    let domDrag = this.$el.firstElementChild
 
     let handleScroll = (evt) => {
       if (!evt) evt = event
@@ -69,10 +69,8 @@ export default {
 
     };
     // for Firefox
-    // document.querySelector('[class*=main-content]').addEventListener('DOMMouseScroll', handleScroll, false)
-    // document.querySelector('[class*=main-content]').addEventListener('mousewheel', handleScroll, false)
-    window.addEventListener('DOMMouseScroll', handleScroll, false)
-    window.addEventListener('mousewheel', handleScroll, false)
+    this.$el.parentNode.firstElementChild.addEventListener('DOMMouseScroll', handleScroll, false)
+    this.$el.parentNode.firstElementChild.addEventListener('mousewheel', handleScroll, false)
 
     window.onresize = throttle (() => {
       this.dragHeight = this.calcBarHeight()
@@ -85,7 +83,7 @@ export default {
   },
   methods: {
     calcBarHeight () {
-      let domWrap = document.querySelector('[class*=__scroll-wrap__]')
+      let domWrap = this.$el.parentNode.firstElementChild
       let newWh = window.innerHeight
       return Math.max((newWh / domWrap.offsetHeight) * newWh, 50)
     },

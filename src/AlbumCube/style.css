@@ -22,6 +22,7 @@
   height: 10px;
   cursor: pointer;
   justify-content: flex-end;
+  margin-right: 15px;
 }
 
 .arrow-right {

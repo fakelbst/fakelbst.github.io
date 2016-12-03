@@ -6,13 +6,13 @@ Vue.component('scrollbar', scrollbar)
 
 export default {
   template: `<div>
-    <scrollbar :sy="scrollValue" :h="fullHeight" v-show="$store.state.zoomCurrenView"></scrollbar>
     <div v-bind:class="style.wrap">
       <blockquote v-for="q in quotes">
         <p>{{q.quote}}</p>
         <p><cite>{{q.from}}</cite></p>
       </blockquote>
     </div>
+    <scrollbar v-on:scrolling="toScroll" :sy="scrollValue" :h="fullHeight" v-show="$store.state.zoomCurrenView"></scrollbar>
    </div>`,
   data() {
     return {
@@ -37,9 +37,13 @@ export default {
     }
   },
   methods: {
-    toScroll(v) {
+    toScroll (v) {
       this.scrollValue = v
     },
+    // scrollHandler () {
+    //   if(Math.abs(this.scrollValue) > (document.querySelector('[class*=__scroll-wrap__]').clientHeight - window.innerHeight) && this.loadingRead === false){
+    //   }
+    // }
   },
   updated () {
     this.fullHeight = this.$el.offsetHeight

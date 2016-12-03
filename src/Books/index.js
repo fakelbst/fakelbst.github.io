@@ -54,8 +54,8 @@ export default {
           }
         }
 
-        document.body.addEventListener('DOMMouseScroll', scrollHandler, false)
-        document.body.addEventListener('mousewheel', scrollHandler, false)
+        this.$el.addEventListener('DOMMouseScroll', scrollHandler, false)
+        this.$el.addEventListener('mousewheel', scrollHandler, false)
 
 
       }
