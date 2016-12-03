@@ -1,0 +1,23 @@
+@import '../variables';
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  font-family: 'Oswald', sans-serif;
+  .tags {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .tag {
+    font-weight: 900;
+    background: $main-color;
+    color: $bg-color;
+    padding: 10px;
+  }
+}

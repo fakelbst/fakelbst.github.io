@@ -1,5 +1,13 @@
+@import '../variables';
+
 .wrap {
   display: flex;
   flex-flow: column;
   margin-top: 30px;
+  p {
+    color: $main-text;
+  }
+  cite {
+    color: $sub-text;
+  }
 }

@@ -2,20 +2,25 @@ import Vue from 'vue'
 import style from './style.css'
 
 export default {
-  props: ['sy'],
+  props: ['sy', 'h'],
   data() {
     return {
       style,
       positionY: 0,
+      dragHeight: 50,
     }
   },
   watch: {
     sy: function(v){
       this.positionY = v;
+    },
+    h: function(v) {
+      let newWh = window.innerHeight
+      this.dragHeight = Math.max((newWh / v) * newWh, 50)
     }
   },
   template: `<div v-bind:class="style.scrollbar">
-      <div v-bind:class="style.drag"></div>
+      <div v-bind:class="style.drag" v-bind:style="{height: dragHeight + 'px'}"></div>
     </div>`,
   mounted() {
 
@@ -33,7 +38,7 @@ export default {
     }
 
     let y = 0
-    let domWrap = document.querySelector('[class*=__wrap__]')
+    let domWrap = document.querySelector('[class*=__scroll-wrap__]')
     let domDrag = document.querySelector('[class*=__drag__]')
 
     let handleScroll = (evt) => {
@@ -70,19 +75,19 @@ export default {
     window.addEventListener('mousewheel', handleScroll, false)
 
     window.onresize = throttle (() => {
-      domDrag.style.height = this.calcBarHeight()
+      this.dragHeight = this.calcBarHeight()
     })
 
     window.onload = () => {
-      domDrag.style.height = this.calcBarHeight()
+      this.dragHeight = this.calcBarHeight()
     }
 
   },
   methods: {
-    calcBarHeight: function(){
-      let domWrap = document.querySelector('[class*=__wrap__]')
+    calcBarHeight () {
+      let domWrap = document.querySelector('[class*=__scroll-wrap__]')
       let newWh = window.innerHeight
-      return Math.max((newWh / domWrap.offsetHeight) * newWh, 50) + 'px'
+      return Math.max((newWh / domWrap.offsetHeight) * newWh, 50)
     },
   },
 }

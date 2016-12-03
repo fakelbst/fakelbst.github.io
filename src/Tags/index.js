@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import style from './style.css'
+import { mapState } from 'vuex'
 
 export default {
   template: `<div v-bind:class="style.wrap">
@@ -10,10 +11,11 @@ export default {
   data() {
     return {
       style,
-      hide: false,
-      tags: ['Front-end Developer', 'Werder Bremen', 'Bundesliga', 'Dallas Mavericks', 'Supernatural', 'Explosions in The Sky', 'Gig', 'HangZhou', 'Music Festival', 'Rock n\' Roll', 'Baskball', 'Guitar', 'Drummer', 'ukulele', 'fantast', 'Post-rock']
     }
   },
+  computed: mapState({
+    tags: 'tags'
+  }),
   methods: {
     randomFontSize: function(){
       return Math.floor(Math.random() * 14) + 16;

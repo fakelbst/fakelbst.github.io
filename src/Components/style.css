@@ -1,3 +1,5 @@
+@import '../variables';
+
 .scrollbar {
   position: absolute;
   top: 0;
@@ -9,7 +11,7 @@
     position: absolute;
     height: 50px;
     width: 10px;
-    background-color: $main-text-color;
+    background-color: $main-color;
   }
 }
 
@@ -20,8 +22,8 @@
   margin: 30px auto;
   /* flex: 1; */
   .bar {
-    background: $main-text-color;
-    border:1px solid $main-text-color;
+    background: $main-color;
+    border:1px solid $main-color;
     float:left;
     margin:6px 4px 0 0;
     width:6px;

@@ -1,8 +1,18 @@
 @import '../variables';
 
-.wrap {
-  .label {
-    color: $main-text-color;
+.scroll-wrap {
+  .title-wrap {
+    overflow: hidden;
+    .label {
+      color: $main-color;
+      transform: translateY(100%);
+      transition: transform .3s .5s;
+      padding: 0;
+      margin: 0;
+    }
+    .pop {
+      transform: translateY(0);
+    }
   }
 }
 
@@ -36,5 +46,6 @@
   transform: scale(1);
   opacity: 1;
   transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  transition-delay: 1s;
 }
 

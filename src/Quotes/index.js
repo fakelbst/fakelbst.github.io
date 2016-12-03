@@ -6,7 +6,7 @@ Vue.component('scrollbar', scrollbar)
 
 export default {
   template: `<div>
-    <scrollbar></scrollbar>
+    <scrollbar :sy="scrollValue" :h="fullHeight" v-show="$store.state.zoomCurrenView"></scrollbar>
     <div v-bind:class="style.wrap">
       <blockquote v-for="q in quotes">
         <p>{{q.quote}}</p>
@@ -17,6 +17,8 @@ export default {
   data() {
     return {
       style,
+      scrollValue: 0,
+      fullHeight: 0,
       quotes: [
         {quote: 'Life moves pretty fast. If you don’t stop and look around once in a while, you could miss it.', from: 'Ferris Bueller’s Day Off'},
         {quote: 'Because the only people for me are the mad ones, the ones who are mad to live, mad to talk, mad to be saved, desirous of everything at the same time, the ones who never yawn or say a commonplace thing, but burn, burn, burn like fabulous yellow roman candles exploding like spiders across the stars and in the middle you see the blue centerlight pop and everybody goes “Awww!”', from: 'On the Road'},
@@ -33,6 +35,14 @@ export default {
         {quote: 'You have to do everything you can, you have to work your hardest, and if you do, if you stay positive, you have a shot at a silver lining.', from: 'Pat - Silver Linings Playbook'}
       ]
     }
+  },
+  methods: {
+    toScroll(v) {
+      this.scrollValue = v
+    },
+  },
+  updated () {
+    this.fullHeight = this.$el.offsetHeight
   },
 }
 

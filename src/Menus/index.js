@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 import style from './style.css'
-import scrollbar from '../Components/scrollbar'
 
 export default {
   data() {

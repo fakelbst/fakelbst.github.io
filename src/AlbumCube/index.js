@@ -31,22 +31,24 @@ export default {
     }
   },
   mounted() {
+    // console.log(this);
     let that = this
     let scene, camera, stats, cameraControl
 
-    function init() {
+    let init = () => {
 
+      let wrapDom = this.$el.parentNode
       THREE.ImageUtils.crossOrigin = ''
       scene = new THREE.Scene()
 
-      camera = new THREE.PerspectiveCamera(35, document.querySelector('[class*=main-content]').offsetWidth / window.innerHeight, 0.1, 1000)
+      camera = new THREE.PerspectiveCamera(35, wrapDom.offsetWidth / wrapDom.offsetHeight, 0.1, 1000)
 
-      that.renderer = new THREE.WebGLRenderer()
-      that.renderer.setClearColor(0x1e2021, 1.0)
-      that.renderer.setSize(document.querySelector('[class*=main-content]').offsetWidth, window.innerHeight - 10)
-      that.renderer.shadowMap.enabled = true
+      this.renderer = new THREE.WebGLRenderer()
+      this.renderer.setClearColor(0x1e2021, 1.0)
+      this.renderer.setSize(this.$el.parentNode.offsetWidth, wrapDom.offsetHeight - 10)
+      this.renderer.shadowMap.enabled = true
 
-      document.getElementById('main').appendChild(that.renderer.domElement)
+      this.$el.firstElementChild.appendChild(that.renderer.domElement)
 
       var ambientLight = new THREE.AmbientLight( 0x000000 )
       scene.add( ambientLight )
@@ -125,43 +127,43 @@ export default {
       )
     }
   },
-  beforeRouteEnter (to, from, next){
-    next(vm => {
-      let APIkey = "4dff88a0423651b3570253b10b745b2c",
-        Limit = 100,
-        Page = 1,
-        User = "fakelbst"
+  // beforeRouteEnter (to, from, next){
+  //   next(vm => {
+  //     let APIkey = "4dff88a0423651b3570253b10b745b2c",
+  //       Limit = 100,
+  //       Page = 1,
+  //       User = "fakelbst"
 
-      Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
-        params: {
-          method: 'user.gettopalbums',
-          format: 'json',
-          user: User,
-          api_key: APIkey,
-          limit: Limit,
-          page: 1
-        }
-      }).then((d) => {
-        let datas = d.json()
-        let albums = datas.topalbums.album
-        let src = albums[0].image[3]['#text']
-        for(let i=0,j=albums.length; i<j; i++){
-            let title = albums[i].name.split(' ').join('-')
-            let ext = albums[i].image[3]['#text'].split('.').pop()
-            vm.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
-        }
-      })
-    })
-  },
-  beforeRouteLeave (to, from, next) {
-    // TODO: add some animation
-    document.body.style.background = '#1e2021'
-    document.body.style.color = '#e8e8e8'
-    document.getElementsByTagName('header')[0].firstElementChild.style.color = '#e8e8e8'
-    let footers = document.querySelectorAll('footer p')
-    footers.forEach(elem => elem.style.color = '#e8e8e8')
+  //     Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
+  //       params: {
+  //         method: 'user.gettopalbums',
+  //         format: 'json',
+  //         user: User,
+  //         api_key: APIkey,
+  //         limit: Limit,
+  //         page: 1
+  //       }
+  //     }).then((d) => {
+  //       let datas = d.json()
+  //       let albums = datas.topalbums.album
+  //       let src = albums[0].image[3]['#text']
+  //       for(let i=0,j=albums.length; i<j; i++){
+  //           let title = albums[i].name.split(' ').join('-')
+  //           let ext = albums[i].image[3]['#text'].split('.').pop()
+  //           vm.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
+  //       }
+  //     })
+  //   })
+  // },
+  // beforeRouteLeave (to, from, next) {
+  //   // TODO: add some animation
+  //   document.body.style.background = '#1e2021'
+  //   document.body.style.color = '#e8e8e8'
+  //   document.getElementsByTagName('header')[0].firstElementChild.style.color = '#e8e8e8'
+  //   let footers = document.querySelectorAll('footer p')
+  //   footers.forEach(elem => elem.style.color = '#e8e8e8')
 
-    next()
-  }
+  //   next()
+  // }
 }
 

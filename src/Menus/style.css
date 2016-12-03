@@ -19,7 +19,7 @@
     margin: 0;
     padding: 0;
     letter-spacing: 0;
-    color: $main-text-color;
+    color: $main-color;
     border: 0;
     background: none;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
