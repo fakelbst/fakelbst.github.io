@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+import VueResource from 'vue-resource'
 import { mapState, mapMutations } from 'vuex'
 
 import store from './vuex'
@@ -9,7 +9,7 @@ import store from './vuex'
 import menus from './Menus'
 import style from './style.css'
 
-Vue.use(Vuex)
+Vue.use(VueResource)
 Vue.component('menus', menus)
 
 const Layout = Vue.extend({

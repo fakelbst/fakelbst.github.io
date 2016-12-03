@@ -1,16 +1,14 @@
 import Vue from 'vue'
-import VueResource from 'vue-resource'
+import { mapState } from 'vuex'
 import colorPalettes from 'color-palettes'
 import style from './style.css'
 import fontello from '../fontello.css'
 const THREE = require('three')
 
-Vue.use(VueResource)
-
 export default {
   template: `<div v-bind:class="style['main-wrapper']">
     <div v-bind:class="style.main" id="main"></div>
-    <i v-bind:class="[fontello['icon-right-open'], style['to-right'], style['arrow-right']]" v-on:click="loadTexture()"></i>
+    <i v-bind:class="[fontello['icon-right-open'], style['to-right'], style['arrow-right']]" v-if="zoomCurrenView" v-on:click="loadTexture()"></i>
     <div v-bind:class="style.albumInfo">
       <p v-bind:style="{color: color1}">{{artist}}</p>
       <p v-bind:style="{color: color2}">{{title}}</p>
@@ -27,13 +25,15 @@ export default {
       cube: {},
       renderer: {},
       material: {},
+      camera: {},
       allAlbums: []
     }
   },
+  computed: mapState([
+    'zoomCurrenView'
+  ]),
   mounted() {
-    // console.log(this);
-    let that = this
-    let scene, camera, stats, cameraControl
+    let scene, stats, cameraControl
 
     let init = () => {
 
@@ -41,14 +41,14 @@ export default {
       THREE.ImageUtils.crossOrigin = ''
       scene = new THREE.Scene()
 
-      camera = new THREE.PerspectiveCamera(35, wrapDom.offsetWidth / wrapDom.offsetHeight, 0.1, 1000)
+      this.camera = new THREE.PerspectiveCamera(35, wrapDom.offsetWidth / wrapDom.offsetHeight, 0.1, 1000)
 
       this.renderer = new THREE.WebGLRenderer()
       this.renderer.setClearColor(0x1e2021, 1.0)
       this.renderer.setSize(this.$el.parentNode.offsetWidth, wrapDom.offsetHeight - 10)
       this.renderer.shadowMap.enabled = true
 
-      this.$el.firstElementChild.appendChild(that.renderer.domElement)
+      this.$el.firstElementChild.appendChild(this.renderer.domElement)
 
       var ambientLight = new THREE.AmbientLight( 0x000000 )
       scene.add( ambientLight )
@@ -66,33 +66,36 @@ export default {
       scene.add( lights[2] )
 
       let geometry = new THREE.BoxGeometry( 1, 1, 1 )
-      that.material = new THREE.MeshLambertMaterial({color: 0x6C6C6C, transparent: true, opacity: 0.7})
-      that.cube = new THREE.Mesh( geometry, that.material )
-      scene.add( that.cube )
-      camera.position.z = 5
+      this.material = new THREE.MeshLambertMaterial({color: 0x6C6C6C, transparent: true, opacity: 0.7})
+      this.cube = new THREE.Mesh( geometry, this.material )
+      scene.add( this.cube )
+      this.camera.position.z = 5
       render()
     }
 
-    function render() {
+    let render = () => {
       requestAnimationFrame( render )
-      that.cube.rotation.x += 0.01
-      that.cube.rotation.y += 0.01
-      that.renderer.render( scene, camera )
+      this.cube.rotation.x += 0.01
+      this.cube.rotation.y += 0.01
+      this.renderer.render( scene, this.camera )
     }
-
-    function handleResize() {
-      camera.aspect = document.querySelector('[class*=main-content]').offsetWidth / window.innerHeight
-      camera.updateProjectionMatrix()
-      that.renderer.setSize(document.querySelector('[class*=main-content]').offsetWidth, window.innerHeight - 10)
-    }
-
     setTimeout( init, 200)
-    window.addEventListener('resize', handleResize, false)
 
   },
+  updated () {
+    setTimeout( () => {
+      this.handleResize()
+    }, 500)
+  },
   methods: {
+    handleResize () {
+      let wrapDom = this.$el.parentNode
+      this.camera.aspect = wrapDom.offsetWidth / wrapDom.offsetHeight
+      this.camera.updateProjectionMatrix()
+      this.renderer.setSize(wrapDom.offsetWidth, wrapDom.offsetHeight)
+    },
 
-    loadTexture: function() {
+    loadTexture () {
       let loader = new THREE.TextureLoader()
 
       let album = this.allAlbums.shift()

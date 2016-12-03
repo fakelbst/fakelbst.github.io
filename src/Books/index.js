@@ -15,7 +15,6 @@ export default {
       loadingReading: true,
       loadingRead: true,
       scrollValue: 0,
-      start: 0,
       fullHeight: 0
     }
   },
