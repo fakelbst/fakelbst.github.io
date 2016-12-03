@@ -23,6 +23,7 @@ const state = {
   reading: [],
   read: [],
   readPagination: 0,
+  albums: [],
 }
 
 const mutations = {
@@ -44,7 +45,10 @@ const mutations = {
   },
   ADD_READ_PAGINATION (state) {
     state.readPagination += 10
-  }
+  },
+  SET_ALBUMS (state, playload) {
+    state.albums = playload
+  },
 }
 
 const actions = {
@@ -69,6 +73,32 @@ const actions = {
       commit('SET_READ', d.data.collections)
       if(d.data.count <= 10) commit('ADD_READ_PAGINATION')
     })
+  },
+  getAlbums ({ commit }) {
+
+    Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
+      params: {
+        method: 'user.gettopalbums',
+        format: 'json',
+        user: 'fakelbst',
+        api_key: '4dff88a0423651b3570253b10b745b2c',
+        limit: 50,
+        page: 1
+      }
+    }).then((d) => {
+      let datas = d.json()
+      // let datas = d.json()
+      let albums = datas.topalbums.album
+      commit('SET_ALBUMS', albums)
+      // let src = albums[0].image[3]['#text']
+      // let allAlbums = []
+      // for(let i=0,j=albums.length; i<j; i++){
+        // let title = albums[i].name.split(' ').join('-')
+        // let ext = albums[i].image[3]['#text'].split('.').pop()
+        // vm.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
+      // }
+    })
+
   }
 }
 

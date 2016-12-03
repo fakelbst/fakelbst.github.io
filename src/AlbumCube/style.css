@@ -1,3 +1,5 @@
+@import '../variables';
+
 .main-wrapper {
   display: flex;
   justify-content: center;
@@ -10,11 +12,17 @@
   flex: 1;
 }
 
-.albumInfo {
+.album-info {
   position: absolute;
   bottom: 0;
   right: 10px;
   text-align: right;
+  .a {
+    color: $main-text;
+  }
+  .t {
+    color: $sub-text;
+  }
 }
 
 .to-right {
@@ -22,7 +30,7 @@
   height: 10px;
   cursor: pointer;
   justify-content: flex-end;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .arrow-right {

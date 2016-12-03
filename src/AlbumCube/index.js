@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 import colorPalettes from 'color-palettes'
 import style from './style.css'
 import fontello from '../fontello.css'
@@ -8,10 +8,10 @@ const THREE = require('three')
 export default {
   template: `<div v-bind:class="style['main-wrapper']">
     <div v-bind:class="style.main" id="main"></div>
-    <i v-bind:class="[fontello['icon-right-open'], style['to-right'], style['arrow-right']]" v-if="zoomCurrenView" v-on:click="loadTexture()"></i>
-    <div v-bind:class="style.albumInfo">
-      <p v-bind:style="{color: color1}">{{artist}}</p>
-      <p v-bind:style="{color: color2}">{{title}}</p>
+    <i v-bind:class="[fontello['icon-angle-double-right'], style['to-right'], style['arrow-right']]" v-if="zoomCurrenView" v-on:click.stop="loadTexture()"></i>
+    <div v-bind:class="style['album-info']">
+      <p v-bind:class="style.a">{{artist}}</p>
+      <p v-bind:class="style.t">{{title}}</p>
     </div>
   </div>`,
   data() {
@@ -20,18 +20,18 @@ export default {
       fontello,
       artist: '',
       title: '',
-      color1: '#333',
-      color2: '#333',
       cube: {},
       renderer: {},
       material: {},
       camera: {},
-      allAlbums: []
     }
   },
-  computed: mapState([
-    'zoomCurrenView'
-  ]),
+  computed: mapState({
+    zoomCurrenView: 'zoomCurrenView',
+    allAlbums ( state ){
+      return Object.assign([], state.albums)
+    }
+  }),
   mounted() {
     let scene, stats, cameraControl
 
@@ -81,6 +81,7 @@ export default {
     }
     setTimeout( init, 200)
 
+    this.getAlbums()
   },
   updated () {
     setTimeout( () => {
@@ -88,6 +89,9 @@ export default {
     }, 500)
   },
   methods: {
+    ...mapActions({
+      getAlbums: 'getAlbums',
+    }),
     handleResize () {
       let wrapDom = this.$el.parentNode
       this.camera.aspect = wrapDom.offsetWidth / wrapDom.offsetHeight
@@ -99,30 +103,16 @@ export default {
       let loader = new THREE.TextureLoader()
 
       let album = this.allAlbums.shift()
-      this.allAlbums.push(album.file)
+      this.allAlbums.push(album)
       loader.load(
-        '/static/albums/' + album.file,
+        album.image[3]['#text'],
         ( texture ) => {
           this.cube.material.map = texture
           this.material.needsUpdate = true
         },
         ( xhr ) => {
-          let url = '/static/albums/' + album.file
-          let cp = new colorPalettes(url)
-          cp.dominantThree({
-            format: 'hex'
-          }).then( (colors) => {
-            this.renderer.setClearColor(parseInt(colors[0], 16), 1.0)
-            document.body.style.background = '#' + colors[0]
-            document.body.style.color = '#' + colors[1]
-            document.getElementsByTagName('header')[0].firstElementChild.style.color = '#' + colors[2]
-            let footers = document.querySelectorAll('footer p')
-            footers.forEach(elem => elem.style.color = '#' + colors[2])
-            this.title = album.title
-            this.artist = album.artist
-            this.color1 = '#' + colors[2]
-            this.color2 = '#' + colors[1]
-          })
+          this.title = album.name
+          this.artist = album.artist.name
         },
         function ( xhr ) {
           console.log( 'An error happened' )
@@ -130,43 +120,5 @@ export default {
       )
     }
   },
-  // beforeRouteEnter (to, from, next){
-  //   next(vm => {
-  //     let APIkey = "4dff88a0423651b3570253b10b745b2c",
-  //       Limit = 100,
-  //       Page = 1,
-  //       User = "fakelbst"
-
-  //     Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
-  //       params: {
-  //         method: 'user.gettopalbums',
-  //         format: 'json',
-  //         user: User,
-  //         api_key: APIkey,
-  //         limit: Limit,
-  //         page: 1
-  //       }
-  //     }).then((d) => {
-  //       let datas = d.json()
-  //       let albums = datas.topalbums.album
-  //       let src = albums[0].image[3]['#text']
-  //       for(let i=0,j=albums.length; i<j; i++){
-  //           let title = albums[i].name.split(' ').join('-')
-  //           let ext = albums[i].image[3]['#text'].split('.').pop()
-  //           vm.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
-  //       }
-  //     })
-  //   })
-  // },
-  // beforeRouteLeave (to, from, next) {
-  //   // TODO: add some animation
-  //   document.body.style.background = '#1e2021'
-  //   document.body.style.color = '#e8e8e8'
-  //   document.getElementsByTagName('header')[0].firstElementChild.style.color = '#e8e8e8'
-  //   let footers = document.querySelectorAll('footer p')
-  //   footers.forEach(elem => elem.style.color = '#e8e8e8')
-
-  //   next()
-  // }
 }
 
