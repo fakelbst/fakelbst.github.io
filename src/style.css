@@ -115,3 +115,29 @@ img {
   }
 }
 
+.small {
+  position: absolute;
+  top: 2em;
+  right: 2em;
+  width: 20px;
+  height: 20px;
+  color: $main-text;
+  cursor: pointer;
+  z-index: $zindex-top;
+}
+
+.footer {
+  transform: scale(2, 2);
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 5em;
+  .socials {
+    a {
+      color: $main-text;
+      &:hover {
+        color: $sub-text;
+      }
+    }
+  }
+}
+

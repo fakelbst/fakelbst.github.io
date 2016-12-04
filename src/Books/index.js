@@ -56,8 +56,8 @@ export default {
       }
     }
   },
-  template: `<div v-show="zoom">
-    <div v-bind:class="style['scroll-wrap']">
+  template: `<div>
+    <div v-bind:class="style['scroll-wrap']" v-show="zoom">
       <div v-bind:class="style['title-wrap']">
         <h3 v-bind:class="[style.label, zoom? style.pop: '']">Reading</h3>
       </div>

@@ -25,12 +25,12 @@ export default {
   mounted() {
 
     function throttle (callback) {
-      var wait = false
-      return function () {
+      let wait = false
+      return () => {
         if (!wait) {
           callback.call()
           wait = true
-          setTimeout(function () {
+          setTimeout(() => {
             wait = false
           }, 100)
         }

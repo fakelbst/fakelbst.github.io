@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueResource from 'vue-resource'
+import fontello from './fontello.css'
 import { mapState, mapMutations } from 'vuex'
 
 import store from './vuex'
@@ -15,6 +16,11 @@ const Layout = Vue.extend({
   data() {
     return {
       style,
+      fontello,
+      scaleX: 1,
+      scaleY: 1,
+      zoomout: false,
+      scrollYInZoomout: 0,
     }
   },
   computed: mapState({
@@ -33,23 +39,41 @@ const Layout = Vue.extend({
     },
     tY (state) {
       let fullHeight = window.innerHeight
-      if(this.zoomCurrentView) {
-        if(this.currentViewIndex === 0){
-          return 0
+      if(!this.zoomout){
+        if(this.zoomCurrentView) {
+          if(this.currentViewIndex === 0){
+            return 0
+          }
+          else {
+            return (fullHeight - 300 + 100 * 2) + fullHeight * (this.currentViewIndex - 1) - 200 * (this.currentViewIndex - 1)
+          }
         }
         else {
-          return (fullHeight - 300 + 100 * 2) + fullHeight * (this.currentViewIndex - 1) - 200 * (this.currentViewIndex - 1)
+          return 400 + (this.currentViewIndex - 1) * 444
         }
       }
-      else {
-        return 400 + (this.currentViewIndex - 1) * 444
+      if(this.zoomout){
+        return this.scrollYInZoomout
       }
     }
   }),
+  watch: {
+    zoomout: function(val){
+      if(!val) {
+        this.scaleX = this.scaleY = 1
+      }
+      else {
+        this.scaleX = this.scaleY = 0.5
+      }
+    }
+  },
   template: `<div>
     <menus></menus>
-    <section v-bind:class="[style['slider'], style['scroll-content']]" v-bind:style="{transform: 'translateY(' + -tY + 'px)'}">
-      <div v-bind:class="[style['slider-item'], item.active? style['current-view']: '', currentViewIndex-1 === index? style.prev: '', currentViewIndex+1 === index? style.next: '', (item.active && zoomCurrentView)? style.zoom: '']" v-for="(item, index) in modules" @click="moveContent(item)">
+    <span v-bind:class="style.small" v-on:click="toZoomout" v-show="!zoomCurrentView">
+      <i v-bind:class="fontello['icon-th-large']"></i>
+    </span>
+    <section v-bind:class="[style['slider'], style['scroll-content']]" v-bind:style="{transform: 'matrix(' + scaleX + ', 0, 0,' + scaleY + ', 0,' + -tY + ')'}">
+      <div v-bind:class="[style['slider-item'], (item.active || zoomout )? style['current-view']: '', (currentViewIndex-1 === index && !zoomout)? style.prev: '', (currentViewIndex+1 === index && !zoomout) ? style.next: '', (item.active && zoomCurrentView)? style.zoom: '']" v-for="(item, index) in modules" @click="moveContent(item)">
         <div v-bind:class="style['component-content']">
           <keep-alive>
             <component v-bind:is="item.component" v-bind:class="[zoomCurrentView? '': style['no-zoom']]" v-show="currentViewIndex === index">
@@ -57,21 +81,84 @@ const Layout = Vue.extend({
           </keep-alive>
         </div>
         <div v-bind:class="style['title-wrap']">
-          <h2 v-bind:class="[style.title, (item.active && !zoomCurrentView)? style.pop: '']">{{item.title}}</h2>
+          <h2 v-bind:class="[style.title, ((item.active || zoomout) && !zoomCurrentView)? style.pop: '']">{{item.title}}</h2>
         </div>
+      </div>
+      <div v-bind:class="style.footer" v-show="zoomout">
+        <p v-bind:class="style.email"><b>Contact me at:</b> myj226#gmail.com</p>
+        <p v-bind:class="style.socials">
+          <a href="http://douban.com/people/wber"><i v-bind:class="fontello['icon-douban']"></i></a>
+          <a href="https://twitter.com/fakelbst"><i v-bind:class="fontello['icon-twitter']"></i></a>
+          <a href="https://github.com/fakelbst"><i v-bind:class="fontello['icon-github']"></i></a>
+          <a href="http://last.fm/user/fakelbst"><i v-bind:class="fontello['icon-lastfm']"></i></a>
+          <a href="http://instagram.com/fakelbst"><i v-bind:class="fontello['icon-instagram']"></i></a>
+        </p>
       </div>
     </section>
   </div>`,
+  mounted () {
+
+    function throttle (callback) {
+      let wait = false
+      return function() {
+        let context = this
+        let args = arguments
+        if (!wait) {
+          callback.call(context, args)
+          wait = true
+          setTimeout(() => {
+            wait = false
+          }, 1500)
+        }
+      }
+    }
+
+    let scrollHandler = (evt) => {
+      if(this.zoomCurrentView) return
+
+      if(this.zoomout) {
+        if(evt[0].deltaY > 0){
+          this.scrollYInZoomout += 300
+        }
+        else{
+          this.scrollYInZoomout -= 300
+        }
+      }
+      else {
+        let toViewIndex = this.currentViewIndex
+        if(evt[0].deltaY > 0){
+          if(this.currentViewIndex === this.modules.length) return
+          toViewIndex++
+        }
+        else{
+          if(this.currentViewIndex === 0) return
+          toViewIndex--
+        }
+        store.commit('SET_MENU', this.modules[toViewIndex])
+      }
+    }
+
+    this.$el.addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
+    this.$el.addEventListener('mousewheel', throttle(scrollHandler), false)
+
+
+  },
   methods: {
     moveContent (item) {
       store.commit('SET_MENU', item)
       let fullHeight = window.innerHeight
       if(item.active) {
-        store.commit('SET_ZOOM', !this.zoomCurrentView);
+        store.commit('SET_ZOOM', !this.zoomCurrentView)
       }
       else {
         store.commit('SET_ZOOM', false);
       }
+    },
+    toZoomout () {
+      if(!this.zoomout){
+        this.scrollYInZoomout = 0
+      }
+      this.zoomout = !this.zoomout
     }
   }
 })
