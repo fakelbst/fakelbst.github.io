@@ -8,6 +8,7 @@ export default {
       style,
       fontello,
       scrollValue: 0,
+      fullHeight: 0,
       projects: [{
         name: 'xlyrics',
         link: 'https://github.com/fakelbst/xlyrics',
@@ -58,7 +59,16 @@ export default {
         <p v-bind:class="style.intro">{{p.intro}}</p>
       </div>
     </div>
-    <scrollbar :sy="scrollValue"></scrollbar>
-  </div>`
+    <scrollbar v-on:scrolling="toScroll" :sy="scrollValue" :h="fullHeight" v-show="$store.state.zoomCurrentView"></scrollbar>
+  </div>`,
+  methods: {
+    toScroll (v) {
+      this.scrollValue = v
+    },
+  },
+
+  updated () {
+    this.fullHeight = this.$el.offsetHeight
+  },
 }
 

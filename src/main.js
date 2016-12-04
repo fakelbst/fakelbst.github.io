@@ -4,8 +4,6 @@ import fontello from './fontello.css'
 import { mapState, mapMutations } from 'vuex'
 
 import store from './vuex'
-// import projects from './Projects'
-// import instagram from './Instagram'
 import menus from './Menus'
 import style from './style.css'
 

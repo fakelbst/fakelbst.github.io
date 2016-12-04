@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import books from '../Books'
 import tags from '../Tags'
 import quotes from '../Quotes'
+import projects from '../Projects'
 import albumCube from '../AlbumCube'
 
 Vue.use(Vuex)
@@ -16,6 +17,7 @@ const state = {
     {title: 'index', active: true, component: albumCube},
     {title: 'books', active: false, component: books},
     {title: 'tags', active: false, component: tags},
+    {title: 'projects', active: false, component: projects},
     {title: 'quotes', active: false, component: quotes},
   ],
   tags: ['Front-end Developer', 'Werder Bremen', 'Bundesliga', 'Dallas Mavericks', 'Supernatural', 'Explosions in The Sky', 'Gig', 'HangZhou', 'Music Festival', 'Rock n\' Roll', 'Baskball', 'Guitar', 'Drummer', 'ukulele', 'fantast', 'Post-rock'],
@@ -95,16 +97,8 @@ const actions = {
       }
     }).then((d) => {
       let datas = d.json()
-      // let datas = d.json()
       let albums = datas.topalbums.album
       commit('SET_ALBUMS', albums)
-      // let src = albums[0].image[3]['#text']
-      // let allAlbums = []
-      // for(let i=0,j=albums.length; i<j; i++){
-        // let title = albums[i].name.split(' ').join('-')
-        // let ext = albums[i].image[3]['#text'].split('.').pop()
-        // vm.allAlbums.push({file: title + '.' + ext, title: albums[i].name, artist: albums[i].artist.name})
-      // }
     })
 
   }
