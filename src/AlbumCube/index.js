@@ -8,7 +8,7 @@ const THREE = require('three')
 export default {
   template: `<div v-bind:class="style['main-wrapper']">
     <div v-bind:class="style.main" id="main"></div>
-    <i v-bind:class="[fontello['icon-angle-double-right'], style['to-right'], style['arrow-right']]" v-if="zoomCurrenView" v-on:click.stop="loadTexture()"></i>
+    <i v-bind:class="[fontello['icon-angle-double-right'], style['to-right'], style['arrow-right']]" v-if="zoomCurrentView" v-on:click.stop="loadTexture()"></i>
     <div v-bind:class="style['album-info']">
       <p v-bind:class="style.a">{{artist}}</p>
       <p v-bind:class="style.t">{{title}}</p>
@@ -27,7 +27,7 @@ export default {
     }
   },
   computed: mapState({
-    zoomCurrenView: 'zoomCurrenView',
+    zoomCurrentView: 'zoomCurrentView',
     allAlbums ( state ){
       return Object.assign([], state.albums)
     }

@@ -3,7 +3,6 @@ import VueResource from 'vue-resource'
 import { mapState, mapMutations } from 'vuex'
 
 import store from './vuex'
-// import albumCube from './AlbumCube'
 // import projects from './Projects'
 // import instagram from './Instagram'
 import menus from './Menus'
@@ -20,7 +19,7 @@ const Layout = Vue.extend({
   },
   computed: mapState({
     modules: 'modules',
-    zoomCurrenView: 'zoomCurrenView',
+    zoomCurrentView: 'zoomCurrentView',
     currentView (state) {
       let cComponent = state.modules.filter( (obj) => {
         return obj.active === true
@@ -34,7 +33,7 @@ const Layout = Vue.extend({
     },
     tY (state) {
       let fullHeight = window.innerHeight
-      if(this.zoomCurrenView) {
+      if(this.zoomCurrentView) {
         if(this.currentViewIndex === 0){
           return 0
         }
@@ -50,15 +49,15 @@ const Layout = Vue.extend({
   template: `<div>
     <menus></menus>
     <section v-bind:class="[style['slider'], style['scroll-content']]" v-bind:style="{transform: 'translateY(' + -tY + 'px)'}">
-      <div v-bind:class="[style['slider-item'], item.active? style['current-view']: '', currentViewIndex-1 === index? style.prev: '', currentViewIndex+1 === index? style.next: '', (item.active && zoomCurrenView)? style.zoom: '']" v-for="(item, index) in modules" @click="moveContent(item)">
+      <div v-bind:class="[style['slider-item'], item.active? style['current-view']: '', currentViewIndex-1 === index? style.prev: '', currentViewIndex+1 === index? style.next: '', (item.active && zoomCurrentView)? style.zoom: '']" v-for="(item, index) in modules" @click="moveContent(item)">
         <div v-bind:class="style['component-content']">
           <keep-alive>
-            <component v-bind:is="item.component" v-bind:class="[zoomCurrenView? '': style['no-zoom']]" v-show="currentViewIndex === index">
+            <component v-bind:is="item.component" v-bind:class="[zoomCurrentView? '': style['no-zoom']]" v-show="currentViewIndex === index">
             </component>
           </keep-alive>
         </div>
         <div v-bind:class="style['title-wrap']">
-          <h2 v-bind:class="[style.title, (item.active && !zoomCurrenView)? style.pop: '']">{{item.title}}</h2>
+          <h2 v-bind:class="[style.title, (item.active && !zoomCurrentView)? style.pop: '']">{{item.title}}</h2>
         </div>
       </div>
     </section>
@@ -68,7 +67,7 @@ const Layout = Vue.extend({
       store.commit('SET_MENU', item)
       let fullHeight = window.innerHeight
       if(item.active) {
-        store.commit('SET_ZOOM', !this.zoomCurrenView);
+        store.commit('SET_ZOOM', !this.zoomCurrentView);
       }
       else {
         store.commit('SET_ZOOM', false);

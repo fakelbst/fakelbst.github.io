@@ -11,7 +11,7 @@ Vue.config.debug = true
 const debug = process.env.NODE_ENV !== 'production'
 
 const state = {
-  zoomCurrenView: false,
+  zoomCurrentView: false,
   modules: [
     {title: 'index', active: true, component: albumCube},
     {title: 'books', active: false, component: books},
@@ -26,6 +26,14 @@ const state = {
   albums: [],
 }
 
+const getters = {
+  currentViewItem (state) {
+    return state.modules.find( (obj) => {
+      return obj.active === true
+    })
+  }
+}
+
 const mutations = {
   SET_MENU (state, item) {
     state.modules = state.modules.map( (obj) => {
@@ -33,7 +41,7 @@ const mutations = {
     })
   },
   SET_ZOOM (state, playload) {
-    state.zoomCurrenView = playload
+    state.zoomCurrentView = playload
   },
   GET_INST_PHOTOS (state) {
   },
@@ -104,6 +112,7 @@ const actions = {
 
 export default new Vuex.Store({
   state,
+  getters,
   mutations,
   actions,
   strict: debug,

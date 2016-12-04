@@ -26,11 +26,14 @@
 }
 
 .to-right {
+  position: absolute;
   width: 10px;
   height: 10px;
   cursor: pointer;
-  justify-content: flex-end;
-  margin-right: 20px;
+  right: 20px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .arrow-right {
