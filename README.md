@@ -16,6 +16,7 @@ npm run build
 ```
 
 # Credits
-[Last.fm api](http://www.last.fm/api)
-[Douban api](https://developers.douban.com/)
-[Instagram api](https://www.instagram.com/developer/)
+- [Last.fm api](http://www.last.fm/api)
+- [Douban api](https://developers.douban.com/)
+- [Instagram api](https://www.instagram.com/developer/)
+- [Layout inspired by ](http://tympanus.net/codrops/2016/09/02/inspiration-navigation-indicators/)
