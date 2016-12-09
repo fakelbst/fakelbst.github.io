@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapMu, mapActions } from 'vuex'
 import colorPalettes from 'color-palettes'
 import style from './style.css'
 import fontello from '../fontello.css'
@@ -24,14 +24,14 @@ export default {
       renderer: {},
       material: {},
       camera: {},
+      aIndex: 0,
     }
   },
-  computed: mapState({
-    zoomCurrentView: 'zoomCurrentView',
-    allAlbums ( state ){
-      return Object.assign([], state.albums)
-    }
-  }),
+  computed: mapState([
+    'zoomCurrentView',
+    'albums',
+    'albumsCoverBase64'
+  ]),
   mounted() {
     let scene, stats, cameraControl
 
@@ -92,6 +92,9 @@ export default {
     ...mapActions({
       getAlbums: 'getAlbums',
     }),
+    ...mapActions({
+      getImageDataUri: 'getImageDataUri',
+    }),
     handleResize () {
       let wrapDom = this.$el.parentNode
       this.camera.aspect = wrapDom.offsetWidth / wrapDom.offsetHeight
@@ -100,24 +103,29 @@ export default {
     },
 
     loadTexture () {
+      this.getImageDataUri(this.albums[this.aIndex+2].image[3]['#text']).then( (value) => {
+        this.$store.commit('LOAD_COVER_BASE64', value)
+      })
       let loader = new THREE.TextureLoader()
 
-      let album = this.allAlbums.shift()
-      this.allAlbums.push(album)
+      let album = this.albums[this.aIndex]
       loader.load(
-        album.image[3]['#text'],
+        this.albumsCoverBase64[this.aIndex],
         ( texture ) => {
           this.cube.material.map = texture
           this.material.needsUpdate = true
-        },
-        ( xhr ) => {
+
           this.title = album.name
           this.artist = album.artist.name
+          this.aIndex++
+        },
+        ( xhr ) => {
         },
         function ( xhr ) {
           console.log( 'An error happened' )
         }
       )
+
     }
   },
 }

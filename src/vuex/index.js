@@ -11,6 +11,21 @@ Vue.config.debug = true
 
 const debug = process.env.NODE_ENV !== 'production'
 
+// const getDataUri = (url) => {
+//   return new Promise( (resolve, reject) => {
+//     let image = new Image()
+//     image.crossOrigin = 'Anonymous'
+//     image.onload = function () {
+//       var canvas = document.createElement('canvas')
+//       canvas.width = this.width
+//       canvas.height = this.height
+//       canvas.getContext('2d').drawImage(this, 0, 0)
+//       resolve(canvas.toDataURL('image/png'))
+//     }
+//     image.src = url
+//   })
+// }
+
 const state = {
   zoomCurrentView: false,
   modules: [
@@ -26,6 +41,7 @@ const state = {
   read: [],
   readPagination: 0,
   albums: [],
+  albumsCoverBase64: []
 }
 
 const getters = {
@@ -59,6 +75,9 @@ const mutations = {
   SET_ALBUMS (state, playload) {
     state.albums = playload
   },
+  LOAD_COVER_BASE64 (state, playload) {
+    state.albumsCoverBase64.push(playload)
+  }
 }
 
 const actions = {
@@ -84,8 +103,7 @@ const actions = {
       if(d.data.count <= 10) commit('ADD_READ_PAGINATION')
     })
   },
-  getAlbums ({ commit }) {
-
+  getAlbums ({ dispatch, commit }) {
     Vue.http.get("http://ws.audioscrobbler.com/2.0/", {
       params: {
         method: 'user.gettopalbums',
@@ -99,8 +117,27 @@ const actions = {
       let datas = d.json()
       let albums = datas.topalbums.album
       commit('SET_ALBUMS', albums)
+      dispatch('getImageDataUri', albums[0].image[3]['#text']).then( (value) => {
+        commit('LOAD_COVER_BASE64', value)
+        dispatch('getImageDataUri', albums[1].image[3]['#text']).then( (value) => {
+          commit('LOAD_COVER_BASE64',value)
+        })
+      })
     })
-
+  },
+  getImageDataUri ({ dispatch, commit }, url) {
+    return new Promise( (resolve, reject) => {
+      let image = new Image()
+      image.crossOrigin = 'Anonymous'
+      image.onload = function () {
+        var canvas = document.createElement('canvas')
+        canvas.width = this.width
+        canvas.height = this.height
+        canvas.getContext('2d').drawImage(this, 0, 0)
+        resolve(canvas.toDataURL('image/png'))
+      }
+      image.src = url
+    })
   }
 }
 
