@@ -21,6 +21,9 @@ module.exports = {
     }
   },
   module: {
+    preLoaders: [
+      {test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/}
+    ],
     loaders: [
       {
         test: /\.woff(\?\d+)?$/,
@@ -80,7 +83,10 @@ module.exports = {
     historyApiFallback: true,
     noInfo: true
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  eslint: {
+    configFile: './.eslintrc'
+  }
 }
 
 if (process.env.NODE_ENV === 'production') {
