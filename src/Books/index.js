@@ -15,30 +15,32 @@ export default {
       loadingReading: true,
       loadingRead: true,
       scrollValue: 0,
-      fullHeight: 0
+      fullHeight: 0,
     }
   },
   computed: {
     ...mapState({
       zoom: 'zoomCurrentView',
       reading: 'reading',
-      read: 'read'
+      read: 'read',
     }),
     ...mapGetters([
-      'currentViewItem'
-    ])
+      'currentViewItem',
+    ]),
   },
   watch: {
-    read: function(val){
+    read() {
       this.showDatas('read')
     },
-    zoom: function(val){
-      if(val) {
+    zoom(val) {
+      if (val) {
         this.showDatas('read')
         this.showDatas('reading')
 
-        let scrollHandler = () => {
-          if(Math.abs(this.scrollValue) > (this.$el.firstElementChild.clientHeight - window.innerHeight) && this.loadingRead === false){
+        const scrollHandler = () => {
+          if (Math.abs(this.scrollValue) >
+              (this.$el.firstElementChild.clientHeight - window.innerHeight) &&
+              this.loadingRead === false) {
             this.loadingRead = true
             this.getRead()
           }
@@ -46,15 +48,13 @@ export default {
 
         this.$el.addEventListener('DOMMouseScroll', scrollHandler, false)
         this.$el.addEventListener('mousewheel', scrollHandler, false)
-
-      }
-      else {
-        this.$el.querySelectorAll('[class*=__cover___]').forEach( function(el, i){
-          el.classList.add(style['init'])
+      } else {
+        this.$el.querySelectorAll('[class*=__cover___]').forEach((el) => {
+          el.classList.add(style.init)
           el.classList.remove(style['scale-animation'])
         })
       }
-    }
+    },
   },
   template: `<div>
     <div v-bind:class="style['scroll-wrap']" v-show="zoom">
@@ -84,11 +84,11 @@ export default {
     </div>
     <scrollbar v-on:scrolling="toScroll" :sy="scrollValue" :h="fullHeight" v-show="zoom && currentViewItem.title === 'books'"></scrollbar>
   </div>`,
-  mounted () {
+  mounted() {
     this.getReading()
     this.getRead()
   },
-  updated () {
+  updated() {
     this.fullHeight = this.$el.offsetHeight
   },
   methods: {
@@ -97,16 +97,15 @@ export default {
       getRead: 'getRead',
     }),
     showDatas(type) {
-      imagesLoaded( this.$el.querySelector(`[class*=__${type}___]`), {background: '[class*=__cover___]'},  () => {
-        if(type === 'reading'){
+      imagesLoaded(this.$el.querySelector(`[class*=__${type}___]`), { background: '[class*=__cover___]' }, () => {
+        if (type === 'reading') {
           this.loadingReading = false
-        }
-        else {
+        } else {
           this.loadingRead = false
         }
-        this.$el.querySelectorAll(`[class*=__${type}___]>div>a>div`).forEach( function(el, i){
-          setTimeout(function() {
-            el.classList.remove(style['init'])
+        this.$el.querySelectorAll(`[class*=__${type}___]>div>a>div`).forEach((el, i) => {
+          setTimeout(() => {
+            el.classList.remove(style.init)
             el.classList.add(style['scale-animation'])
           }, 50 * i);
         })

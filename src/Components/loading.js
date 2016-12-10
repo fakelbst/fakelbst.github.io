@@ -1,10 +1,9 @@
-import Vue from 'vue'
 import style from './style.css'
 
 export default {
   data() {
     return {
-      style
+      style,
     }
   },
   props: ['visible'],

@@ -1,7 +1,7 @@
 import Vue from 'vue'
+import { mapState } from 'vuex'
 import VueResource from 'vue-resource'
 import fontello from './fontello.css'
-import { mapState, mapMutations } from 'vuex'
 
 import store from './vuex'
 import menus from './Menus'
@@ -24,46 +24,37 @@ const Layout = Vue.extend({
   computed: mapState({
     modules: 'modules',
     zoomCurrentView: 'zoomCurrentView',
-    currentView (state) {
-      let cComponent = state.modules.filter( (obj) => {
-        return obj.active === true
-      })
+    currentView(state) {
+      const cComponent = state.modules.filter(obj => obj.active === true)
       return cComponent[0].component
     },
-    currentViewIndex (state) {
-      return state.modules.findIndex( (obj) => {
-        return obj.active === true
-      })
+    currentViewIndex(state) {
+      return state.modules.findIndex(obj => obj.active === true)
     },
-    tY (state) {
-      let fullHeight = window.innerHeight
-      if(!this.zoomout){
-        if(this.zoomCurrentView) {
-          if(this.currentViewIndex === 0){
+    tY(state) {
+      const fullHeight = window.innerHeight
+      if (!this.zoomout) {
+        if (this.zoomCurrentView) {
+          if (this.currentViewIndex === 0) {
             return 0
           }
-          else {
-            return (fullHeight - 300 + 100 * 2) + fullHeight * (this.currentViewIndex - 1) - 200 * (this.currentViewIndex - 1)
-          }
+          return (((fullHeight - 300) + (100 * 2)) +
+                  (fullHeight * (this.currentViewIndex - 1))) -
+                  (200 * (this.currentViewIndex - 1))
         }
-        else {
-          return 400 + (this.currentViewIndex - 1) * 444
-        }
+        return 400 + ((this.currentViewIndex - 1) * 444)
       }
-      if(this.zoomout){
-        return this.scrollYInZoomout
-      }
-    }
+      return this.scrollYInZoomout
+    },
   }),
   watch: {
-    zoomout: function(val){
-      if(!val) {
+    zoomout(val) {
+      if (!val) {
         this.scaleX = this.scaleY = 1
-      }
-      else {
+      } else {
         this.scaleX = this.scaleY = 0.5
       }
-    }
+    },
   },
   template: `<div>
     <menus></menus>
@@ -94,13 +85,11 @@ const Layout = Vue.extend({
       </div>
     </section>
   </div>`,
-  mounted () {
-
-    function throttle (callback) {
+  mounted() {
+    function throttle(callback) {
       let wait = false
-      return function() {
-        let context = this
-        let args = arguments
+      return (...args) => {
+        const context = this
         if (!wait) {
           callback.call(context, args)
           wait = true
@@ -111,26 +100,23 @@ const Layout = Vue.extend({
       }
     }
 
-    let scrollHandler = (evt) => {
-      if(this.zoomCurrentView) return
+    const scrollHandler = (evt) => {
+      if (this.zoomCurrentView) return
 
-      if(this.zoomout) {
-        if(evt[0].deltaY > 0){
+      if (this.zoomout) {
+        if (evt[0].deltaY > 0) {
           this.scrollYInZoomout += 300
-        }
-        else{
+        } else {
           this.scrollYInZoomout -= 300
         }
-      }
-      else {
+      } else {
         let toViewIndex = this.currentViewIndex
-        if(evt[0].deltaY > 0){
-          if(this.currentViewIndex === this.modules.length) return
-          toViewIndex++
-        }
-        else{
-          if(this.currentViewIndex === 0) return
-          toViewIndex--
+        if (evt[0].deltaY > 0) {
+          if (this.currentViewIndex === this.modules.length) return
+          toViewIndex += 1
+        } else {
+          if (this.currentViewIndex === 0) return
+          toViewIndex -= 1
         }
         store.commit('SET_MENU', this.modules[toViewIndex])
       }
@@ -138,32 +124,29 @@ const Layout = Vue.extend({
 
     this.$el.addEventListener('DOMMouseScroll', throttle(scrollHandler), false)
     this.$el.addEventListener('mousewheel', throttle(scrollHandler), false)
-
-
   },
   methods: {
-    moveContent (item) {
+    moveContent(item) {
       store.commit('SET_MENU', item)
-      let fullHeight = window.innerHeight
-      if(item.active) {
+      if (item.active) {
         store.commit('SET_ZOOM', !this.zoomCurrentView)
-      }
-      else {
+      } else {
         store.commit('SET_ZOOM', false);
       }
     },
-    toZoomout () {
-      if(!this.zoomout){
+    toZoomout() {
+      if (!this.zoomout) {
         this.scrollYInZoomout = 0
       }
       this.zoomout = !this.zoomout
-    }
-  }
+    },
+  },
 })
 
+/* eslint no-new: 0 */
 new Vue({
   el: '#app',
   store,
-  render: h => h(Layout)
+  render: h => h(Layout),
 })
 

@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 import style from './style.css'
 
@@ -9,7 +8,7 @@ export default {
     }
   },
   computed: mapState([
-    'modules'
+    'modules',
   ]),
   template: ` <nav v-bind:class="style['menu']">
     <button v-for="(item, index) in modules" v-bind:class="[style['menu-item'], item.active? style['menu-item-current']: '']" @click="setActive(item)">
@@ -20,8 +19,8 @@ export default {
   </nav>`,
   methods: {
     ...mapMutations({
-      setActive: 'SET_MENU'
-    })
-  }
+      setActive: 'SET_MENU',
+    }),
+  },
 }
 
