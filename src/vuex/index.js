@@ -38,8 +38,13 @@ const getters = {
 const mutations = {
   SET_MENU(state, item) {
     state.modules = state.modules.map((obj) => {
-      return item.title === obj.title ?
-        Object.assign({}, item, { active: true }) : Object.assign({}, obj, { active: false })
+      let value = {}
+      if (item.title === obj.title) {
+        value = Object.assign({}, item, { active: true })
+      } else {
+        value = Object.assign({}, obj, { active: false })
+      }
+      return value
     })
   },
   SET_ZOOM(state, playload) {
