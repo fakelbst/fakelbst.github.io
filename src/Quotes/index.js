@@ -33,7 +33,7 @@ export default {
         { quote: 'Somewhere in the world someone is training when you are not. When you race him, he will win.', from: 'Tom Fleming' },
         { quote: 'I always wonder why birds stay in thr same place when they can fly anywhere on earth. Then I ask myself the same question.' },
         { quote: 'You have to do everything you can, you have to work your hardest, and if you do, if you stay positive, you have a shot at a silver lining.', from: 'Pat - Silver Linings Playbook' },
-        { quote: 'You must understand the whole of life, not just one little part of it. That is why you must read, that is why you must look at the skies, that is why you must sing, and dance, and write poems, and suffer, and understand, for all that is life.', from: 'Jiddu Krishnamurti'},
+        { quote: 'You must understand the whole of life, not just one little part of it. That is why you must read, that is why you must look at the skies, that is why you must sing, and dance, and write poems, and suffer, and understand, for all that is life.', from: 'Jiddu Krishnamurti' },
       ],
     }
   },
