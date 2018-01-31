@@ -1,0 +1,18 @@
+/* colors: https://color.adobe.com/zh/Flat-UI-color-theme-2469224/?showPublished=true */
+html {
+}
+
+body {
+  background: #2C3E50;
+  color: #ECF0F1;
+}
+
+.progress {
+  background: #3498DB;
+}
+
+.year-progress {
+  height: 5px;
+  position: absolute;
+  bottom: 0;
+}
