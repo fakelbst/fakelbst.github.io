@@ -16,3 +16,8 @@ body {
   position: absolute;
   bottom: 0;
 }
+
+.container {
+  padding: 30px;
+}
+
