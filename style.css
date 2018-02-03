@@ -49,3 +49,11 @@ body {
   grid-column: 3;
   grid-row: 4;
 }
+
+.dot {
+  position: absolute;
+  background: #2980B9;
+  width: 5px;
+  height: 5px;
+}
+
