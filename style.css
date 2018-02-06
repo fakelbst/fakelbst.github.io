@@ -55,5 +55,23 @@ body {
   background: #2980B9;
   width: 5px;
   height: 5px;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, .5);
+}
+
+.books {
+  width: 15px;
+  height: 15px;
+  background: #3498DB;
+  display: inline-block;
+  margin: 5px 5px 0 0;
+}
+
+.read-books {
+  background: #2980B9;
 }
 
