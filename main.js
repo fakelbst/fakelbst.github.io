@@ -64,8 +64,7 @@ function getJSONP(url, cb) {
 }
 
 getJSONP('https://api.douban.com/v2/book/user/wber/collections?tag=2018', function(data){
-  console.log(data)
-
   for(let i = 0, j = data.total; i < j; i++) {
+    document.querySelectorAll('.books')[i].classList.add('read-books')
   }
 })

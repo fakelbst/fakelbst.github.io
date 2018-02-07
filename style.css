@@ -7,6 +7,10 @@ body {
   color: #ECF0F1;
 }
 
+.name {
+  color: #E74C3C;
+}
+
 .progress {
   background: #3498DB;
 }
