@@ -1,10 +1,15 @@
 /* colors: https://color.adobe.com/zh/Flat-UI-color-theme-2469224/?showPublished=true */
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+* {
+}
+
 html {
 }
 
 body {
   background: #2C3E50;
   color: #ECF0F1;
+  font-family: 'Oxygen', sans-serif;
 }
 
 .name {
