@@ -6,7 +6,6 @@ const PIXEL2 = 15
 
 const styleHeight = +getComputedStyle(canvas).getPropertyValue('height').slice(0, -2)
 const styleWidth = +getComputedStyle(canvas).getPropertyValue('width').slice(0, -2)
-console.log(styleWidth, 999)
 
 function fixDpi() {
   canvas.setAttribute('height', styleHeight * dpi)
@@ -19,6 +18,56 @@ function dot(x, y) {
 
 function dot2(x, y) {
   ctx.fillRect(x, y, PIXEL2, PIXEL2)
+}
+
+function makeRow(x, y, count) {
+  for (let i = 0; i < count * PIXEL; i = i + PIXEL) {
+    dot(x + i, y)
+  }
+}
+
+function makeColumn(x, y, count) {
+  for(let i = 0; i < count * PIXEL; i = i + PIXEL) {
+    dot(x, y + i)
+  }
+}
+
+function makeCross(x, y, count) {
+  for (let i = 0; i < count * PIXEL; i = i + PIXEL) {
+    dot(x + i, y)
+  }
+  for(let i = -count * PIXEL; i < count * PIXEL; i = i + PIXEL) {
+    dot((2 * x + count * PIXEL) / 2, y + i)
+  }
+}
+
+function rounding(nu) {
+  console.log(nu)
+  // if (typeof nu === 'string') {
+  // }
+  if (+nu.toString().substr(-1) >= 5) {
+    return nu + (PIXEL - +nu.toString().substr(-1))
+  } else {
+    return nu - (+nu.toString().substr(-1))
+  }
+}
+
+function storeGuess(event) {
+  var x = event.offsetX;
+  var y = event.offsetY;
+  guessX = x * dpi
+  guessY = y * dpi
+  guessX = rounding(guessX)
+  guessY = rounding(guessY)
+  console.log("x coords: " + guessX + ", y coords: " + guessY);
+  // if (+guessX.toString().substr(-1)) >= 5) {
+  //   guessX = guessX + (PIXEL - +guessX.toString().slice(-2))
+  // } else {
+  //   guessX
+  // }
+  // ctx.fillStyle = '#000'
+  // dot(guessX, guessY)
+  // document.getElementById('ttt').innerHTML += `dot(${guessX}, ${guessY})\n`
 }
 
 fixDpi()
@@ -43,11 +92,24 @@ for(let i = 0; i< 1000; i++){
   let randomX = Math.floor(Math.random() * (styleWidth * dpi / PIXEL))
   let randomY = Math.floor(Math.random() * (styleHeight * dpi / PIXEL))
   ctx.fillStyle = randomColor
-  console.log(randomColor, randomX, randomY, 999)
   dot(randomX * 10, randomY * 10)
   if (randomY % 2) {
     dot(randomX * 10 + 10, randomY * 10)
   }
+}
+
+// Stars
+let starsColors = ['#ae9b2e', '#95a01c', '#b1a854', '#bea72a', '#ab7407']
+for(let i = 0; i < 8; i++){
+  let randomColor = starsColors[Math.floor(Math.random() * starsColors.length)]
+  let randomX = Math.floor(Math.random() * (styleWidth * dpi / PIXEL))
+  let randomY = Math.floor(Math.random() * (styleHeight / 2 / PIXEL))
+  ctx.fillStyle = randomColor
+  dot(randomX * 10, randomY * 10)
+  dot(randomX * 10, randomY * 10 - 10)
+  dot(randomX * 10, randomY * 10 + 10)
+  dot(randomX * 10 + 10, randomY * 10)
+  dot(randomX * 10 - 10, randomY * 10)
 }
 
 // Under Construction
@@ -280,3 +342,203 @@ dot(1000, 120)
 dot(1000, 130)
 dot(1000, 140)
 
+
+// Dark Side of The Moon
+//
+
+ctx.fillStyle = '#000'
+// let centerX = 1050
+// let centerY = 800
+
+// Math.floor(Math.random() * (max - min + 1) + min)
+// for (let i = 0; i < 300; i++) {
+//   let randomX = Math.floor(Math.random() * 501) + 800
+//   let randomY = Math.floor(Math.random() * 301) + 600
+//   let randomLength = Math.floor(Math.random() * 1) + 36
+//   makeColumn(randomX, randomY, randomLength)
+//   if (randomX % 2) {
+//     makeColumn(randomX, randomY, randomLength)
+//   } else {
+//     makeRow(randomX, randomY, randomLength)
+//   }
+//   // makeRow(randomX, randomY, randomLength)
+// }
+// for (let x = 1600; x < 1800; x = x + PIXEL) {
+//   for (let y = 400; y < 600; y = y + PIXEL) {
+//     dot(x, y)
+//   }
+// }
+
+// makeCross(1600, 400, 30)
+// makeCross(1600, 1810, 21)
+
+let line1 = '#fe0100'
+let line2 = '#fb872a'
+let line3 = '#feff01'
+let line4 = '#65cd00'
+let line5 = '#03cbff'
+let line6 = '#a0319d'
+
+ctx.fillStyle = line1
+dot(1990, 600)
+dot(1990, 610)
+ctx.fillStyle = line2
+dot(1990, 620)
+dot(1990, 630)
+ctx.fillStyle = line3
+dot(1990, 640)
+dot(1990, 650)
+ctx.fillStyle = line4
+dot(1990, 660)
+dot(1990, 670)
+ctx.fillStyle = line5
+dot(1990, 680)
+dot(1990, 690)
+ctx.fillStyle = line6
+dot(1990, 700)
+dot(1990, 710)
+
+// Werder bremen
+
+ctx.fillStyle = '#179152'
+
+for (let i = 0; i < 8; i++) {
+  dot(200 - i * 20, 800 + i * 30)
+  dot(190 - i * 20, 810 + i * 30)
+  dot(190 - i * 20, 820 + i * 30)
+}
+dot(210, 810)
+for (let i = 0; i < 8; i++) {
+  dot(210 + i * 20, 820 + i * 30)
+  dot(220 + i * 20, 830 + i * 30)
+  dot(220 + i * 20, 840 + i * 30)
+}
+
+dot(40, 1050)
+dot(50, 1060)
+for (let i = 0; i < 7; i++) {
+  dot(60 + i * 20, 1070 + i * 30)
+  dot(60 + i * 20, 1080 + i * 30)
+  dot(70 + i * 20, 1090 + i * 30)
+}
+dot(200, 1280)
+for (let i = 0; i < 8; i++) {
+  dot(210 + i * 20, 1270 - i * 30)
+  dot(220 + i * 20, 1260 - i * 30)
+  dot(220 + i * 20, 1250 - i * 30)
+}
+
+ctx.fillStyle = '#fff'
+dot(200, 810)
+dot(200, 820)
+
+for (let i = 0; i < 7; i++) {
+  dot(190 - i * 20, 830 + i * 30)
+  dot(190 - i * 20, 840 + i * 30)
+  dot(180 - i * 20, 840 + i * 30)
+  dot(180 - i * 20, 850 + i * 30)
+}
+
+for (let i = 0; i < 8; i++) {
+  dot(50 + i * 20, 1040 + i * 30)
+  dot(50 + i * 20, 1050 + i * 30)
+  dot(60 + i * 20, 1050 + i * 30)
+  dot(60 + i * 20, 1060 + i * 30)
+}
+
+for (let i = 0; i < 8; i++) {
+  dot(200 + i * 20, 820 + i * 30)
+  dot(200 + i * 20, 830 + i * 30)
+  dot(210 + i * 20, 830 + i * 30)
+  dot(210 + i * 20, 840 + i * 30)
+}
+
+for (let i = 0; i < 8; i++) {
+  dot(350 - i * 20, 1040 + i * 30)
+  dot(350 - i * 20, 1050 + i * 30)
+  dot(340 - i * 20, 1050 + i * 30)
+  dot(340 - i * 20, 1060 + i * 30)
+}
+
+ctx.fillStyle = '#179152'
+dot(200, 840)
+makeRow(190, 850, 3)
+makeRow(180, 860, 4)
+makeRow(180, 870, 5)
+makeRow(170, 880, 7)
+makeRow(160, 890, 8)
+makeRow(160, 900, 9)
+makeRow(150, 910, 11)
+makeRow(140, 920, 12)
+makeRow(140, 930, 13)
+makeRow(130, 940, 15)
+makeRow(120, 950, 16)
+makeRow(120, 960, 17)
+makeRow(110, 970, 19)
+makeRow(100, 980, 20)
+makeRow(100, 990, 21)
+makeRow(90, 1000, 23)
+makeRow(80, 1010, 24)
+makeRow(80, 1020, 25)
+makeRow(70, 1030, 27)
+makeRow(60, 1040, 28)
+makeRow(70, 1050, 28)
+makeRow(70, 1060, 27)
+makeRow(80, 1070, 25)
+makeRow(90, 1080, 23)
+makeRow(90, 1090, 23)
+makeRow(100, 1100, 21)
+makeRow(110, 1110, 19)
+makeRow(110, 1120, 19)
+makeRow(120, 1130, 17)
+makeRow(130, 1140, 15)
+makeRow(130, 1150, 15)
+makeRow(140, 1160, 13)
+makeRow(150, 1170, 11)
+makeRow(150, 1180, 11)
+makeRow(160, 1190, 9)
+makeRow(170, 1200, 7)
+makeRow(170, 1210, 7)
+makeRow(180, 1220, 5)
+makeRow(190, 1230, 3)
+makeRow(190, 1240, 3)
+dot(200, 1250)
+
+ctx.fillStyle = '#fff'
+makeRow(190, 900, 4)
+makeRow(180, 910, 6)
+makeRow(170, 920, 8)
+makeRow(170, 930, 8)
+makeRow(170, 940, 9)
+makeRow(180, 950, 8)
+makeRow(230, 960, 4)
+makeRow(240, 970, 3)
+makeRow(240, 980, 3)
+
+makeColumn(250, 980, 3)
+makeColumn(260, 980, 16)
+makeColumn(270, 980, 13)
+makeColumn(280, 1010, 7)
+makeColumn(250, 1080, 8)
+// makeRow()
+
+makeRow(140, 950, 3)
+makeRow(130, 960, 5)
+makeRow(120, 970, 6)
+makeRow(120, 980, 6)
+makeRow(120, 990, 5)
+
+makeColumn(120, 1000, 6)
+makeColumn(130, 1000, 10)
+makeColumn(140, 1000, 14)
+makeColumn(150, 1080, 8)
+
+makeColumn(200, 1040, 9)
+makeColumn(190, 1060, 9)
+makeColumn(210, 1060, 9)
+makeColumn(180, 1080, 9)
+makeColumn(220, 1080, 9)
+makeColumn(170, 1100, 9)
+makeColumn(230, 1100, 9)
+makeColumn(160, 1110, 7)
+makeColumn(240, 1110, 7)
