@@ -41,6 +41,12 @@ function makeCross(x, y, count) {
   }
 }
 
+function makeRound(x, y, radius) {
+  for (let i = 0; i < radius; i++, x--, y++) {
+    makeRow(x, y, radius + i)
+  }
+}
+
 function rounding(nu) {
   console.log(nu)
   // if (typeof nu === 'string') {
@@ -342,62 +348,6 @@ dot(1000, 120)
 dot(1000, 130)
 dot(1000, 140)
 
-
-// Dark Side of The Moon
-//
-
-ctx.fillStyle = '#000'
-// let centerX = 1050
-// let centerY = 800
-
-// Math.floor(Math.random() * (max - min + 1) + min)
-// for (let i = 0; i < 300; i++) {
-//   let randomX = Math.floor(Math.random() * 501) + 800
-//   let randomY = Math.floor(Math.random() * 301) + 600
-//   let randomLength = Math.floor(Math.random() * 1) + 36
-//   makeColumn(randomX, randomY, randomLength)
-//   if (randomX % 2) {
-//     makeColumn(randomX, randomY, randomLength)
-//   } else {
-//     makeRow(randomX, randomY, randomLength)
-//   }
-//   // makeRow(randomX, randomY, randomLength)
-// }
-// for (let x = 1600; x < 1800; x = x + PIXEL) {
-//   for (let y = 400; y < 600; y = y + PIXEL) {
-//     dot(x, y)
-//   }
-// }
-
-// makeCross(1600, 400, 30)
-// makeCross(1600, 1810, 21)
-
-let line1 = '#fe0100'
-let line2 = '#fb872a'
-let line3 = '#feff01'
-let line4 = '#65cd00'
-let line5 = '#03cbff'
-let line6 = '#a0319d'
-
-ctx.fillStyle = line1
-dot(1990, 600)
-dot(1990, 610)
-ctx.fillStyle = line2
-dot(1990, 620)
-dot(1990, 630)
-ctx.fillStyle = line3
-dot(1990, 640)
-dot(1990, 650)
-ctx.fillStyle = line4
-dot(1990, 660)
-dot(1990, 670)
-ctx.fillStyle = line5
-dot(1990, 680)
-dot(1990, 690)
-ctx.fillStyle = line6
-dot(1990, 700)
-dot(1990, 710)
-
 // Werder bremen
 
 ctx.fillStyle = '#179152'
@@ -542,3 +492,368 @@ makeColumn(170, 1100, 9)
 makeColumn(230, 1100, 9)
 makeColumn(160, 1110, 7)
 makeColumn(240, 1110, 7)
+
+// The void
+ctx.fillStyle = '#000'
+let centerX = styleWidth * dpi / 2
+let centerY = styleHeight * dpi /2
+dot(centerX - 200, centerY + 280)
+dot(centerX - 210, centerY + 270)
+dot(centerX - 220, centerY + 270)
+dot(centerX - 240, centerY + 280)
+dot(centerX - 230, centerY + 280)
+dot(centerX - 220, centerY + 280)
+makeColumn(centerX - 410, centerY + 280, 2)
+makeColumn(centerX - 400, centerY + 270, 3)
+makeColumn(centerX - 390, centerY + 260, 6)
+makeColumn(centerX - 380, centerY + 250, 8)
+makeColumn(centerX - 370, centerY + 230, 10)
+makeColumn(centerX - 360, centerY + 220, 12)
+makeColumn(centerX - 350, centerY + 190, 16)
+makeColumn(centerX - 340, centerY + 170, 20)
+makeColumn(centerX - 330, centerY + 150, 26)
+makeColumn(centerX - 330, centerY + 150, 26)
+makeColumn(centerX - 320, centerY + 130, 29)
+makeColumn(centerX - 310, centerY + 110, 33)
+makeColumn(centerX - 300, centerY + 90, 36)
+makeColumn(centerX - 290, centerY + 80, 37)
+makeColumn(centerX - 280, centerY + 60, 40)
+makeColumn(centerX - 270, centerY + 50, 43)
+makeColumn(centerX - 260, centerY + 30, 44)
+makeColumn(centerX - 250, centerY + 10, 45)
+makeColumn(centerX - 240, centerY, 48)
+makeColumn(centerX - 230, centerY - 40, 51)
+makeColumn(centerX - 220, centerY - 20, 50)
+makeColumn(centerX - 210, centerY - 10, 50)
+makeColumn(centerX - 200, centerY + 10, 46)
+makeColumn(centerX - 190, centerY + 50, 44)
+makeColumn(centerX - 180, centerY + 60, 42)
+makeColumn(centerX - 170, centerY + 80, 41)
+makeColumn(centerX - 160, centerY + 100, 38)
+makeColumn(centerX - 150, centerY + 90, 40)
+makeColumn(centerX - 140, centerY + 80, 39)
+makeColumn(centerX - 130, centerY + 70, 40)
+makeColumn(centerX - 120, centerY + 50, 41)
+makeColumn(centerX - 110, centerY + 60, 40)
+makeColumn(centerX - 100, centerY + 50, 40)
+makeColumn(centerX - 90, centerY + 30, 44)
+makeColumn(centerX - 80, centerY + 20, 46)
+makeColumn(centerX - 70, centerY + 10, 49)
+makeColumn(centerX - 60, centerY + 20, 49)
+makeColumn(centerX - 50, centerY, 50)
+makeColumn(centerX - 40, centerY - 10, 50)
+makeColumn(centerX - 30, centerY - 20, 52)
+makeColumn(centerX - 20, centerY - 10, 52)
+makeColumn(centerX - 10, centerY, 51)
+makeColumn(centerX, centerY - 10, 53)
+makeColumn(centerX + 10, centerY - 20, 55)
+makeColumn(centerX + 20, centerY - 10, 52)
+makeColumn(centerX + 30, centerY, 53)
+makeColumn(centerX + 40, centerY - 10, 53)
+makeColumn(centerX + 50, centerY - 20, 53)
+makeColumn(centerX + 60, centerY - 30, 55)
+makeColumn(centerX + 70, centerY - 40, 57)
+makeColumn(centerX + 80, centerY - 30, 57)
+makeColumn(centerX + 90, centerY - 40, 57)
+makeColumn(centerX + 100, centerY - 30, 55)
+makeColumn(centerX + 110, centerY - 20, 53)
+makeColumn(centerX + 120, centerY - 10, 51)
+makeColumn(centerX + 130, centerY, 50)
+makeColumn(centerX + 140, centerY - 10, 52)
+makeColumn(centerX + 150, centerY, 52)
+makeColumn(centerX + 160, centerY + 10, 50)
+makeColumn(centerX + 170, centerY + 0, 50)
+makeColumn(centerX + 180, centerY + 40, 47)
+makeColumn(centerX + 190, centerY + 30, 47)
+makeColumn(centerX + 200, centerY + 30, 48)
+makeColumn(centerX + 210, centerY + 33, 48)
+makeColumn(centerX + 220, centerY + 31, 46)
+makeColumn(centerX + 230, centerY + 29, 45)
+makeColumn(centerX + 240, centerY + 20, 47)
+makeColumn(centerX + 250, centerY + 10, 46)
+makeColumn(centerX + 260, centerY + 20, 45)
+makeColumn(centerX + 270, centerY + 30, 43)
+makeColumn(centerX + 280, centerY + 40, 44)
+makeColumn(centerX + 290, centerY + 50, 42)
+makeColumn(centerX + 300, centerY + 20, 43)
+makeColumn(centerX + 310, centerY + 10, 44)
+makeColumn(centerX + 320, centerY, 44)
+makeColumn(centerX + 330, centerY + 30, 41)
+makeColumn(centerX + 340, centerY + 40, 39)
+makeColumn(centerX + 350, centerY + 50, 39)
+makeColumn(centerX + 360, centerY + 30, 39)
+makeColumn(centerX + 370, centerY + 50, 35)
+makeColumn(centerX + 380, centerY + 60, 33)
+makeColumn(centerX + 390, centerY + 70, 33)
+makeColumn(centerX + 400, centerY + 80, 30)
+makeColumn(centerX + 410, centerY + 90, 28)
+makeColumn(centerX + 420, centerY + 110, 25)
+makeColumn(centerX + 430, centerY + 100, 27)
+makeColumn(centerX + 440, centerY + 90, 27)
+makeColumn(centerX + 450, centerY + 120, 25)
+makeColumn(centerX + 460, centerY + 100, 25)
+makeColumn(centerX + 470, centerY + 110, 25)
+makeColumn(centerX + 480, centerY + 140, 23)
+makeColumn(centerX + 490, centerY + 130, 23)
+makeColumn(centerX + 500, centerY + 140, 22)
+makeColumn(centerX + 510, centerY + 130, 22)
+makeColumn(centerX + 520, centerY + 150, 19)
+makeColumn(centerX + 530, centerY + 160, 18)
+makeColumn(centerX + 540, centerY + 170, 16)
+makeColumn(centerX + 550, centerY + 180, 15)
+makeColumn(centerX + 560, centerY + 190, 13)
+makeColumn(centerX + 570, centerY + 190, 11)
+makeColumn(centerX + 580, centerY + 190, 10)
+makeColumn(centerX + 590, centerY + 200, 8)
+makeColumn(centerX + 600, centerY + 210, 5)
+dot(centerX + 560, centerY + 180)
+dot(centerX + 570, centerY + 180)
+dot(centerX + 570, centerY + 170)
+dot(centerX + 580, centerY + 170)
+dot(centerX + 590, centerY + 170)
+dot(centerX + 590, centerY + 160)
+dot(centerX + 600, centerY + 160)
+dot(centerX + 610, centerY + 160)
+
+// Dark Side of The Moon
+let line1 = '#d83343'
+let line2 = '#e29325'
+let line3 = '#fbe622'
+let line4 = '#7fba45'
+let line5 = '#67c0ce'
+let line6 = '#7b648e'
+
+ctx.fillStyle = line1
+makeRow(centerX + 460, centerY + 210, 5)
+makeRow(centerX + 400, centerY + 200, 9)
+makeRow(centerX + 350, centerY + 190, 9)
+makeRow(centerX + 300, centerY + 180, 8)
+makeRow(centerX + 260, centerY + 170, 8)
+makeRow(centerX + 210, centerY + 160, 8)
+makeRow(centerX + 180, centerY + 150, 7)
+makeRow(centerX + 140, centerY + 140, 6)
+makeRow(centerX + 130, centerY + 130, 1)
+ctx.fillStyle = line2
+makeRow(centerX + 470, centerY + 230, 4)
+makeRow(centerX + 410, centerY + 220, 10)
+makeRow(centerX + 360, centerY + 210, 10)
+makeRow(centerX + 320, centerY + 200, 8)
+makeRow(centerX + 280, centerY + 190, 7)
+makeRow(centerX + 240, centerY + 180, 6)
+makeRow(centerX + 200, centerY + 170, 6)
+makeRow(centerX + 170, centerY + 160, 5)
+makeRow(centerX + 140, centerY + 150, 4)
+ctx.fillStyle = line3
+makeRow(centerX + 440, centerY + 240, 7)
+makeRow(centerX + 490, centerY + 250, 2)
+makeRow(centerX + 400, centerY + 230, 7)
+makeRow(centerX + 350, centerY + 220, 6)
+makeRow(centerX + 310, centerY + 210, 5)
+makeRow(centerX + 270, centerY + 200, 5)
+makeRow(centerX + 230, centerY + 190, 5)
+makeRow(centerX + 200, centerY + 180, 4)
+makeRow(centerX + 170, centerY + 170, 3)
+makeRow(centerX + 150, centerY + 160, 3)
+ctx.fillStyle = line4
+makeRow(centerX + 500, centerY + 270, 1)
+makeRow(centerX + 460, centerY + 260, 5)
+makeRow(centerX + 430, centerY + 250, 6)
+makeRow(centerX + 400, centerY + 240, 5)
+makeRow(centerX + 350, centerY + 230, 6)
+makeRow(centerX + 300, centerY + 220, 5)
+makeRow(centerX + 260, centerY + 210, 5)
+makeRow(centerX + 220, centerY + 200, 5)
+makeRow(centerX + 190, centerY + 190, 4)
+makeRow(centerX + 160, centerY + 180, 4)
+makeRow(centerX + 140, centerY + 170, 3)
+ctx.fillStyle = line5
+makeRow(centerX + 480, centerY + 280, 3)
+makeRow(centerX + 450, centerY + 270, 5)
+makeRow(centerX + 420, centerY + 260, 4)
+makeRow(centerX + 390, centerY + 250, 4)
+makeRow(centerX + 340, centerY + 240, 6)
+makeRow(centerX + 300, centerY + 230, 5)
+makeRow(centerX + 260, centerY + 220, 4)
+makeRow(centerX + 220, centerY + 210, 4)
+makeRow(centerX + 180, centerY + 200, 4)
+makeRow(centerX + 160, centerY + 190, 3)
+ctx.fillStyle = line6
+makeRow(centerX + 480, centerY + 300, 3)
+makeRow(centerX + 440, centerY + 290, 7)
+makeRow(centerX + 410, centerY + 280, 7)
+makeRow(centerX + 380, centerY + 270, 7)
+makeRow(centerX + 350, centerY + 260, 7)
+makeRow(centerX + 320, centerY + 250, 7)
+makeRow(centerX + 280, centerY + 240, 7)
+makeRow(centerX + 230, centerY + 230, 7)
+makeRow(centerX + 200, centerY + 220, 6)
+makeRow(centerX + 170, centerY + 210, 5)
+makeRow(centerX + 160, centerY + 200, 3)
+
+// The triangle
+ctx.fillStyle = '#9caaad'
+dot(centerX + 120, centerY + 130)
+dot(centerX + 120, centerY + 120)
+dot(centerX + 110, centerY + 120)
+dot(centerX + 110, centerY + 110)
+dot(centerX + 110, centerY + 100)
+dot(centerX + 100, centerY + 100)
+dot(centerX + 100, centerY + 90)
+dot(centerX + 90, centerY + 80)
+dot(centerX + 90, centerY + 70)
+dot(centerX + 80, centerY + 60)
+dot(centerX + 80, centerY + 50)
+dot(centerX + 70, centerY + 40)
+dot(centerX + 70, centerY + 30)
+dot(centerX + 60, centerY + 20)
+dot(centerX + 60, centerY + 10)
+dot(centerX + 50, centerY + 10)
+dot(centerX + 50, centerY + 20)
+dot(centerX + 130, centerY + 140)
+dot(centerX + 130, centerY + 150)
+dot(centerX + 140, centerY + 160)
+dot(centerX + 140, centerY + 170)
+dot(centerX + 150, centerY + 180)
+dot(centerX + 150, centerY + 190)
+dot(centerX + 160, centerY + 200)
+dot(centerX + 160, centerY + 210)
+dot(centerX + 170, centerY + 220)
+dot(centerX + 170, centerY + 230)
+dot(centerX + 180, centerY + 240)
+dot(centerX + 180, centerY + 250)
+dot(centerX + 190, centerY + 260)
+dot(centerX + 190, centerY + 270)
+dot(centerX + 200, centerY + 280)
+dot(centerX + 200, centerY + 290)
+dot(centerX + 210, centerY + 300)
+dot(centerX + 210, centerY + 310)
+dot(centerX + 220, centerY + 320)
+dot(centerX + 230, centerY + 330)
+dot(centerX + 230, centerY + 340)
+makeRow(centerX - 120, centerY + 340, 36)
+dot(centerX + 40, centerY + 30)
+dot(centerX + 40, centerY + 40)
+dot(centerX + 30, centerY + 50)
+dot(centerX + 30, centerY + 60)
+dot(centerX + 20, centerY + 70)
+dot(centerX + 20, centerY + 80)
+dot(centerX + 10, centerY + 90)
+dot(centerX + 10, centerY + 100)
+dot(centerX, centerY + 100)
+dot(centerX, centerY + 110)
+dot(centerX, centerY + 120)
+dot(centerX - 10, centerY + 120)
+dot(centerX - 10, centerY + 130)
+dot(centerX - 20, centerY + 140)
+dot(centerX - 20, centerY + 150)
+dot(centerX - 30, centerY + 160)
+dot(centerX - 30, centerY + 170)
+dot(centerX - 40, centerY + 180)
+dot(centerX - 40, centerY + 190)
+dot(centerX - 50, centerY + 200)
+dot(centerX - 50, centerY + 210)
+dot(centerX - 60, centerY + 220)
+dot(centerX - 60, centerY + 230)
+dot(centerX - 70, centerY + 240)
+dot(centerX - 70, centerY + 250)
+dot(centerX - 80, centerY + 260)
+dot(centerX - 80, centerY + 270)
+dot(centerX - 90, centerY + 280)
+dot(centerX - 90, centerY + 290)
+dot(centerX - 100, centerY + 300)
+dot(centerX - 100, centerY + 310)
+dot(centerX - 110, centerY + 320)
+dot(centerX - 120, centerY + 330)
+
+ctx.fillStyle = '#4d6965'
+dot(centerX - 120, centerY + 330)
+dot(centerX - 100, centerY + 330)
+dot(centerX - 100, centerY + 320)
+dot(centerX - 90, centerY + 300)
+dot(centerX + 220, centerY + 330)
+for (let i = 0; i < 14; i++) {
+  dot(centerX - 90 + i * PIXEL, centerY + 300 - i * 20)
+}
+for (let i = 0; i < 5; i++) {
+  dot(centerX + 70 + i * PIXEL, centerY + 50 + i * 2 * PIXEL)
+}
+for (let i = 0; i < 10; i++) {
+  dot(centerX + 120 + i * PIXEL, centerY + 140 + i * 2 * PIXEL)
+}
+
+ctx.fillStyle = '#6d8881'
+dot(centerX - 110, centerY + 330)
+dot(centerX + 50, centerY + 10)
+dot(centerX - 100, centerY + 310)
+dot(centerX - 70, centerY + 260)
+dot(centerX - 30, centerY + 190)
+dot(centerX + 50, centerY + 30)
+dot(centerX + 60, centerY + 30)
+// ctx.fillStyle = 'red'
+dot(centerX + 20, centerY + 90)
+
+ctx.fillStyle = '#37514e'
+dot(centerX - 80, centerY + 290)
+dot(centerX - 50, centerY + 230)
+dot(centerX - 40, centerY + 210)
+dot(centerX - 20, centerY + 170)
+dot(centerX - 10, centerY + 150)
+dot(centerX, centerY + 130)
+dot(centerX + 10, centerY + 110)
+dot(centerX + 30, centerY + 40)
+dot(centerX + 50, centerY + 40)
+dot(centerX - 90, centerY + 310)
+dot(centerX + 180, centerY + 270)
+dot(centerX + 170, centerY + 250)
+dot(centerX + 150, centerY + 210)
+dot(centerX + 140, centerY + 190)
+dot(centerX + 120, centerY + 150)
+dot(centerX + 200, centerY + 310)
+dot(centerX + 190, centerY + 290)
+
+ctx.fillStyle = '#1e322f'
+dot(centerX - 70, centerY + 270)
+dot(centerX - 60, centerY + 250)
+dot(centerX + 10, centerY + 80)
+dot(centerX + 20, centerY + 60)
+dot(centerX + 60, centerY + 40)
+dot(centerX + 160, centerY + 230)
+dot(centerX + 130, centerY + 170)
+makeRow(centerX - 90, centerY + 330, 31)
+
+ctx.fillStyle = '#c0c0c1'
+dot(centerX - 40, centerY + 160)
+
+for (let i = 0; i < 11; i++) {
+  makeRow(centerX - 70 - i * 3 * PIXEL, centerY + 170 + i * PIXEL, 3)
+}
+
+ctx.fillStyle = '#7c9091'
+dot(centerX - 10, centerY + 160)
+ctx.fillStyle = '#627973'
+dot(centerX, centerY + 160)
+dot(centerX, centerY + 170)
+ctx.fillStyle = '#4c6457'
+dot(centerX + 10, centerY + 160)
+dot(centerX + 10, centerY + 170)
+ctx.fillStyle = '#40574f'
+dot(centerX + 20, centerY + 150)
+dot(centerX + 20 , centerY + 160)
+dot(centerX + 20 , centerY + 170)
+ctx.fillStyle = '#4c6457'
+dot(centerX + 30 , centerY + 150)
+ctx.fillStyle = '#40574f'
+dot(centerX + 30 , centerY + 160)
+dot(centerX + 30 , centerY + 170)
+ctx.fillStyle = '#283838'
+dot(centerX + 40 , centerY + 150)
+dot(centerX + 40 , centerY + 160)
+dot(centerX + 40 , centerY + 170)
+ctx.fillStyle = '#13191c'
+dot(centerX + 50 , centerY + 150)
+dot(centerX + 50 , centerY + 160)
+dot(centerX + 50 , centerY + 170)
+ctx.fillStyle = '#121617'
+dot(centerX + 50 , centerY + 180)
+
+// ctx.fillStyle = 'red'
