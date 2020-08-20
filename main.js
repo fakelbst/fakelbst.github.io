@@ -4,8 +4,10 @@ const canvas = document.querySelector('canvas')
 const styleHeight = +getComputedStyle(canvas).getPropertyValue('height').slice(0, -2)
 const styleWidth = +getComputedStyle(canvas).getPropertyValue('width').slice(0, -2)
 
-const canvasHeight = styleHeight * DPI
-const canvasWidth = styleWidth * DPI
+// const canvasHeight = styleHeight * DPI
+// const canvasWidth = styleWidth * DPI
+const canvasHeight = 494
+const canvasWidth = 800
 
 function fixDpi() {
   canvas.setAttribute('height', canvasHeight)
@@ -15,16 +17,18 @@ fixDpi()
 
 const ctx = canvas.getContext('2d')
 
-let trigleColors = ["#fbffff", "#ced8e1", "#b1ced7", "#a6ctxd2", "#a0b9c8", "#9ab0c0", "#8da2ae", "#8095a1", "#7e95a0", "#78919c", "#68858e", "#5e7e84", "#597674", "#496c68"]
+let trigleColors = ["#CDCBD2", "#B3ADB9", "#B3ADB9", "#877283", "#735667", "#454655", "#A7A8CD", "#FFDADA", "#DEA3A4", "#474748", "#785B00", "#CFA616"]
+
+// let trigleColors = ["#fbffff", "#ced8e1", "#b1ced7", "#a6ctxd2", "#a0b9c8", "#9ab0c0", "#8da2ae", "#8095a1", "#7e95a0", "#78919c", "#68858e", "#5e7e84", "#597674", "#496c68"]
 
 function clear() {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 }
 
 let angle = 0, points = []
-const H = 350
+const H = 180
 function createParticles() {
-  let pos = { x: canvasWidth/2, y: canvasHeight/2 - 300 }
+  let pos = { x: canvasWidth/2, y: canvasHeight/2 - 150 }
   for (let i = 0; i < 3; i++) {
     angle += 60;
     angle = (60 + angle) % 360;
@@ -52,7 +56,7 @@ function drawT() {
   for(let i=0, j = points.length; i<j; i++) {
     ctx.beginPath()
     ctx.fillStyle = points[i].color
-    ctx.arc(points[i].x, points[i].y, 3, 0, 2 * Math.PI)
+    ctx.arc(points[i].x, points[i].y, 2, 0, 2 * Math.PI)
     ctx.fill()
   }
   ctx.stroke()
@@ -61,7 +65,7 @@ function drawT() {
 
 function update() {
   clear()
-  let range = 20
+  let range = 5
   for(let i = 0, j = points.length; i<j; i++) {
     let dx = Math.random() - 0.5
     let dy = Math.random() - 0.5
