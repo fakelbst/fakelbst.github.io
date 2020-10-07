@@ -10,30 +10,27 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div id="bb-bookblock" class="content">
+    <div id="bb-bookblock" class="content bb-bookblock">
       <div class="bb-item">
-        <div class="first">
+        <div class="pages first">
           <canvas class="first-c"></canvas>
+        </div>
+      </div>
+      <div class="bb-item">
+        <div class="pages second">
+          <p>......</p>
         </div>
       </div>
     </div>
     <script src="bookblock.js"></script>
     <script src="main.js"></script>
     <script>
-      new BookBlock(document.querySelector('#bb-bookblock'), {
+      const bbInstance = new BookBlock(document.querySelector('#bb-bookblock'), {
+        speed: 800,
         shadowSides : 0.8,
         shadowFlip : 0.7
       })
     </script>
-    <!--script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-39511984-2', 'auto');
-      ga('send', 'pageview');
-    </script-->
   </body>
 </html>
 

@@ -27,7 +27,7 @@ body {
 	box-shadow: 0 12px 20px -10px rgba(81,64,49,0.6);
 }
 
-.first {
+.pages {
   background: linear-gradient(to right, rgba(233, 233, 235, 1) 0%, rgba(228, 228, 228, 1) 100%);
   position: absolute;
   width: 100%;
@@ -37,4 +37,9 @@ body {
 .first-c {
   width: 100%;
   height: 100%;
+}
+
+.second p {
+  text-align: center;
+  margin-top: 200px;
 }

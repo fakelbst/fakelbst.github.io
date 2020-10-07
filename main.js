@@ -19,7 +19,7 @@ const ctx = canvas.getContext('2d')
 
 let trigleColors = ["#CDCBD2", "#B3ADB9", "#B3ADB9", "#877283", "#735667", "#454655", "#A7A8CD", "#FFDADA", "#DEA3A4", "#474748", "#785B00", "#CFA616"]
 
-// let trigleColors = ["#fbffff", "#ced8e1", "#b1ced7", "#a6ctxd2", "#a0b9c8", "#9ab0c0", "#8da2ae", "#8095a1", "#7e95a0", "#78919c", "#68858e", "#5e7e84", "#597674", "#496c68"]
+let firstAnim = null
 
 function clear() {
   ctx.clearRect(0, 0, canvasWidth, canvasHeight)
@@ -60,7 +60,7 @@ function drawT() {
     ctx.fill()
   }
   ctx.stroke()
-  requestAnimationFrame(update)
+  firstAnim = requestAnimationFrame(update)
 }
 
 function update() {
@@ -87,4 +87,15 @@ function update() {
 
 createParticles()
 drawT()
+
+document.querySelector('.first').addEventListener('click', function() {
+  cancelAnimationFrame(firstAnim)
+  var image = new Image()
+  // image.id = "pic"
+  image.src = canvas.toDataURL()
+  this.appendChild(image)
+  canvas.remove()
+  // canvas.style.display = 'none'
+  bbInstance.next()
+})
 
