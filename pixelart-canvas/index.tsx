@@ -23,6 +23,7 @@ function PixelCanvas() {
   const pixelGridRef = useRef(null)
   const [selectedColorIndex, setSelectedColorIndex] = useState(0)
   const [usingEraser, setUsingEraser] = useState(false)
+  const [drawing, setDrawing] = useState(false)
 
   useEffect(() => {
     const el = pixelGridRef.current
@@ -39,6 +40,7 @@ function PixelCanvas() {
   }, [])
 
   const draw = (e: any) => {
+    setDrawing(true)
     const el = e.target
     if (usingEraser) {
       el.style.background = null
@@ -47,6 +49,23 @@ function PixelCanvas() {
       el.style.background = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
       el.setAttribute('data-color-index', selectedColorIndex)
     }
+  }
+
+  const move = (e: any) => {
+    if (drawing) {
+      const el = e.target
+      if (usingEraser) {
+        el.style.background = null
+        el.removeAttribute('data-color-index')
+      } else {
+        el.style.background = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
+        el.setAttribute('data-color-index', selectedColorIndex)
+      }
+    }
+  }
+
+  const stop = () => {
+    setDrawing(false)
   }
 
   const exportArr = () => {
@@ -90,7 +109,7 @@ function PixelCanvas() {
         </div>
       </div>
       <div className="draw-container">
-        <div onMouseDown={draw} className="pixel-grid" ref={pixelGridRef}></div>
+        <div onMouseUp={stop} onMouseMove={move} onMouseDown={draw} className="pixel-grid" ref={pixelGridRef}></div>
       </div>
     </div>
   )

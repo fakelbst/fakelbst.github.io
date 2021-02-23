@@ -517,6 +517,7 @@ function PixelCanvas() {
     var pixelGridRef = react.useRef(null);
     var _a = react.useState(0), selectedColorIndex = _a[0], setSelectedColorIndex = _a[1];
     var _b = react.useState(false), usingEraser = _b[0], setUsingEraser = _b[1];
+    var _c = react.useState(false), drawing = _c[0], setDrawing = _c[1];
     react.useEffect(function () {
         var el = pixelGridRef.current;
         for (var i = 0; i < 100; i++) {
@@ -531,6 +532,7 @@ function PixelCanvas() {
         }
     }, []);
     var draw = function (e) {
+        setDrawing(true);
         var el = e.target;
         if (usingEraser) {
             el.style.background = null;
@@ -540,6 +542,22 @@ function PixelCanvas() {
             el.style.background = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
             el.setAttribute('data-color-index', selectedColorIndex);
         }
+    };
+    var move = function (e) {
+        if (drawing) {
+            var el = e.target;
+            if (usingEraser) {
+                el.style.background = null;
+                el.removeAttribute('data-color-index');
+            }
+            else {
+                el.style.background = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
+                el.setAttribute('data-color-index', selectedColorIndex);
+            }
+        }
+    };
+    var stop = function () {
+        setDrawing(false);
     };
     var exportArr = function () {
         var els = document.querySelectorAll('.dot');
@@ -577,6 +595,6 @@ function PixelCanvas() {
                     react.createElement("path", { d: "M715.6 916.3H188.3c-67 0-121.9-54.9-121.9-121.9v-568c0-67 54.9-121.9 121.9-121.9h436.5v69.7H188.3c-28.5 0-52.3 23.2-52.3 52.3V795c0 28.5 23.2 52.3 52.3 52.3h527.3c28.5 0 52.3-23.2 52.3-52.3V593.2H837v201.6c0 66.6-54.4 121.5-121.4 121.5z m0 0", "p-id": "5948", fill: "#cccfe2" }),
                     react.createElement("path", { d: "M183 566.9h112.4V626H183v-59.1z m0 154.1h296.1v59.1H183V721z m0-425.4h237v59.1H183v-59.1z m0 140.9h112.4v59.1H183v-59.1z m0 0", "p-id": "5949", fill: "#cccfe2" })))),
         react.createElement("div", { className: "draw-container" },
-            react.createElement("div", { onMouseDown: draw, className: "pixel-grid", ref: pixelGridRef }))));
+            react.createElement("div", { onMouseUp: stop, onMouseMove: move, onMouseDown: draw, className: "pixel-grid", ref: pixelGridRef }))));
 }
 reactDom.render(react.createElement(PixelCanvas, null), document.getElementById('root'));
