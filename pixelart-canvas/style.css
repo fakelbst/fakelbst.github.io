@@ -40,8 +40,8 @@
   margin-left: auto;
 }
 
-canvas {
-  display: none;
+.preview-canvas {
+  display: block;
   margin: 0 auto;
 }
 
