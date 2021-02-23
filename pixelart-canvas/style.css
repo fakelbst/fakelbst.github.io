@@ -80,3 +80,9 @@ canvas {
   margin-bottom: 10px;
 }
 
+.icon {
+  padding: 8px;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
