@@ -2,22 +2,25 @@ import React, { useState, useEffect } from 'react'
 import {UnControlled as CodeMirror} from 'react-codemirror2'
 import 'codemirror/keymap/vim'
 
-function CodeEditor(props: { data: string }) {
-  const [value, setValue] = useState('')
+function CodeEditor(props: { data: string, editCode: (arg0: string) => void }){
+  const [initValue, setInitValue] = useState('')
 
   useEffect(() => {
-    setValue(props.data)
+    setInitValue(props.data)
   }, [])
 
   return (
     <CodeMirror
-      value={value}
+      value={initValue}
       className="editor"
       options={{
         theme: 'material',
         lineWrapping: true,
         keyMap: 'vim',
         lineSeparator: '/n',
+      }}
+      onChange={(editor, data, value) => {
+        props.editCode(value)
       }}
     />
   )

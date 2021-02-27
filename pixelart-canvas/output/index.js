@@ -17442,15 +17442,17 @@ createCommonjsModule(function (module, exports) {
 });
 
 function CodeEditor(props) {
-    var _a = react.useState(''), value = _a[0], setValue = _a[1];
+    var _a = react.useState(''), initValue = _a[0], setInitValue = _a[1];
     react.useEffect(function () {
-        setValue(props.data);
+        setInitValue(props.data);
     }, []);
-    return (react.createElement(reactCodemirror2.UnControlled, { value: value, className: "editor", options: {
+    return (react.createElement(reactCodemirror2.UnControlled, { value: initValue, className: "editor", options: {
             theme: 'material',
             lineWrapping: true,
             keyMap: 'vim',
             lineSeparator: '/n',
+        }, onChange: function (editor, data, value) {
+            props.editCode(value);
         } }));
 }
 
@@ -17485,21 +17487,38 @@ function PixelCanvas() {
     var _c = react.useState(false), drawing = _c[0], setDrawing = _c[1];
     var _d = react.useState(false), codeEditing = _d[0], setCodeEditing = _d[1];
     var _e = react.useState(''), pixelsData = _e[0], setPixelsData = _e[1];
+    var _f = react.useState(''), editingCode = _f[0], setEditingCode = _f[1];
+    var _g = react.useState(''), loadedPixelData = _g[0], setLoadedPixelData = _g[1];
     react.useEffect(function () {
-        if (codeEditing)
-            return;
-        var el = pixelGridRef.current;
-        for (var i = 0; i < 100; i++) {
-            var wrapperDiv = document.createElement('div');
-            wrapperDiv.className = 'dot-wrapper';
-            for (var ii = 0; ii < 100; ii++) {
-                var div = document.createElement('div');
-                div.className = 'dot';
-                wrapperDiv.append(div);
+        if (codeEditing) ;
+        else {
+            var el = pixelGridRef.current;
+            for (var i = 0; i < 100; i++) {
+                var wrapperDiv = document.createElement('div');
+                wrapperDiv.className = 'dot-wrapper';
+                for (var ii = 0; ii < 100; ii++) {
+                    var div = document.createElement('div');
+                    div.className = 'dot';
+                    wrapperDiv.append(div);
+                }
+                el.append(wrapperDiv);
             }
-            el.append(wrapperDiv);
         }
     }, [codeEditing]);
+    react.useEffect(function () {
+        if (!loadedPixelData)
+            return;
+        var allEls = document.querySelectorAll('.dot');
+        var data = loadedPixelData.split(',');
+        for (var i = 0, j = data.length; i < j; i++) {
+            allEls[i].style.background = null;
+            allEls[i].removeAttribute('data-color-index');
+            if (!data[i])
+                continue;
+            allEls[i].style.background = "rgb(" + COLORS[+data[i]][0] + ", " + COLORS[+data[i]][1] + ", " + COLORS[+data[i]][2] + ")";
+            allEls[i].setAttribute('data-color-index', data[i]);
+        }
+    }, [loadedPixelData]);
     var draw = function (e) {
         setDrawing(true);
         var el = e.target;
@@ -17569,6 +17588,37 @@ function PixelCanvas() {
     var importFile = function () {
         uploadRef.current.click();
     };
+    var handleCodeMode = function () {
+        if (!codeEditing) {
+            genPixelCode();
+            setCodeEditing(true);
+        }
+        else {
+            var arr = editingCode.split('/n');
+            if (arr.length !== 100) {
+                alert('Lines not equals 100, please check Lines length.');
+                return;
+            }
+            var result = '';
+            for (var i = 0; i < 100; i++) {
+                var line = arr[i].slice(0, -1).split(',');
+                if (line.length !== 100) {
+                    alert("Please check line " + (i + 1));
+                    break;
+                }
+                for (var ii = 0; ii < 100; ii++) {
+                    // TODO: check color index
+                    if (!line[ii]) {
+                        result += ',';
+                        continue;
+                    }
+                    result += line[ii] + ',';
+                }
+            }
+            setCodeEditing(false);
+            setLoadedPixelData(result.slice(0, -1));
+        }
+    };
     var handleUpload = function (e) {
         var files = e.target.files;
         var reader = new FileReader();
@@ -17577,6 +17627,8 @@ function PixelCanvas() {
             var data = value.split(',');
             var allEls = document.querySelectorAll('.dot');
             for (var i = 0, j = data.length; i < j; i++) {
+                allEls[i].style.background = null;
+                allEls[i].removeAttribute('data-color-index');
                 if (!data[i])
                     continue;
                 allEls[i].style.background = "rgb(" + COLORS[+data[i]][0] + ", " + COLORS[+data[i]][1] + ", " + COLORS[+data[i]][2] + ")";
@@ -17589,7 +17641,7 @@ function PixelCanvas() {
     var getPixel = function () {
         var els = document.querySelectorAll('.dot');
         var arr = '';
-        els.forEach(function (el, index) {
+        els.forEach(function (el) {
             if (!el.hasAttribute('data-color-index')) {
                 arr += ',';
             }
@@ -17627,6 +17679,9 @@ function PixelCanvas() {
         downloadLink.click();
         downloadLink.remove();
     };
+    var setEditorCode = function (data) {
+        setEditingCode(data);
+    };
     return (react.createElement("div", { className: "container" },
         react.createElement("div", { className: "toolbar" },
             react.createElement("div", { className: "toolbox" },
@@ -17647,7 +17702,7 @@ function PixelCanvas() {
                         react.createElement("path", { d: "M183 566.9h112.4V626H183v-59.1z m0 154.1h296.1v59.1H183V721z m0-425.4h237v59.1H183v-59.1z m0 140.9h112.4v59.1H183v-59.1z m0 0", "p-id": "5949", fill: "#cccfe2" })),
                     react.createElement("svg", { onClick: importFile, className: "icon", viewBox: "0 0 1264 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "14775", width: "200", height: "200" },
                         react.createElement("path", { d: "M1264.585487 705.114353c-0.210824 0-6.144-11.565176-13.191529-25.720471l-184.801883-370.838588c-7.047529-14.155294-25.720471-25.720471-41.472-25.72047l-153.178353 0.060235a28.792471 28.792471 0 0 0-28.672 28.762353v48.850823c0 15.811765 12.920471 28.762353 28.672 28.792471h48.700236c15.751529 0.030118 34.364235 11.625412 41.351529 25.810823l131.011765 265.60753c6.987294 14.155294-0.180706 25.750588-15.962353 25.750588h-208.052706a28.792471 28.792471 0 0 0-28.641882 28.762353v150.437647a28.792471 28.792471 0 0 1-28.672 28.762353H451.10784a28.792471 28.792471 0 0 1-28.641882-28.762353v-150.437647a28.792471 28.792471 0 0 0-28.672-28.762353H181.524781c-15.751529 0-22.738824-11.474824-15.510588-25.539765l137.005176-266.450823c7.228235-14.064941 26.021647-25.539765 41.773177-25.539765l47.435294 0.030118a28.762353 28.762353 0 0 0 28.672-28.732236v-48.429176a28.792471 28.792471 0 0 0-28.672-28.762353L239.772311 283.105882c-15.751529 0-34.454588 11.565176-41.532236 25.690353L12.504546 679.664941c-7.077647 14.155294-12.709647 25.690353-12.498824 25.690353 0.210824 0 0.361412 12.950588 0.361412 28.762353v261.12c0 15.811765 12.920471 28.762353 28.672 28.762353h1207.235765c15.781647 0 28.672-12.950588 28.672-28.762353v-261.360941c0-15.811765-0.150588-28.762353-0.361412-28.762353z m-364.242823-262.144h-157.274353V0h-210.642824v442.970353h-165.707294c-15.751529 0-20.088471 9.667765-9.637647 21.504l260.999529 295.514353a24.425412 24.425412 0 0 0 37.76753-0.210824l254.403764-295.062588c10.300235-11.986824 5.842824-21.744941-9.938823-21.744941z", "p-id": "14776", fill: "#cccfe2" })),
-                    react.createElement("svg", { onClick: function () { genPixelCode(); setCodeEditing(!codeEditing); }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "3801", width: "200", height: "200" },
+                    react.createElement("svg", { onClick: function () { handleCodeMode(); /*genPixelCode(); setCodeEditing(!codeEditing)*/ }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "3801", width: "200", height: "200" },
                         react.createElement("path", { d: "M280.234667 426.666667L183.253333 329.472a43.093333 43.093333 0 0 1 0-60.885333 42.922667 42.922667 0 0 1 60.757334 0l127.402666 127.658666a42.922667 42.922667 0 0 1 0 60.842667l-127.402666 127.658667a42.922667 42.922667 0 0 1-60.757334 0 43.093333 43.093333 0 0 1 0-60.885334L280.234667 426.666667z", "p-id": "3802", fill: codeEditing ? '#e91e63' : '#cccfe2' }),
                         react.createElement("path", { d: "M85.333333 170.666667v682.666666h853.333334V170.666667H85.333333z m0-85.333334h853.333334a85.333333 85.333333 0 0 1 85.333333 85.333334v682.666666a85.333333 85.333333 0 0 1-85.333333 85.333334H85.333333a85.333333 85.333333 0 0 1-85.333333-85.333334V170.666667a85.333333 85.333333 0 0 1 85.333333-85.333334z", "p-id": "3803", fill: codeEditing ? '#e91e63' : '#cccfe2' }),
                         react.createElement("path", { d: "M426.666667 512h170.666666a42.666667 42.666667 0 0 1 0 85.333333h-170.666666a42.666667 42.666667 0 0 1 0-85.333333z", "p-id": "3804", fill: codeEditing ? '#e91e63' : '#cccfe2' }))),
@@ -17663,7 +17718,7 @@ function PixelCanvas() {
             react.createElement("div", { className: "toolbox" },
                 react.createElement("canvas", { ref: previewRef, className: "preview-canvas", width: "100", height: "100" }))),
         react.createElement("div", { className: "draw-container" }, codeEditing
-            ? react.createElement(CodeEditor, { data: pixelsData }) :
+            ? react.createElement(CodeEditor, { data: pixelsData, editCode: setEditorCode }) :
             react.createElement("div", { onMouseLeave: stop, onMouseUp: stop, onMouseMove: move, onMouseDown: draw, className: "pixel-grid", ref: pixelGridRef }))));
 }
 reactDom.render(react.createElement(PixelCanvas, null), document.getElementById('root'));
