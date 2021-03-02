@@ -17478,17 +17478,25 @@ var COLORS = [
     [255, 204, 104],
     [255, 248, 192]
 ];
+COLORS = [
+    [0, 0, 0],
+    [146, 127, 117],
+    [195, 172, 163],
+    [92, 73, 66],
+    [54, 32, 28],
+];
 function PixelCanvas() {
     var previewRef = react.useRef(null);
     var pixelGridRef = react.useRef(null);
     var uploadRef = react.useRef(null);
     var _a = react.useState(0), selectedColorIndex = _a[0], setSelectedColorIndex = _a[1];
     var _b = react.useState(false), usingEraser = _b[0], setUsingEraser = _b[1];
-    var _c = react.useState(false), drawing = _c[0], setDrawing = _c[1];
-    var _d = react.useState(false), codeEditing = _d[0], setCodeEditing = _d[1];
-    var _e = react.useState(''), pixelsData = _e[0], setPixelsData = _e[1];
-    var _f = react.useState(''), editingCode = _f[0], setEditingCode = _f[1];
-    var _g = react.useState(''), loadedPixelData = _g[0], setLoadedPixelData = _g[1];
+    var _c = react.useState(false), usingColorPicker = _c[0], setUsingColorPicker = _c[1];
+    var _d = react.useState(false), drawing = _d[0], setDrawing = _d[1];
+    var _e = react.useState(false), codeEditing = _e[0], setCodeEditing = _e[1];
+    var _f = react.useState(''), pixelsData = _f[0], setPixelsData = _f[1];
+    var _g = react.useState(''), editingCode = _g[0], setEditingCode = _g[1];
+    var _h = react.useState(''), loadedPixelData = _h[0], setLoadedPixelData = _h[1];
     react.useEffect(function () {
         if (codeEditing) ;
         else {
@@ -17522,6 +17530,13 @@ function PixelCanvas() {
     var draw = function (e) {
         setDrawing(true);
         var el = e.target;
+        if (usingColorPicker) {
+            var colorIndex = el.getAttribute('data-color-index');
+            if (colorIndex === null)
+                return;
+            setSelectedColorIndex(colorIndex);
+            return;
+        }
         if (usingEraser) {
             el.style.background = null;
             el.removeAttribute('data-color-index');
@@ -17624,7 +17639,7 @@ function PixelCanvas() {
         var reader = new FileReader();
         reader.onload = function (event) {
             var value = event.target.result;
-            var data = value.split(',');
+            var data = value.slice(0, -1).split(',');
             var allEls = document.querySelectorAll('.dot');
             for (var i = 0, j = data.length; i < j; i++) {
                 allEls[i].style.background = null;
@@ -17713,7 +17728,9 @@ function PixelCanvas() {
                         react.createElement("path", { d: "M929.28 880.64l-165.376-165.376 2.56-3.072c56.832-67.072 87.552-152.576 87.552-240.128 0-205.824-167.424-373.76-373.76-373.76-205.824 0-373.76 167.424-373.76 373.76 0 205.824 167.424 373.76 373.76 373.76 84.992 0 168.448-29.696 234.496-83.456l3.072-2.56 165.888 165.888c6.656 6.656 15.36 9.728 23.552 9.216h1.024c16.384 0 29.696-13.312 29.696-29.696v-0.512c1.024-8.704-2.048-17.408-8.704-24.064z m-448.512-98.304c-171.008 0-310.272-139.264-310.272-310.272s139.264-310.272 310.272-310.272 310.272 139.264 310.272 310.272-139.264 310.272-310.272 310.272z", fill: "#cccfe2", "p-id": "2139" })),
                     react.createElement("svg", { onClick: function () { return zoom(ZoomType.OUT); }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "4191", width: "200", height: "200" },
                         react.createElement("path", { d: "M630.272 439.808H331.264c-16.384 0-29.696 14.336-29.696 31.744 0 17.92 13.312 32.256 29.696 32.256h299.008c16.384 0 29.696-14.336 29.696-31.744 0-17.408-13.312-31.744-29.696-32.256z", fill: "#cccfe2", "p-id": "4192" }),
-                        react.createElement("path", { d: "M929.28 880.64l-165.376-165.376 2.56-3.072c56.832-67.072 87.552-152.576 87.552-240.128 0-205.824-167.424-373.76-373.76-373.76-205.824 0-373.76 167.424-373.76 373.76 0 205.824 167.424 373.76 373.76 373.76 84.992 0 168.448-29.696 234.496-83.456l3.072-2.56 165.888 165.888c6.656 6.656 15.36 9.728 23.552 9.216h1.024c16.384 0 29.696-13.312 29.696-29.696v-0.512c1.024-8.704-2.048-17.408-8.704-24.064z m-448.512-98.304c-171.008 0-310.272-139.264-310.272-310.272 0-171.008 139.264-310.272 310.272-310.272 171.008 0 310.272 139.264 310.272 310.272 0 171.008-139.264 310.272-310.272 310.272z", fill: "#cccfe2", "p-id": "4193" }))),
+                        react.createElement("path", { d: "M929.28 880.64l-165.376-165.376 2.56-3.072c56.832-67.072 87.552-152.576 87.552-240.128 0-205.824-167.424-373.76-373.76-373.76-205.824 0-373.76 167.424-373.76 373.76 0 205.824 167.424 373.76 373.76 373.76 84.992 0 168.448-29.696 234.496-83.456l3.072-2.56 165.888 165.888c6.656 6.656 15.36 9.728 23.552 9.216h1.024c16.384 0 29.696-13.312 29.696-29.696v-0.512c1.024-8.704-2.048-17.408-8.704-24.064z m-448.512-98.304c-171.008 0-310.272-139.264-310.272-310.272 0-171.008 139.264-310.272 310.272-310.272 171.008 0 310.272 139.264 310.272 310.272 0 171.008-139.264 310.272-310.272 310.272z", fill: "#cccfe2", "p-id": "4193" })),
+                    react.createElement("svg", { onClick: function () { return setUsingColorPicker(!usingColorPicker); }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "4278", width: "200", height: "200" },
+                        react.createElement("path", { d: "M932.495185 175.642433l-80.716274 98.144967c-3.532061 4.284795-8.453785 6.542998-12.506969 10.132961l61.782112 49.101435c40.300234 31.962255 46.669524 90.443916 14.244048 129.933514l-19.10787 23.218957a95.423543 95.423543 0 0 1-132.249619 13.607119l-22.697833-18.065622-381.63627 464.205427c-42.674242 51.880761-105.961823 81.411105-165.196218 77.068408a138.097785 138.097785 0 0 1-76.257771-29.067123c-67.398668-53.502035-68.672526-162.127379-2.953035-242.148821L496.893659 287.568227l-22.697833-18.007719a91.659872 91.659872 0 0 1-14.244049-129.933514l19.165773-23.276859a95.36564 95.36564 0 0 1 132.191716-13.549217l61.782112 49.043532c2.721424-4.632211 3.937379-9.843448 7.46944-14.128243L761.219189 39.57124a111.578378 111.578378 0 0 1 154.600037-15.865322 107.119875 107.119875 0 0 1 16.675959 151.936515z m-398.949158 141.05082l-381.694172 464.205428c-49.448851 60.218741-51.359638 139.661156-4.16899 177.124161 13.954535 11.059403 30.804202 17.428693 50.085779 18.818357 44.121808 3.242548 92.06519-19.744799 125.185498-59.987131l381.63627-464.26333-171.044385-135.897485z", "p-id": "4279", fill: usingColorPicker ? '#e91e63' : '#cccfe2' }))),
                 react.createElement("input", { type: "file", onChange: handleUpload, ref: uploadRef, style: { display: 'none' } })),
             react.createElement("div", { className: "toolbox" },
                 react.createElement("canvas", { ref: previewRef, className: "preview-canvas", width: "100", height: "100" }))),
