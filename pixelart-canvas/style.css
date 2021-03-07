@@ -25,6 +25,11 @@
   padding: 15px;
 }
 
+.tools {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .draw-container {
   flex: 1;
   overflow: scroll;
@@ -56,6 +61,7 @@
   width: 20px;
   border: 1px solid #e1e1e6;
   flex: 0 0 auto;
+  cursor: cell;
 }
 
 .dot.zoomout {
