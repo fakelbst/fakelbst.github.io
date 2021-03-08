@@ -1,10 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { MouseEvent, useState, useEffect, useRef } from 'react'
 import ReactDOM from 'react-dom'
 import CodeEditor from './components/CodeEditor'
+
+const DATAATTRINDEX = 'data-color-index'
 
 enum ZoomType {
   IN,
   OUT
+}
+
+enum DotPx {
+  ONE,
+  TWO,
+  THREE
 }
 
 const COLORS = [
@@ -39,6 +47,8 @@ function PixelCanvas() {
   const [editingCode, setEditingCode] = useState<string>('')
   const [loadedPixelData, setLoadedPixelData] = useState<string>('')
 
+  const [dotPx, setDotPx] = useState<number>(3)
+
   useEffect(() => {
     if (codeEditing) {
       // check code
@@ -63,42 +73,67 @@ function PixelCanvas() {
     const data = loadedPixelData.split(',')
     for (let i = 0, j = data.length; i < j; i++) {
       allEls[i].style.background = null
-      allEls[i].removeAttribute('data-color-index')
+      allEls[i].removeAttribute(DATAATTRINDEX)
       if (!data[i]) continue
       allEls[i].style.background = `rgb(${COLORS[+data[i]][0]}, ${COLORS[+data[i]][1]}, ${COLORS[+data[i]][2]})`
-      allEls[i].setAttribute('data-color-index', data[i])
+      allEls[i].setAttribute(DATAATTRINDEX, data[i])
     }
   }, [loadedPixelData])
 
-  const draw = (e: any) => {
+  const getDomsByPxWidth = (el: HTMLElement) => {
+    const doms = []
+    doms.push(el)
+    // console.log()
+    const xIndex = Array.from(el.parentElement.children).indexOf(el)
+    let parentElement = el.parentElement
+    let prevLineDots = (parentElement.previousSibling as HTMLElement).children
+    if (dotPx === 2) {
+      doms.push(el.previousSibling)
+      doms.push(prevLineDots[xIndex - 1])
+      doms.push(prevLineDots[xIndex])
+    }
+    if (dotPx === 3) {
+      let nextLineDots = (parentElement.nextSibling as HTMLElement).children
+      doms.push(el.previousSibling, el.nextSibling)
+      doms.push(prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex])
+      doms.push(nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex])
+    }
+    return doms
+  }
+
+  const eraseOrDraw = (el: HTMLElement) => {
+    const doms = getDomsByPxWidth(el)
+    if (usingEraser) {
+      doms.forEach((item: HTMLElement) => {
+        item.style.background = null
+        item.removeAttribute(DATAATTRINDEX)
+      })
+    } else {
+      doms.forEach((item: HTMLElement) => {
+        item.style.background = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
+        item.setAttribute(DATAATTRINDEX, selectedColorIndex + '')
+      })
+    }
+  }
+
+  const draw = (event: MouseEvent) => {
     setDrawing(true)
-    const el = e.target
+    const el = event.target as HTMLElement
+
     if (usingColorPicker) {
-      let colorIndex = el.getAttribute('data-color-index')
+      let colorIndex = el.getAttribute(DATAATTRINDEX)
       if (colorIndex === null) return
-      setSelectedColorIndex(colorIndex)
+      setSelectedColorIndex(+colorIndex)
       return
     }
-    if (usingEraser) {
-      el.style.background = null
-      el.removeAttribute('data-color-index')
-    } else {
-      el.style.background = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
-      el.setAttribute('data-color-index', selectedColorIndex)
-    }
+    eraseOrDraw(el)
     genPreview()
   }
 
-  const move = (e: any) => {
+  const move = (e: MouseEvent) => {
     if (drawing) {
-      const el = e.target
-      if (usingEraser) {
-        el.style.background = null
-        el.removeAttribute('data-color-index')
-      } else {
-        el.style.background = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
-        el.setAttribute('data-color-index', selectedColorIndex)
-      }
+      const el = e.target as HTMLElement
+      eraseOrDraw(el)
     }
   }
 
@@ -186,10 +221,10 @@ function PixelCanvas() {
       const allEls = document.querySelectorAll<HTMLElement>('.dot')
       for (let i = 0, j = data.length; i < j; i++) {
         allEls[i].style.background = null
-        allEls[i].removeAttribute('data-color-index')
+        allEls[i].removeAttribute(DATAATTRINDEX)
         if (!data[i]) continue
         allEls[i].style.background = `rgb(${COLORS[+data[i]][0]}, ${COLORS[+data[i]][1]}, ${COLORS[+data[i]][2]})`
-        allEls[i].setAttribute('data-color-index', data[i])
+        allEls[i].setAttribute(DATAATTRINDEX, data[i])
       }
     }
     reader.readAsText(files[0])
@@ -200,10 +235,10 @@ function PixelCanvas() {
     const els = document.querySelectorAll<HTMLElement>('.dot')
     let arr = ''
     els.forEach((el) => {
-      if (!el.hasAttribute('data-color-index')) {
+      if (!el.hasAttribute(DATAATTRINDEX)) {
         arr += ','
       } else {
-        arr += el.getAttribute('data-color-index') + ','
+        arr += el.getAttribute(DATAATTRINDEX) + ','
       }
     })
     return arr
@@ -219,10 +254,10 @@ function PixelCanvas() {
       if (index !== 0 && index % 100 === 0) {
         arr += '/n'
       }
-      if (!el.hasAttribute('data-color-index')) {
+      if (!el.hasAttribute(DATAATTRINDEX)) {
         arr += ','
       } else {
-        arr += el.getAttribute('data-color-index') + ','
+        arr += el.getAttribute(DATAATTRINDEX) + ','
       }
     })
     setPixelsData(arr)

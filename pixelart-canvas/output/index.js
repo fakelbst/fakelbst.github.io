@@ -17456,11 +17456,18 @@ function CodeEditor(props) {
         } }));
 }
 
+var DATAATTRINDEX = 'data-color-index';
 var ZoomType;
 (function (ZoomType) {
     ZoomType[ZoomType["IN"] = 0] = "IN";
     ZoomType[ZoomType["OUT"] = 1] = "OUT";
 })(ZoomType || (ZoomType = {}));
+var DotPx;
+(function (DotPx) {
+    DotPx[DotPx["ONE"] = 0] = "ONE";
+    DotPx[DotPx["TWO"] = 1] = "TWO";
+    DotPx[DotPx["THREE"] = 2] = "THREE";
+})(DotPx || (DotPx = {}));
 var COLORS = [
     [16, 16, 36],
     [178, 126, 86],
@@ -17490,6 +17497,7 @@ function PixelCanvas() {
     var _f = react.useState(''), pixelsData = _f[0], setPixelsData = _f[1];
     var _g = react.useState(''), editingCode = _g[0], setEditingCode = _g[1];
     var _h = react.useState(''), loadedPixelData = _h[0], setLoadedPixelData = _h[1];
+    var _j = react.useState(3), dotPx = _j[0]; _j[1];
     react.useEffect(function () {
         if (codeEditing) ;
         else {
@@ -17513,44 +17521,65 @@ function PixelCanvas() {
         var data = loadedPixelData.split(',');
         for (var i = 0, j = data.length; i < j; i++) {
             allEls[i].style.background = null;
-            allEls[i].removeAttribute('data-color-index');
+            allEls[i].removeAttribute(DATAATTRINDEX);
             if (!data[i])
                 continue;
             allEls[i].style.background = "rgb(" + COLORS[+data[i]][0] + ", " + COLORS[+data[i]][1] + ", " + COLORS[+data[i]][2] + ")";
-            allEls[i].setAttribute('data-color-index', data[i]);
+            allEls[i].setAttribute(DATAATTRINDEX, data[i]);
         }
     }, [loadedPixelData]);
-    var draw = function (e) {
-        setDrawing(true);
-        var el = e.target;
-        if (usingColorPicker) {
-            var colorIndex = el.getAttribute('data-color-index');
-            if (colorIndex === null)
-                return;
-            setSelectedColorIndex(colorIndex);
-            return;
+    var getDomsByPxWidth = function (el) {
+        var doms = [];
+        doms.push(el);
+        // console.log()
+        var xIndex = Array.from(el.parentElement.children).indexOf(el);
+        var parentElement = el.parentElement;
+        var prevLineDots = parentElement.previousSibling.children;
+        if (dotPx === 2) {
+            doms.push(el.previousSibling);
+            doms.push(prevLineDots[xIndex - 1]);
+            doms.push(prevLineDots[xIndex]);
         }
+        if (dotPx === 3) {
+            var nextLineDots = parentElement.nextSibling.children;
+            doms.push(el.previousSibling, el.nextSibling);
+            doms.push(prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex]);
+            doms.push(nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex]);
+        }
+        return doms;
+    };
+    var eraseOrDraw = function (el) {
+        var doms = getDomsByPxWidth(el);
         if (usingEraser) {
-            el.style.background = null;
-            el.removeAttribute('data-color-index');
+            doms.forEach(function (item) {
+                item.style.background = null;
+                item.removeAttribute(DATAATTRINDEX);
+            });
         }
         else {
-            el.style.background = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
-            el.setAttribute('data-color-index', selectedColorIndex);
+            doms.forEach(function (item) {
+                item.style.background = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
+                item.setAttribute(DATAATTRINDEX, selectedColorIndex + '');
+            });
         }
+    };
+    var draw = function (event) {
+        setDrawing(true);
+        var el = event.target;
+        if (usingColorPicker) {
+            var colorIndex = el.getAttribute(DATAATTRINDEX);
+            if (colorIndex === null)
+                return;
+            setSelectedColorIndex(+colorIndex);
+            return;
+        }
+        eraseOrDraw(el);
         genPreview();
     };
     var move = function (e) {
         if (drawing) {
             var el = e.target;
-            if (usingEraser) {
-                el.style.background = null;
-                el.removeAttribute('data-color-index');
-            }
-            else {
-                el.style.background = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
-                el.setAttribute('data-color-index', selectedColorIndex);
-            }
+            eraseOrDraw(el);
         }
     };
     var stop = function () {
@@ -17636,11 +17665,11 @@ function PixelCanvas() {
             var allEls = document.querySelectorAll('.dot');
             for (var i = 0, j = data.length; i < j; i++) {
                 allEls[i].style.background = null;
-                allEls[i].removeAttribute('data-color-index');
+                allEls[i].removeAttribute(DATAATTRINDEX);
                 if (!data[i])
                     continue;
                 allEls[i].style.background = "rgb(" + COLORS[+data[i]][0] + ", " + COLORS[+data[i]][1] + ", " + COLORS[+data[i]][2] + ")";
-                allEls[i].setAttribute('data-color-index', data[i]);
+                allEls[i].setAttribute(DATAATTRINDEX, data[i]);
             }
         };
         reader.readAsText(files[0]);
@@ -17650,11 +17679,11 @@ function PixelCanvas() {
         var els = document.querySelectorAll('.dot');
         var arr = '';
         els.forEach(function (el) {
-            if (!el.hasAttribute('data-color-index')) {
+            if (!el.hasAttribute(DATAATTRINDEX)) {
                 arr += ',';
             }
             else {
-                arr += el.getAttribute('data-color-index') + ',';
+                arr += el.getAttribute(DATAATTRINDEX) + ',';
             }
         });
         return arr;
@@ -17669,11 +17698,11 @@ function PixelCanvas() {
             if (index !== 0 && index % 100 === 0) {
                 arr += '/n';
             }
-            if (!el.hasAttribute('data-color-index')) {
+            if (!el.hasAttribute(DATAATTRINDEX)) {
                 arr += ',';
             }
             else {
-                arr += el.getAttribute('data-color-index') + ',';
+                arr += el.getAttribute(DATAATTRINDEX) + ',';
             }
         });
         setPixelsData(arr);
