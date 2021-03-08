@@ -17497,7 +17497,7 @@ function PixelCanvas() {
     var _f = react.useState(''), pixelsData = _f[0], setPixelsData = _f[1];
     var _g = react.useState(''), editingCode = _g[0], setEditingCode = _g[1];
     var _h = react.useState(''), loadedPixelData = _h[0], setLoadedPixelData = _h[1];
-    var _j = react.useState(3), dotPx = _j[0]; _j[1];
+    var _j = react.useState(1), dotPx = _j[0], setDotPx = _j[1];
     react.useEffect(function () {
         if (codeEditing) ;
         else {
@@ -17728,6 +17728,12 @@ function PixelCanvas() {
                             setUsingEraser(false);
                             setSelectedColorIndex(index);
                         }, className: "color " + (selectedColorIndex === index ? 'active' : ''), style: { background: "rgb(" + el[0] + ", " + el[1] + ", " + el[2] + ")" } });
+                }))),
+            react.createElement("div", { className: "toolbox" },
+                react.createElement("div", null, [1, 2, 3].map(function (item) {
+                    return react.createElement("span", { onClick: function () { return setDotPx(item); }, className: "px-text " + (dotPx === item ? "current-px" : "") },
+                        item,
+                        "px");
                 }))),
             react.createElement("div", { className: "toolbox tools" },
                 react.createElement("svg", { onClick: function () { return setUsingEraser(!usingEraser); }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "4066", width: "200", height: "200" },

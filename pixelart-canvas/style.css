@@ -80,6 +80,16 @@
   margin-top: 5px;
 }
 
+.px-text {
+  display: inline-block;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.current-px {
+  color: #e91e63;
+}
+
 .color {
   width: 25px;
   height: 25px;

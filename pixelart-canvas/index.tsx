@@ -47,7 +47,7 @@ function PixelCanvas() {
   const [editingCode, setEditingCode] = useState<string>('')
   const [loadedPixelData, setLoadedPixelData] = useState<string>('')
 
-  const [dotPx, setDotPx] = useState<number>(3)
+  const [dotPx, setDotPx] = useState<number>(1)
 
   useEffect(() => {
     if (codeEditing) {
@@ -290,6 +290,15 @@ function PixelCanvas() {
                   setUsingEraser(false)
                   setSelectedColorIndex(index)
                 }} className={`color ${selectedColorIndex === index ? 'active' : ''}`} style={{ background: `rgb(${el[0]}, ${el[1]}, ${el[2]})` }}></div>
+              })
+            }
+          </div>
+        </div>
+        <div className="toolbox">
+          <div>
+            {
+              [1, 2, 3].map(item => {
+                return <span onClick={() => setDotPx(item)} className={`px-text ${dotPx === item ? "current-px" : ""}`}>{item}px</span>
               })
             }
           </div>
