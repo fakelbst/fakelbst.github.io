@@ -9,12 +9,6 @@ enum ZoomType {
   OUT
 }
 
-enum DotPx {
-  ONE,
-  TWO,
-  THREE
-}
-
 const COLORS = [
   [16, 16, 36],
   [178, 126, 86],
@@ -83,20 +77,25 @@ function PixelCanvas() {
   const getDomsByPxWidth = (el: HTMLElement) => {
     const doms = []
     doms.push(el)
-    // console.log()
     const xIndex = Array.from(el.parentElement.children).indexOf(el)
-    let parentElement = el.parentElement
-    let prevLineDots = (parentElement.previousSibling as HTMLElement).children
+    const parentElement = el.parentElement
+    const prevLineDots = (parentElement.previousSibling as HTMLElement).children
     if (dotPx === 2) {
       doms.push(el.previousSibling)
       doms.push(prevLineDots[xIndex - 1])
       doms.push(prevLineDots[xIndex])
-    }
-    if (dotPx === 3) {
-      let nextLineDots = (parentElement.nextSibling as HTMLElement).children
+    } else if (dotPx === 3) {
+      const nextLineDots = (parentElement.nextSibling as HTMLElement).children
       doms.push(el.previousSibling, el.nextSibling)
       doms.push(prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex])
       doms.push(nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex])
+    } else if (dotPx === 4) {
+      const prevPrevLineDots = (parentElement.previousSibling.previousSibling as HTMLElement).children
+      const nextLineDots = (parentElement.nextSibling as HTMLElement).children
+      doms.push(el.previousSibling.previousSibling, el.previousSibling, el.nextSibling)
+      doms.push(prevPrevLineDots[xIndex - 2], prevPrevLineDots[xIndex - 1], prevPrevLineDots[xIndex + 1], prevPrevLineDots[xIndex])
+      doms.push(prevLineDots[xIndex - 2], prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex])
+      doms.push(nextLineDots[xIndex - 2], nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex])
     }
     return doms
   }
@@ -297,7 +296,7 @@ function PixelCanvas() {
         <div className="toolbox">
           <div>
             {
-              [1, 2, 3].map(item => {
+              [1, 2, 3, 4].map(item => {
                 return <span onClick={() => setDotPx(item)} className={`px-text ${dotPx === item ? "current-px" : ""}`}>{item}px</span>
               })
             }

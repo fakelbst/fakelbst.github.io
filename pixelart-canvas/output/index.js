@@ -17462,12 +17462,6 @@ var ZoomType;
     ZoomType[ZoomType["IN"] = 0] = "IN";
     ZoomType[ZoomType["OUT"] = 1] = "OUT";
 })(ZoomType || (ZoomType = {}));
-var DotPx;
-(function (DotPx) {
-    DotPx[DotPx["ONE"] = 0] = "ONE";
-    DotPx[DotPx["TWO"] = 1] = "TWO";
-    DotPx[DotPx["THREE"] = 2] = "THREE";
-})(DotPx || (DotPx = {}));
 var COLORS = [
     [16, 16, 36],
     [178, 126, 86],
@@ -17531,7 +17525,6 @@ function PixelCanvas() {
     var getDomsByPxWidth = function (el) {
         var doms = [];
         doms.push(el);
-        // console.log()
         var xIndex = Array.from(el.parentElement.children).indexOf(el);
         var parentElement = el.parentElement;
         var prevLineDots = parentElement.previousSibling.children;
@@ -17540,11 +17533,19 @@ function PixelCanvas() {
             doms.push(prevLineDots[xIndex - 1]);
             doms.push(prevLineDots[xIndex]);
         }
-        if (dotPx === 3) {
+        else if (dotPx === 3) {
             var nextLineDots = parentElement.nextSibling.children;
             doms.push(el.previousSibling, el.nextSibling);
             doms.push(prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex]);
             doms.push(nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex]);
+        }
+        else if (dotPx === 4) {
+            var prevPrevLineDots = parentElement.previousSibling.previousSibling.children;
+            var nextLineDots = parentElement.nextSibling.children;
+            doms.push(el.previousSibling.previousSibling, el.previousSibling, el.nextSibling);
+            doms.push(prevPrevLineDots[xIndex - 2], prevPrevLineDots[xIndex - 1], prevPrevLineDots[xIndex + 1], prevPrevLineDots[xIndex]);
+            doms.push(prevLineDots[xIndex - 2], prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex]);
+            doms.push(nextLineDots[xIndex - 2], nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex]);
         }
         return doms;
     };
@@ -17730,7 +17731,7 @@ function PixelCanvas() {
                         }, className: "color " + (selectedColorIndex === index ? 'active' : ''), style: { background: "rgb(" + el[0] + ", " + el[1] + ", " + el[2] + ")" } });
                 }))),
             react.createElement("div", { className: "toolbox" },
-                react.createElement("div", null, [1, 2, 3].map(function (item) {
+                react.createElement("div", null, [1, 2, 3, 4].map(function (item) {
                     return react.createElement("span", { onClick: function () { return setDotPx(item); }, className: "px-text " + (dotPx === item ? "current-px" : "") },
                         item,
                         "px");
