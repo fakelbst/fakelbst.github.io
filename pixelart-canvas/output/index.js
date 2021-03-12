@@ -17523,28 +17523,41 @@ function PixelCanvas() {
         }
     }, [loadedPixelData]);
     var getDomsByPxWidth = function (el) {
+        var _a, _b, _c, _d, _e;
         var doms = [];
         doms.push(el);
         var xIndex = Array.from(el.parentElement.children).indexOf(el);
         var parentElement = el.parentElement;
-        var prevLineDots = parentElement.previousSibling.children;
+        var prevLineDots = (_a = parentElement.previousSibling) === null || _a === void 0 ? void 0 : _a.children;
         if (dotPx === 2) {
             doms.push(el.previousSibling);
+            if (!prevLineDots)
+                return doms;
             doms.push(prevLineDots[xIndex - 1]);
             doms.push(prevLineDots[xIndex]);
         }
         else if (dotPx === 3) {
-            var nextLineDots = parentElement.nextSibling.children;
+            var nextLineDots = (_b = parentElement.nextSibling) === null || _b === void 0 ? void 0 : _b.children;
             doms.push(el.previousSibling, el.nextSibling);
+            if (!prevLineDots)
+                return doms;
             doms.push(prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex]);
+            if (!nextLineDots)
+                return doms;
             doms.push(nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex]);
         }
         else if (dotPx === 4) {
-            var prevPrevLineDots = parentElement.previousSibling.previousSibling.children;
-            var nextLineDots = parentElement.nextSibling.children;
+            var prevPrevLineDots = (_d = (_c = parentElement.previousSibling) === null || _c === void 0 ? void 0 : _c.previousSibling) === null || _d === void 0 ? void 0 : _d.children;
+            var nextLineDots = (_e = parentElement.nextSibling) === null || _e === void 0 ? void 0 : _e.children;
             doms.push(el.previousSibling.previousSibling, el.previousSibling, el.nextSibling);
+            if (!prevPrevLineDots)
+                return doms;
             doms.push(prevPrevLineDots[xIndex - 2], prevPrevLineDots[xIndex - 1], prevPrevLineDots[xIndex + 1], prevPrevLineDots[xIndex]);
+            if (!prevLineDots)
+                return doms;
             doms.push(prevLineDots[xIndex - 2], prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex]);
+            if (!nextLineDots)
+                return doms;
             doms.push(nextLineDots[xIndex - 2], nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex]);
         }
         return doms;
@@ -17553,13 +17566,13 @@ function PixelCanvas() {
         var doms = getDomsByPxWidth(el);
         if (usingEraser) {
             doms.forEach(function (item) {
-                item.style.background = null;
+                item.style.backgroundColor = null;
                 item.removeAttribute(DATAATTRINDEX);
             });
         }
         else {
             doms.forEach(function (item) {
-                item.style.background = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
+                item.style.backgroundColor = "rgb(" + COLORS[selectedColorIndex][0] + ", " + COLORS[selectedColorIndex][1] + ", " + COLORS[selectedColorIndex][2] + ")";
                 item.setAttribute(DATAATTRINDEX, selectedColorIndex + '');
             });
         }
@@ -17713,7 +17726,7 @@ function PixelCanvas() {
         var downloadLink = document.createElement('a');
         var file = new Blob([arr], { type: 'text/plain' });
         downloadLink.href = URL.createObjectURL(file);
-        downloadLink.download = 'pixels.js';
+        downloadLink.download = 'pixels';
         downloadLink.click();
         downloadLink.remove();
     };

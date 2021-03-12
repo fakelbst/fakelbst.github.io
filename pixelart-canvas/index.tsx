@@ -79,22 +79,28 @@ function PixelCanvas() {
     doms.push(el)
     const xIndex = Array.from(el.parentElement.children).indexOf(el)
     const parentElement = el.parentElement
-    const prevLineDots = (parentElement.previousSibling as HTMLElement).children
+    const prevLineDots = (parentElement.previousSibling as HTMLElement)?.children
     if (dotPx === 2) {
       doms.push(el.previousSibling)
+      if (!prevLineDots) return doms
       doms.push(prevLineDots[xIndex - 1])
       doms.push(prevLineDots[xIndex])
     } else if (dotPx === 3) {
-      const nextLineDots = (parentElement.nextSibling as HTMLElement).children
+      const nextLineDots = (parentElement.nextSibling as HTMLElement)?.children
       doms.push(el.previousSibling, el.nextSibling)
+      if (!prevLineDots) return doms
       doms.push(prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex])
+      if (!nextLineDots) return doms
       doms.push(nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex])
     } else if (dotPx === 4) {
-      const prevPrevLineDots = (parentElement.previousSibling.previousSibling as HTMLElement).children
-      const nextLineDots = (parentElement.nextSibling as HTMLElement).children
+      const prevPrevLineDots = (parentElement.previousSibling?.previousSibling as HTMLElement)?.children
+      const nextLineDots = (parentElement.nextSibling as HTMLElement)?.children
       doms.push(el.previousSibling.previousSibling, el.previousSibling, el.nextSibling)
+      if (!prevPrevLineDots) return doms
       doms.push(prevPrevLineDots[xIndex - 2], prevPrevLineDots[xIndex - 1], prevPrevLineDots[xIndex + 1], prevPrevLineDots[xIndex])
+      if (!prevLineDots) return doms
       doms.push(prevLineDots[xIndex - 2], prevLineDots[xIndex - 1], prevLineDots[xIndex + 1], prevLineDots[xIndex])
+      if (!nextLineDots) return doms
       doms.push(nextLineDots[xIndex - 2], nextLineDots[xIndex - 1], nextLineDots[xIndex + 1], nextLineDots[xIndex])
     }
     return doms
@@ -104,12 +110,12 @@ function PixelCanvas() {
     const doms = getDomsByPxWidth(el)
     if (usingEraser) {
       doms.forEach((item: HTMLElement) => {
-        item.style.background = null
+        item.style.backgroundColor = null
         item.removeAttribute(DATAATTRINDEX)
       })
     } else {
       doms.forEach((item: HTMLElement) => {
-        item.style.background = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
+        item.style.backgroundColor = `rgb(${COLORS[selectedColorIndex][0]}, ${COLORS[selectedColorIndex][1]}, ${COLORS[selectedColorIndex][2]})`
         item.setAttribute(DATAATTRINDEX, selectedColorIndex + '')
       })
     }
@@ -268,7 +274,7 @@ function PixelCanvas() {
     const downloadLink = document.createElement('a')
     const file = new Blob([arr], {type: 'text/plain'})
     downloadLink.href = URL.createObjectURL(file)
-    downloadLink.download = 'pixels.js'
+    downloadLink.download = 'pixels'
     downloadLink.click()
     downloadLink.remove()
   }
