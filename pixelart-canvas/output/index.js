@@ -1,5 +1,31 @@
 'use strict';
 
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function createCommonjsModule(fn) {
@@ -17491,7 +17517,12 @@ function PixelCanvas() {
     var _f = react.useState(''), pixelsData = _f[0], setPixelsData = _f[1];
     var _g = react.useState(''), editingCode = _g[0], setEditingCode = _g[1];
     var _h = react.useState(''), loadedPixelData = _h[0], setLoadedPixelData = _h[1];
-    var _j = react.useState(1), dotPx = _j[0], setDotPx = _j[1];
+    var _j = react.useState({
+        usingEraser: false,
+        usingColorPicker: false,
+        usingGridBorder: true
+    }), drawTools = _j[0], setDrawTools = _j[1];
+    var _k = react.useState(1), dotPx = _k[0], setDotPx = _k[1];
     react.useEffect(function () {
         if (codeEditing) ;
         else {
@@ -17753,7 +17784,13 @@ function PixelCanvas() {
                 react.createElement("svg", { onClick: function () { return setUsingEraser(!usingEraser); }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "4066", width: "200", height: "200" },
                     react.createElement("path", { d: "M993.7408 381.0816l-322.56-322.56a94.4128 94.4128 0 0 0-133.5296 0l-507.392 507.1872a94.4128 94.4128 0 0 0 0 133.5296L250.88 919.7568a238.7968 238.7968 0 0 0 337.92 0l405.1456-405.1456a94.4128 94.4128 0 0 0-0.2048-133.5296z m-366.08-279.1936l322.56 322.56a33.024 33.024 0 0 1 0 46.6432l-363.9808 364.1344L216.9344 465.92l364.0832-364.032a33.024 33.024 0 0 1 46.6432 0zM294.2464 876.3392L73.728 655.8208a33.024 33.024 0 0 1 0-46.6432l99.7888-99.7888L542.72 878.592a177.5616 177.5616 0 0 1-248.4736-2.2528z", "p-id": "4067", fill: usingEraser ? '#e91e63' : '#cccfe2' })),
                 react.createElement("svg", { onClick: function () { return setUsingColorPicker(!usingColorPicker); }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "4278", width: "200", height: "200" },
-                    react.createElement("path", { d: "M932.495185 175.642433l-80.716274 98.144967c-3.532061 4.284795-8.453785 6.542998-12.506969 10.132961l61.782112 49.101435c40.300234 31.962255 46.669524 90.443916 14.244048 129.933514l-19.10787 23.218957a95.423543 95.423543 0 0 1-132.249619 13.607119l-22.697833-18.065622-381.63627 464.205427c-42.674242 51.880761-105.961823 81.411105-165.196218 77.068408a138.097785 138.097785 0 0 1-76.257771-29.067123c-67.398668-53.502035-68.672526-162.127379-2.953035-242.148821L496.893659 287.568227l-22.697833-18.007719a91.659872 91.659872 0 0 1-14.244049-129.933514l19.165773-23.276859a95.36564 95.36564 0 0 1 132.191716-13.549217l61.782112 49.043532c2.721424-4.632211 3.937379-9.843448 7.46944-14.128243L761.219189 39.57124a111.578378 111.578378 0 0 1 154.600037-15.865322 107.119875 107.119875 0 0 1 16.675959 151.936515z m-398.949158 141.05082l-381.694172 464.205428c-49.448851 60.218741-51.359638 139.661156-4.16899 177.124161 13.954535 11.059403 30.804202 17.428693 50.085779 18.818357 44.121808 3.242548 92.06519-19.744799 125.185498-59.987131l381.63627-464.26333-171.044385-135.897485z", "p-id": "4279", fill: usingColorPicker ? '#e91e63' : '#cccfe2' }))),
+                    react.createElement("path", { d: "M932.495185 175.642433l-80.716274 98.144967c-3.532061 4.284795-8.453785 6.542998-12.506969 10.132961l61.782112 49.101435c40.300234 31.962255 46.669524 90.443916 14.244048 129.933514l-19.10787 23.218957a95.423543 95.423543 0 0 1-132.249619 13.607119l-22.697833-18.065622-381.63627 464.205427c-42.674242 51.880761-105.961823 81.411105-165.196218 77.068408a138.097785 138.097785 0 0 1-76.257771-29.067123c-67.398668-53.502035-68.672526-162.127379-2.953035-242.148821L496.893659 287.568227l-22.697833-18.007719a91.659872 91.659872 0 0 1-14.244049-129.933514l19.165773-23.276859a95.36564 95.36564 0 0 1 132.191716-13.549217l61.782112 49.043532c2.721424-4.632211 3.937379-9.843448 7.46944-14.128243L761.219189 39.57124a111.578378 111.578378 0 0 1 154.600037-15.865322 107.119875 107.119875 0 0 1 16.675959 151.936515z m-398.949158 141.05082l-381.694172 464.205428c-49.448851 60.218741-51.359638 139.661156-4.16899 177.124161 13.954535 11.059403 30.804202 17.428693 50.085779 18.818357 44.121808 3.242548 92.06519-19.744799 125.185498-59.987131l381.63627-464.26333-171.044385-135.897485z", "p-id": "4279", fill: usingColorPicker ? '#e91e63' : '#cccfe2' })),
+                react.createElement("svg", { onClick: function () {
+                        setDrawTools(__assign(__assign({}, drawTools), { usingGridBorder: !drawTools.usingGridBorder }));
+                        var dots = document.querySelectorAll('.dot');
+                        dots.forEach(function (el) { return el.classList.toggle('no-border'); });
+                    }, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "2269", width: "200", height: "200" },
+                    react.createElement("path", { d: "M192 768V640H96a32 32 0 0 1 0-64h96V448H96a32 32 0 0 1 0-64h96V256H96a32 32 0 1 1 0-64h96V96a32 32 0 1 1 64 0v96h128V96a32 32 0 0 1 64 0v96h128V96a32 32 0 0 1 64 0v96h128V96a32 32 0 0 1 64 0v96h96a32 32 0 0 1 0 64h-96v128h96a32 32 0 0 1 0 64h-96v128h96a32 32 0 0 1 0 64h-96v128h96a32 32 0 0 1 0 64h-96v96a32 32 0 0 1-64 0v-96H640v96a32 32 0 0 1-64 0v-96H448v96a32 32 0 0 1-64 0v-96H256v96a32 32 0 0 1-64 0v-96H96a32 32 0 0 1 0-64h96z m64 0h128V640H256v128z m192 0h128V640H448v128z m192 0h128V640H640v128z m128-192V448H640v128h128z m-192 0V448H448v128h128z m-192 0V448H256v128h128zM256 384h128V256H256v128z m192 0h128V256H448v128z m192 0h128V256H640v128z", "p-id": "2270", fill: drawTools.usingGridBorder ? '#e91e63' : '#cccfe2' }))),
             react.createElement("div", { className: "toolbox tools" },
                 react.createElement("svg", { onClick: exportArr, className: "icon", viewBox: "0 0 1024 1024", version: "1.1", xmlns: "http://www.w3.org/2000/svg", "p-id": "5946", width: "200", height: "200" },
                     react.createElement("path", { d: "M394.6 689.8c-13.2 3.2-27.4-9.5-31.7-23.2-8.4-28.5-12.7-58.6-12.7-88.1 0-159.4 151.5-325.1 314.1-352.1v-5.3c0-1.6 0-3.7 0.5-5.3l0.5-2.1c1.6-11.6 5.8-38.5 32.2-55.4 10.6-6.9 22.2-10 34.3-10 14.8 0 26.9 5.3 34.3 9.5 1.6 0.5 2.6 1.6 4.2 2.6L929.2 286c17.4 13.2 28 34.8 28 57 0 22.7-10.6 44.3-28.5 57.5L770.5 525.7c-11.6 9-25.3 13.7-39.1 13.7-12.1 0-23.8-3.7-34.8-10.6-21.1-13.7-31.7-34.8-31.7-64.4v-1.1C559.3 475 442.2 569 416.3 657.6c-4.8 14.3-13.7 32.2-21.7 32.2z m335.7-466.6V256c0 17.4-13.7 31.7-31.1 32.7-125.6 6.9-257.6 131.4-279.7 254.4C486 458.7 595.2 390 699.7 397.4c17.4 1.1 30.6 15.3 30.6 32.7V465c0 4.7 0.5 6.9 0.5 7.9l157.3-124.6c2.1-1.6 2.6-3.2 2.6-5.3 0-2.1-1.1-4.2-2.6-5.3L731.9 214.3c-1.1 1.6-1.6 5.8-2.1 8.4l0.5 0.5z m0 0", "p-id": "5947", fill: "#cccfe2" }),

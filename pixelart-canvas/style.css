@@ -64,6 +64,10 @@
   cursor: cell;
 }
 
+.dot.no-border {
+  border: none;
+}
+
 .dot.zoomout {
   height: 10px;
   width: 10px;
