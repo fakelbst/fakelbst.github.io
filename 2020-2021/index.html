@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico" />
+    <title>Mao Yijie</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="bookblock.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="bb-bookblock" class="content bb-bookblock">
+      <div class="bb-item">
+        <div class="pages first">
+          <canvas class="first-c"></canvas>
+        </div>
+      </div>
+      <div class="bb-item">
+        <div class="pages second">
+          <p>......</p>
+        </div>
+      </div>
+    </div>
+    <script src="bookblock.js"></script>
+    <script src="main.js"></script>
+    <script>
+      const bbInstance = new BookBlock(document.querySelector('#bb-bookblock'), {
+        speed: 800,
+        shadowSides : 0.8,
+        shadowFlip : 0.7
+      })
+    </script>
+  </body>
+</html>
+
