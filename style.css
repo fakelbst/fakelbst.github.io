@@ -1,45 +1,18 @@
-body {
-  background: #EDF0F0;
-  display: flex;
+* {
+  margin: 0;
+}
+
+html, body {
+  background: #594F4F;
+  color: #FAE1B0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
   height: 100vh;
-  justify-content: center;
-  align-items: center;
+  width: 300vw;
+  padding: 10px;
+  transition: 0.2s ease-in-out;
 }
 
-.content {
-  height: 494px;
-  width: 800px;
-  /* height: 100vh; */
-  /* width: 100vw; */
-  display: block;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, .2);
-  border-radius: 3px;
-  background: linear-gradient(to right, rgba(233, 233, 235, 1) 0%, rgba(228, 228, 228, 1) 100%);
-}
-
-.wrapper {
-  position: relative;
-  height: 494px;
-  width: 800px;
-}
-
-.bb-custom-wrapper .bb-bookblock {
-	box-shadow: 0 12px 20px -10px rgba(81,64,49,0.6);
-}
-
-.pages {
-  background: linear-gradient(to right, rgba(233, 233, 235, 1) 0%, rgba(228, 228, 228, 1) 100%);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-
-.first-c {
-  width: 100%;
-  height: 100%;
-}
-
-.second p {
-  text-align: center;
-  margin-top: 200px;
-}
