@@ -8,6 +8,8 @@ Website collection
 - [http://potrace.sourceforge.net/](http://potrace.sourceforge.net/) Transforming bitmaps into vector graphics
 - [https://ngrok.com/product](https://ngrok.com/product) 
 - [https://nivo.rocks/](https://nivo.rocks/) Dataviz
+- [https://mycolor.space/](https://mycolor.space/)
+- [https://hitup.wondertools.top/#/](https://hitup.wondertools.top/#/) GitHub Trending Repos
 
 
 ## pixel art
