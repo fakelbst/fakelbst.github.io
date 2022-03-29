@@ -37,10 +37,10 @@ const throttle = (fn, sec) => {
 	.add('2.svg', '/assets/dot2.svg')
 	.add('3.svg', '/assets/dot3.svg')
   .load(() => {
-  	app.stage.addChild(...Array.from({length: 900}, (_, i) => {
+  	app.stage.addChild(...Array.from({length: 1300}, (_, i) => {
     	const sprite = PIXI.Sprite.from(`${Math.random() * 3 + 1 | 0}.svg`)
       sprite.anchor.set(.5)
-      sprite.scale.set(0.09 + Math.random() * 0.12)
+      sprite.scale.set(0.009 + Math.random() * 0.12)
       sprite.rotation = Math.PI * 2 * Math.random()
       sprite.position.set(
       	app.screen.width * Math.random(),
