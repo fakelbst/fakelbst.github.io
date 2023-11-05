@@ -25,4 +25,4 @@ Website collection
 
 ## tools
 - [https://cleanup.pictures/](https://cleanup.pictures/) Remove unwanted objects from photos
-
+- [https://vectorizer.ai/](https://vectorizer.ai/) Trace Pixels To Vectors in Full Color
