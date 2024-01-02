@@ -22,6 +22,7 @@ Website collection
 
 ## inspiration
 - [https://www.rainymood.com/](https://www.rainymood.com/)
+- [https://uicolors.app/create](https://uicolors.app/create) Color Generator
 
 ## tools
 - [https://cleanup.pictures/](https://cleanup.pictures/) Remove unwanted objects from photos
