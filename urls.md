@@ -28,3 +28,5 @@ Website collection
 - [https://cleanup.pictures/](https://cleanup.pictures/) Remove unwanted objects from photos
 - [https://vectorizer.ai/](https://vectorizer.ai/) Trace Pixels To Vectors in Full Color
 - [https://background-erase.xyz/](https://background-erase.xyz/) Remove background in seconds
+- [https://undraw.co/illustrations](https://undraw.co/illustrations)
+- [https://tailblocks.cc/](https://tailblocks.cc/)
