@@ -29,4 +29,5 @@ Website collection
 - [https://vectorizer.ai/](https://vectorizer.ai/) Trace Pixels To Vectors in Full Color
 - [https://background-erase.xyz/](https://background-erase.xyz/) Remove background in seconds
 - [https://undraw.co/illustrations](https://undraw.co/illustrations)
-- [https://tailblocks.cc/](https://tailblocks.cc/)
+- [https://tailblocks.cc/](https://tailblocks.cc/) Landing page sections
+- [https://tilda.cc/free-icons/](https://tilda.cc/free-icons/) Free icons
