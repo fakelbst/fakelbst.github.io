@@ -19,6 +19,7 @@ Website collection
 
 ## Musics
 - [https://bitmidi.com/](https://bitmidi.com/) MIDI files
+- [https://tabs.bancey.com/](https://tabs.bancey.com/) Kings Of Convenience guitar tabs
 
 ## Inspiration
 - [https://www.rainymood.com/](https://www.rainymood.com/)
