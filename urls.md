@@ -23,7 +23,6 @@ Website collection
 
 ## Inspiration
 - [https://www.rainymood.com/](https://www.rainymood.com/)
-- [https://uicolors.app/create](https://uicolors.app/create) Color Generator
 
 ## Tools
 - [https://cleanup.pictures/](https://cleanup.pictures/) Remove unwanted objects from photos
@@ -32,8 +31,12 @@ Website collection
 - [https://undraw.co/illustrations](https://undraw.co/illustrations)
 - [https://tailblocks.cc/](https://tailblocks.cc/) Landing page sections
 - [https://tilda.cc/free-icons/](https://tilda.cc/free-icons/) Free icons
+- [https://uicolors.app/create](https://uicolors.app/create) Color Generator
 
 ## Resources
+- [https://www.shopify.com/stock-photos](https://www.shopify.com/stock-photos) Free stock photos and royalty-free images
 - [https://github.com/twitter/twemoji](https://github.com/twitter/twemoji) Twitter open source emoji
 - [https://www.figma.com/community/file/1138254942249677742](https://www.figma.com/community/file/1138254942249677742) Microsoft emoji
+- [https://treact.owaiskhan.me/](https://treact.owaiskhan.me/) Free Modern React Templates
+- [https://htmlrev.com/](https://htmlrev.com/) HTML templates for websites, landing pages, blogs, portfolios, ecommerce and dashboards
 
