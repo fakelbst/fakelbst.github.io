@@ -40,4 +40,5 @@ Website collection
 - [https://treact.owaiskhan.me/](https://treact.owaiskhan.me/) Free Modern React Templates
 - [https://htmlrev.com/](https://htmlrev.com/) HTML templates for websites, landing pages, blogs, portfolios, ecommerce and dashboards
 - [https://awesome-selfhosted.net/index.html](https://awesome-selfhosted.net/index.html) Awesome-Selfhosted
+- [https://svgbox.net/](https://svgbox.net/) SVG ICONS
 
