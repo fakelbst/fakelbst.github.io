@@ -11,6 +11,8 @@ Website collection
 - [https://mycolor.space/](https://mycolor.space/)
 - [https://hitup.wondertools.top/#/](https://hitup.wondertools.top/#/) GitHub Trending Repos
 
+## Education
+- [https://thecrashcourse.com/](https://thecrashcourse.com/) Courses
 
 ## Pixel art
 - [https://pixeljoint.com/forum/forum_posts.asp?TID=26398](https://pixeljoint.com/forum/forum_posts.asp?TID=26398)
@@ -41,4 +43,7 @@ Website collection
 - [https://htmlrev.com/](https://htmlrev.com/) HTML templates for websites, landing pages, blogs, portfolios, ecommerce and dashboards
 - [https://awesome-selfhosted.net/index.html](https://awesome-selfhosted.net/index.html) Awesome-Selfhosted
 - [https://svgbox.net/](https://svgbox.net/) SVG ICONS
+- [https://storyset.com/](https://storyset.com/) Free customizable illustrations
+- [https://www.shapefest.com/](https://www.shapefest.com/) 100,000+ transparent PNG images of beautiful 3D objects.
+- [https://mixkit.co/free-stock-art/](https://mixkit.co/free-stock-art/) Beautiful Art & Illustration
 
