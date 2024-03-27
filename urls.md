@@ -46,4 +46,5 @@ Website collection
 - [https://storyset.com/](https://storyset.com/) Free customizable illustrations
 - [https://www.shapefest.com/](https://www.shapefest.com/) 100,000+ transparent PNG images of beautiful 3D objects.
 - [https://mixkit.co/free-stock-art/](https://mixkit.co/free-stock-art/) Beautiful Art & Illustration
+- [https://iconscout.com/](https://iconscout.com/) Over 8.4 Million+ Design Assets
 
