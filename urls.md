@@ -49,4 +49,5 @@ Website collection
 - [https://mixkit.co/free-stock-art/](https://mixkit.co/free-stock-art/) Beautiful Art & Illustration
 - [https://iconscout.com/](https://iconscout.com/) Over 8.4 Million+ Design Assets
 - [https://stockcake.com/](https://stockcake.com/) Free AI images
+- [https://phosphoricons.com/](https://phosphoricons.com/) Icon lib
 
