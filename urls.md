@@ -51,4 +51,5 @@ Website collection
 - [https://iconscout.com/](https://iconscout.com/) Over 8.4 Million+ Design Assets
 - [https://stockcake.com/](https://stockcake.com/) Free AI images
 - [https://phosphoricons.com/](https://phosphoricons.com/) Icon lib
+- [https://wall.alphacoders.com/](https://wall.alphacoders.com/) Wallpapers
 
