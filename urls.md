@@ -35,7 +35,8 @@ Website collection
 - [https://tilda.cc/free-icons/](https://tilda.cc/free-icons/) Free icons
 - [https://uicolors.app/create](https://uicolors.app/create) Color Generator
 - [https://svg.io](https://svg.io) Text prompt to SVG
-- [https://www.svgviewer.dev/](https://www.svgviewer.dev/) 
+- [https://www.svgviewer.dev/](https://www.svgviewer.dev/)
+- [https://rmbg.fun/](https://rmbg.fun/) BACKGROUND REMOVER
 
 ## Resources
 - [https://www.shopify.com/stock-photos](https://www.shopify.com/stock-photos) Free stock photos and royalty-free images
