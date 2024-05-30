@@ -56,4 +56,5 @@ Website collection
 - [https://stockcake.com/](https://stockcake.com/) Free AI images
 - [https://phosphoricons.com/](https://phosphoricons.com/) Icon lib
 - [https://wall.alphacoders.com/](https://wall.alphacoders.com/) Wallpapers
+- [https://fontsource.org/](https://fontsource.org/) Self-host Open Source fonts in neatly bundled NPM packages.
 
