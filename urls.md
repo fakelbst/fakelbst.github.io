@@ -19,7 +19,7 @@ Website collection
 - [http://www.effectgames.com/demos/canvascycle/](http://www.effectgames.com/demos/canvascycle/)
 - [https://pixel-me.tokyo/en/](https://pixel-me.tokyo/en/)
 
-## Musics
+## Music
 - [https://bitmidi.com/](https://bitmidi.com/) MIDI files
 - [https://tabs.bancey.com/](https://tabs.bancey.com/) Kings Of Convenience guitar tabs
 
@@ -57,4 +57,5 @@ Website collection
 - [https://phosphoricons.com/](https://phosphoricons.com/) Icon lib
 - [https://wall.alphacoders.com/](https://wall.alphacoders.com/) Wallpapers
 - [https://fontsource.org/](https://fontsource.org/) Self-host Open Source fonts in neatly bundled NPM packages.
+- [https://www.fffuel.co/](https://www.fffuel.co/) SVG generators for gradients, patterns, textures, shapes & backgrounds 
 
