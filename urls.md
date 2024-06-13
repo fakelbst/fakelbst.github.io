@@ -40,6 +40,7 @@ Website collection
 - [https://svg.io](https://svg.io) Text prompt to SVG
 - [https://www.svgviewer.dev/](https://www.svgviewer.dev/)
 - [https://rmbg.fun/](https://rmbg.fun/) BACKGROUND REMOVER
+- [https://cobalt.tools/](https://cobalt.tools/) save what you love
 
 ## Resources
 - [https://www.shopify.com/stock-photos](https://www.shopify.com/stock-photos) Free stock photos and royalty-free images
