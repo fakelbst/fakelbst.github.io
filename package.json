@@ -1,0 +1,26 @@
+{
+  "name": "fakelbst-homepage",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "refresh:lastfm": "node scripts/generate-lastfm-data.mjs",
+    "build": "npm run refresh:lastfm && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.90.2",
+    "@tanstack/react-router": "^1.134.16",
+    "cheerio": "^1.1.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "tailwindcss": "^4.1.14",
+    "vite": "^7.1.7"
+  }
+}

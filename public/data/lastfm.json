@@ -1,0 +1,272 @@
+{
+  "username": "fakelbst",
+  "source": "https://www.last.fm/",
+  "period": "overall",
+  "fetchedAt": "2026-03-13T15:59:39.652Z",
+  "artists": [
+    {
+      "rank": 1,
+      "name": "Radiohead",
+      "url": "https://www.last.fm/music/Radiohead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/f188a36b5088f9cd0175d123ef66df20.jpg",
+      "scrobbles": 3383
+    },
+    {
+      "rank": 2,
+      "name": "Explosions in the Sky",
+      "url": "https://www.last.fm/music/Explosions+in+the+Sky",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/533e77099ac724da81503abf1e867fe5.jpg",
+      "scrobbles": 3247
+    },
+    {
+      "rank": 3,
+      "name": "Sigur Rós",
+      "url": "https://www.last.fm/music/Sigur+R%C3%B3s",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/ae4d499d40966137a73d91f2cc1cc31d.jpg",
+      "scrobbles": 3200
+    },
+    {
+      "rank": 4,
+      "name": "Coldplay",
+      "url": "https://www.last.fm/music/Coldplay",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/ebd00d5e25128652994a85d74a67a88e.jpg",
+      "scrobbles": 2718
+    },
+    {
+      "rank": 5,
+      "name": "World's End Girlfriend",
+      "url": "https://www.last.fm/music/World%27s+End+Girlfriend",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/94a945f561b54557b5c6c9dc3210c9d3.jpg",
+      "scrobbles": 2352
+    },
+    {
+      "rank": 6,
+      "name": "Blonde Redhead",
+      "url": "https://www.last.fm/music/Blonde+Redhead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/9e25c9f37c16476fde859c9163155874.jpg",
+      "scrobbles": 1796
+    },
+    {
+      "rank": 7,
+      "name": "Pixies",
+      "url": "https://www.last.fm/music/Pixies",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/955d5b33350113163eb6e040450f6740.jpg",
+      "scrobbles": 1536
+    },
+    {
+      "rank": 8,
+      "name": "李志",
+      "url": "https://www.last.fm/music/%E6%9D%8E%E5%BF%97",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/c5e3f8b601984e54bbc15cd030fa980f.jpg",
+      "scrobbles": 1520
+    },
+    {
+      "rank": 9,
+      "name": "Pink Floyd",
+      "url": "https://www.last.fm/music/Pink+Floyd",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/c85f89edbccd30b3abde6d6986e74237.jpg",
+      "scrobbles": 1482
+    },
+    {
+      "rank": 10,
+      "name": "Arcade Fire",
+      "url": "https://www.last.fm/music/Arcade+Fire",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/3ab9dfb7a43d0d6e4cdaa2ddf4807c30.jpg",
+      "scrobbles": 1374
+    }
+  ],
+  "albums": [
+    {
+      "rank": 1,
+      "name": "Hurtbreak Wonderland",
+      "artist": "World's End Girlfriend",
+      "url": "https://www.last.fm/music/World%27s+End+Girlfriend/Hurtbreak+Wonderland",
+      "artistUrl": "https://www.last.fm/music/World%27s+End+Girlfriend",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/99cc2a4d9b266af460cc1f4e51ac75c0.jpg",
+      "scrobbles": 1330
+    },
+    {
+      "rank": 2,
+      "name": "The Bends",
+      "artist": "Radiohead",
+      "url": "https://www.last.fm/music/Radiohead/The+Bends",
+      "artistUrl": "https://www.last.fm/music/Radiohead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/9ea9931e129bb5efd3606866901855b5.jpg",
+      "scrobbles": 894
+    },
+    {
+      "rank": 3,
+      "name": "The Earth Is Not a Cold Dead Place",
+      "artist": "Explosions in the Sky",
+      "url": "https://www.last.fm/music/Explosions+in+the+Sky/The+Earth+Is+Not+a+Cold+Dead+Place",
+      "artistUrl": "https://www.last.fm/music/Explosions+in+the+Sky",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/f2cc3e07d9babd565cc4d1bede6a0719.jpg",
+      "scrobbles": 797
+    },
+    {
+      "rank": 4,
+      "name": "Those Who Tell the Truth Shall Die, Those Who Tell the Truth Shall Live Forever",
+      "artist": "Explosions in the Sky",
+      "url": "https://www.last.fm/music/Explosions+in+the+Sky/Those+Who+Tell+the+Truth+Shall+Die,+Those+Who+Tell+the+Truth+Shall+Live+Forever",
+      "artistUrl": "https://www.last.fm/music/Explosions+in+the+Sky",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/50b3dff49be076922e4ee9358b9b0968.jpg",
+      "scrobbles": 755
+    },
+    {
+      "rank": 5,
+      "name": "Funeral",
+      "artist": "Arcade Fire",
+      "url": "https://www.last.fm/music/Arcade+Fire/Funeral",
+      "artistUrl": "https://www.last.fm/music/Arcade+Fire",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/3278464e10e38a8119da1d9455681654.jpg",
+      "scrobbles": 747
+    },
+    {
+      "rank": 6,
+      "name": "Riot on an Empty Street",
+      "artist": "Kings of Convenience",
+      "url": "https://www.last.fm/music/Kings+of+Convenience/Riot+on+an+Empty+Street",
+      "artistUrl": "https://www.last.fm/music/Kings+of+Convenience",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/6c1106b77805424ca869a01ff48b4f41.jpg",
+      "scrobbles": 734
+    },
+    {
+      "rank": 7,
+      "name": "Ágætis byrjun",
+      "artist": "Sigur Rós",
+      "url": "https://www.last.fm/music/Sigur+R%C3%B3s/%C3%81g%C3%A6tis+byrjun",
+      "artistUrl": "https://www.last.fm/music/Sigur+R%C3%B3s",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/82ea4f4b490b4e288c9247e2b4ecb58c.jpg",
+      "scrobbles": 719
+    },
+    {
+      "rank": 8,
+      "name": "OK Computer",
+      "artist": "Radiohead",
+      "url": "https://www.last.fm/music/Radiohead/OK+Computer",
+      "artistUrl": "https://www.last.fm/music/Radiohead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/62d26c6cb4ac4bdccb8f3a2a0fd55421.jpg",
+      "scrobbles": 705
+    },
+    {
+      "rank": 9,
+      "name": "xx",
+      "artist": "The xx",
+      "url": "https://www.last.fm/music/The+xx/xx",
+      "artistUrl": "https://www.last.fm/music/The+xx",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/696d1b64cd9d44bf85aad10df414e959.jpg",
+      "scrobbles": 683
+    },
+    {
+      "rank": 10,
+      "name": "The Dark Side of the Moon",
+      "artist": "Pink Floyd",
+      "url": "https://www.last.fm/music/Pink+Floyd/The+Dark+Side+of+the+Moon",
+      "artistUrl": "https://www.last.fm/music/Pink+Floyd",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/d4bdd038cacbec705e269edb0fd38419.jpg",
+      "scrobbles": 641
+    }
+  ],
+  "tracks": [
+    {
+      "rank": 1,
+      "name": "First Breath After Coma",
+      "artist": "Explosions in the Sky",
+      "url": "https://www.last.fm/music/Explosions+in+the+Sky/_/First+Breath+After+Coma",
+      "artistUrl": "https://www.last.fm/music/Explosions+in+the+Sky",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/f2cc3e07d9babd565cc4d1bede6a0719.jpg",
+      "loved": true,
+      "scrobbles": 391
+    },
+    {
+      "rank": 2,
+      "name": "Fake Plastic Trees",
+      "artist": "Radiohead",
+      "url": "https://www.last.fm/music/Radiohead/_/Fake+Plastic+Trees",
+      "artistUrl": "https://www.last.fm/music/Radiohead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/9ea9931e129bb5efd3606866901855b5.jpg",
+      "loved": true,
+      "scrobbles": 332
+    },
+    {
+      "rank": 3,
+      "name": "Yasmin the Light",
+      "artist": "Explosions in the Sky",
+      "url": "https://www.last.fm/music/Explosions+in+the+Sky/_/Yasmin+the+Light",
+      "artistUrl": "https://www.last.fm/music/Explosions+in+the+Sky",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/50b3dff49be076922e4ee9358b9b0968.jpg",
+      "loved": true,
+      "scrobbles": 311
+    },
+    {
+      "rank": 4,
+      "name": "Silently",
+      "artist": "Blonde Redhead",
+      "url": "https://www.last.fm/music/Blonde+Redhead/_/Silently",
+      "artistUrl": "https://www.last.fm/music/Blonde+Redhead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/2357ab46c0cd490fc94ab3d0f12cc277.jpg",
+      "loved": true,
+      "scrobbles": 283
+    },
+    {
+      "rank": 5,
+      "name": "Let Down",
+      "artist": "Radiohead",
+      "url": "https://www.last.fm/music/Radiohead/_/Let+Down",
+      "artistUrl": "https://www.last.fm/music/Radiohead",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/62d26c6cb4ac4bdccb8f3a2a0fd55421.jpg",
+      "loved": true,
+      "scrobbles": 283
+    },
+    {
+      "rank": 6,
+      "name": "ASA",
+      "artist": "Caspian",
+      "url": "https://www.last.fm/music/Caspian/_/ASA",
+      "artistUrl": "https://www.last.fm/music/Caspian",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/69aa8423a2c7419d98d5f14def0db2bf.jpg",
+      "loved": true,
+      "scrobbles": 227
+    },
+    {
+      "rank": 7,
+      "name": "The Octuple Personality and Eleven Crows 8重人格と11羽のカラス",
+      "artist": "World's End Girlfriend",
+      "url": "https://www.last.fm/music/World%27s+End+Girlfriend/_/The+Octuple+Personality+and+Eleven+Crows+8%E9%87%8D%E4%BA%BA%E6%A0%BC%E3%81%A811%E7%BE%BD%E3%81%AE%E3%82%AB%E3%83%A9%E3%82%B9",
+      "artistUrl": "https://www.last.fm/music/World%27s+End+Girlfriend",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/4128a6eb29f94943c9d206c08e625904.jpg",
+      "loved": true,
+      "scrobbles": 218
+    },
+    {
+      "rank": 8,
+      "name": "Every Instance in Time Is a Journey of Hope",
+      "artist": "Deepset",
+      "url": "https://www.last.fm/music/Deepset/_/Every+Instance+in+Time+Is+a+Journey+of+Hope",
+      "artistUrl": "https://www.last.fm/music/Deepset",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/0360342395e8433eb217d39ecc19abd6.jpg",
+      "loved": true,
+      "scrobbles": 211
+    },
+    {
+      "rank": 9,
+      "name": "Wish You Were Here",
+      "artist": "Pink Floyd",
+      "url": "https://www.last.fm/music/Pink+Floyd/_/Wish+You+Were+Here",
+      "artistUrl": "https://www.last.fm/music/Pink+Floyd",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/e19d2760d2c0cf4de9d2a68beda56efd.jpg",
+      "loved": true,
+      "scrobbles": 201
+    },
+    {
+      "rank": 10,
+      "name": "Postcards from Far Away",
+      "artist": "Coldplay",
+      "url": "https://www.last.fm/music/Coldplay/_/Postcards+from+Far+Away",
+      "artistUrl": "https://www.last.fm/music/Coldplay",
+      "image": "https://lastfm.freetls.fastly.net/i/u/64s/54a9b2950bff4142a9e8cc85be9da6dc.jpg",
+      "loved": true,
+      "scrobbles": 196
+    }
+  ]
+}
