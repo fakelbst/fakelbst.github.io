@@ -1,6 +1,6 @@
 # fakelbst.github.io
 
-Personal homepage for `fakelbst`, built with React, TanStack Router, TanStack Query, and a custom Three.js landing scene.
+Personal homepage for `fakelbst`, built with React, TypeScript, TanStack Router, and TanStack Query.
 
 ## Development
 
@@ -8,6 +8,8 @@ Personal homepage for `fakelbst`, built with React, TanStack Router, TanStack Qu
 npm install
 npm run dev
 ```
+
+The active app source now lives under `app/`, while production files are built into a temporary `.pages-dist/` directory and then synced back to the repository root so `/index.html` stays directly accessible.
 
 ## Data refresh
 
@@ -23,7 +25,6 @@ npm run refresh:lastfm
 npm run build
 ```
 
-The included GitHub Actions workflow deploys the built `dist/` output to GitHub Pages.
+`npm run build` first builds into `.pages-dist/`, then publishes `index.html`, `build-assets/`, and `data/` back into the repository root. That keeps the root deployable on GitHub Pages without needing a committed `dist/` folder.
 
 > personal website
-

@@ -1,4 +1,3 @@
-
 export function HomePage() {
   return (
     <main className="relative grid h-screen place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.05),transparent_22%),linear-gradient(180deg,rgba(3,5,16,0.24),rgba(1,2,8,0.72))] px-4 pb-4 pt-36 md:px-8 md:pb-8 md:pt-25">

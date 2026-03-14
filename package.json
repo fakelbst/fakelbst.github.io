@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "vite",
     "refresh:lastfm": "node scripts/generate-lastfm-data.mjs",
-    "build": "npm run refresh:lastfm && vite build",
-    "preview": "vite preview"
+    "build": "npm run refresh:lastfm && vite build && node scripts/publish-pages.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.90.2",
@@ -19,8 +20,11 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.14",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
     "tailwindcss": "^4.1.14",
+    "typescript": "^5.9.2",
     "vite": "^7.1.7"
   }
 }

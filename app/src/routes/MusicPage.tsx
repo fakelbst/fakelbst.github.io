@@ -1,7 +1,65 @@
 import { useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
-const panels = [
+type PanelKey = 'albums' | 'artists' | 'tracks'
+
+type PanelConfig = {
+  key: PanelKey
+  label: string
+  title: string
+  eyebrow: string
+  accentClass: string
+  badgeClass: string
+  itemClass: string
+  thumbClass: string
+}
+
+type BaseItem = {
+  rank: number
+  name: string
+  url: string
+  image: string
+  scrobbles: number
+}
+
+type ArtistItem = BaseItem
+
+type AlbumItem = BaseItem & {
+  artist: string
+  artistUrl: string
+}
+
+type TrackItem = BaseItem & {
+  artist: string
+  artistUrl: string
+  loved: boolean
+}
+
+type LastfmPayload = {
+  username: string
+  source: string
+  period: string
+  fetchedAt: string
+  artists: ArtistItem[]
+  albums: AlbumItem[]
+  tracks: TrackItem[]
+}
+
+type PanelMap = {
+  albums: AlbumItem[]
+  artists: ArtistItem[]
+  tracks: TrackItem[]
+}
+
+type PanelItem = ArtistItem | AlbumItem | TrackItem
+
+type DataPanelProps = {
+  title: string
+  items: PanelItem[]
+  type: PanelKey
+}
+
+const panels: PanelConfig[] = [
   {
     key: 'albums',
     label: 'Albums',
@@ -46,17 +104,17 @@ const panels = [
   },
 ]
 
-async function fetchLastfmData() {
+async function fetchLastfmData(): Promise<LastfmPayload> {
   const response = await fetch(`${import.meta.env.BASE_URL}data/lastfm.json`)
 
   if (!response.ok) {
     throw new Error('Unable to load Last.fm data')
   }
 
-  return response.json()
+  return response.json() as Promise<LastfmPayload>
 }
 
-function DataPanel({ title, items, type }) {
+function DataPanel({ title, items, type }: DataPanelProps) {
   const panel = panels.find((entry) => entry.key === type) ?? panels[0]
 
   return (
@@ -86,42 +144,41 @@ function DataPanel({ title, items, type }) {
         />
 
         <ol className="grid min-h-0 gap-2 overflow-y-auto pr-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-          {items.map((item) => (
-            <li
-              key={`${type}-${item.rank}-${item.name}`}
-              className={`grid grid-cols-[1.65rem_3rem_minmax(0,1fr)_auto] items-center gap-3 rounded-[1.2rem] border px-3 py-2.5 transition duration-200 hover:-translate-y-0.5 max-md:grid-cols-[1.45rem_2.45rem_minmax(0,1fr)_auto] max-md:gap-2.5 max-md:px-2.5 ${panel.itemClass}`}
-            >
-              <span className="text-[0.74rem] tracking-[0.14em] text-white/44 max-md:text-[0.7rem]">
-                {String(item.rank).padStart(2, '0')}
-              </span>
-              <div
-                className={`h-12 w-12 overflow-hidden rounded-[0.95rem] border border-white/10 max-md:h-10 max-md:w-10 max-md:rounded-[0.8rem] ${panel.thumbClass}`}
+          {items.map((item) => {
+            const artistName = 'artist' in item ? item.artist : ''
+
+            return (
+              <li
+                key={`${type}-${item.rank}-${item.name}`}
+                className={`grid grid-cols-[1.65rem_3rem_minmax(0,1fr)_auto] items-center gap-3 rounded-[1.2rem] border px-3 py-2.5 transition duration-200 hover:-translate-y-0.5 max-md:grid-cols-[1.45rem_2.45rem_minmax(0,1fr)_auto] max-md:gap-2.5 max-md:px-2.5 ${panel.itemClass}`}
               >
-                {item.image ? <img src={item.image} alt="" loading="lazy" /> : <span />}
-              </div>
-              <div className="min-w-0">
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="block truncate text-sm font-semibold text-cloud transition hover:text-white max-md:text-[0.9rem]"
+                <span className="text-[0.74rem] tracking-[0.14em] text-white/44 max-md:text-[0.7rem]">
+                  {String(item.rank).padStart(2, '0')}
+                </span>
+                <div
+                  className={`h-12 w-12 overflow-hidden rounded-[0.95rem] border border-white/10 max-md:h-10 max-md:w-10 max-md:rounded-[0.8rem] ${panel.thumbClass}`}
                 >
-                  {item.name}
-                </a>
-                {'artist' in item ? (
+                  {item.image ? <img src={item.image} alt="" loading="lazy" /> : <span />}
+                </div>
+                <div className="min-w-0">
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block truncate text-sm font-semibold text-cloud transition hover:text-white max-md:text-[0.9rem]"
+                  >
+                    {item.name}
+                  </a>
                   <span className="mt-0.5 block truncate text-[0.82rem] text-mute max-md:text-[0.74rem]">
-                    {item.artist}
+                    {artistName}
                   </span>
-                ) : (
-                  <span className="mt-0.5 block truncate text-[0.82rem] text-mute max-md:text-[0.74rem]">
-                  </span>
-                )}
-              </div>
-              <span className="whitespace-nowrap rounded-full border border-white/8 bg-black/18 px-2.5 py-1 text-[0.74rem] text-gold-flare max-md:text-[0.68rem]">
-                {item.scrobbles}
-              </span>
-            </li>
-          ))}
+                </div>
+                <span className="whitespace-nowrap rounded-full border border-white/8 bg-black/18 px-2.5 py-1 text-[0.74rem] text-gold-flare max-md:text-[0.68rem]">
+                  {item.scrobbles}
+                </span>
+              </li>
+            )
+          })}
         </ol>
       </div>
     </section>
@@ -129,13 +186,13 @@ function DataPanel({ title, items, type }) {
 }
 
 export function MusicPage() {
-  const [activePanel, setActivePanel] = useState('albums')
+  const [activePanel, setActivePanel] = useState<PanelKey>('albums')
   const lastfmQuery = useQuery({
     queryKey: ['lastfm', 'overall'],
     queryFn: fetchLastfmData,
   })
 
-  const panelMap = useMemo(
+  const panelMap = useMemo<PanelMap | null>(
     () =>
       lastfmQuery.data
         ? {
