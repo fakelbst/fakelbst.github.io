@@ -2,13 +2,13 @@
   "username": "fakelbst",
   "source": "https://www.last.fm/",
   "period": "overall",
-  "fetchedAt": "2026-03-14T12:12:59.955Z",
+  "fetchedAt": "2026-03-17T09:56:25.201Z",
   "artists": [
     {
       "rank": 1,
       "name": "Radiohead",
       "url": "https://www.last.fm/music/Radiohead",
-      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/f188a36b5088f9cd0175d123ef66df20.jpg",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/906dc14d1008cc4104384af69e5b0a9d.jpg",
       "scrobbles": 3383
     },
     {
@@ -23,13 +23,13 @@
       "name": "Sigur Rós",
       "url": "https://www.last.fm/music/Sigur+R%C3%B3s",
       "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/ae4d499d40966137a73d91f2cc1cc31d.jpg",
-      "scrobbles": 3200
+      "scrobbles": 3201
     },
     {
       "rank": 4,
       "name": "Coldplay",
       "url": "https://www.last.fm/music/Coldplay",
-      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/ebd00d5e25128652994a85d74a67a88e.jpg",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/421cac7d8e42662f069c4b69e7934d7b.jpg",
       "scrobbles": 2718
     },
     {
@@ -37,20 +37,20 @@
       "name": "World's End Girlfriend",
       "url": "https://www.last.fm/music/World%27s+End+Girlfriend",
       "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/94a945f561b54557b5c6c9dc3210c9d3.jpg",
-      "scrobbles": 2352
+      "scrobbles": 2353
     },
     {
       "rank": 6,
       "name": "Blonde Redhead",
       "url": "https://www.last.fm/music/Blonde+Redhead",
-      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/9e25c9f37c16476fde859c9163155874.jpg",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/1c131de3233830923179b831bccb2f6f.jpg",
       "scrobbles": 1796
     },
     {
       "rank": 7,
       "name": "Pixies",
       "url": "https://www.last.fm/music/Pixies",
-      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/955d5b33350113163eb6e040450f6740.jpg",
+      "image": "https://lastfm.freetls.fastly.net/i/u/avatar70s/9cff9b2ccd7d113348495ae8d25af9f4.jpg",
       "scrobbles": 1536
     },
     {
@@ -83,7 +83,7 @@
       "url": "https://www.last.fm/music/World%27s+End+Girlfriend/Hurtbreak+Wonderland",
       "artistUrl": "https://www.last.fm/music/World%27s+End+Girlfriend",
       "image": "https://lastfm.freetls.fastly.net/i/u/64s/99cc2a4d9b266af460cc1f4e51ac75c0.jpg",
-      "scrobbles": 1330
+      "scrobbles": 1331
     },
     {
       "rank": 2,
@@ -226,7 +226,7 @@
       "artistUrl": "https://www.last.fm/music/Caspian",
       "image": "https://lastfm.freetls.fastly.net/i/u/64s/69aa8423a2c7419d98d5f14def0db2bf.jpg",
       "loved": true,
-      "scrobbles": 227
+      "scrobbles": 228
     },
     {
       "rank": 7,
